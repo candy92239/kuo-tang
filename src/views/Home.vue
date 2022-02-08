@@ -1,17 +1,18 @@
 <template>
   <div class="home">
-    <ContructionPage />
+    <ThreeTestPage />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ContructionPage from "@/components/ContructionPage.vue";
+import ThreeTestPage from "@/components/Background.vue";
 
 export default {
   name: "Home",
   components: {
-    ContructionPage,
+    ThreeTestPage,
   },
 };
 </script>
+<style scoped lang="scss"></style>
