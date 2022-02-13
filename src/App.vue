@@ -16,9 +16,12 @@
 }
 
 #nav {
-  padding: 30px;
   position: fixed;
+  height: 4em;
+  margin: auto;
   z-index: 1000;
+
+  width: 100%;
   a {
     font-weight: bold;
     color: #2c3e50;
