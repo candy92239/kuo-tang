@@ -2,32 +2,33 @@
   <img
     class="visual_comp"
     :style="cssProps"
-    :src="require(`@/assets/${source}`)"
+    :src="require(`@/assets/${datas.source}`)"
   />
 </template>
 
 <script>
+import mainVisual from "@/datas/mainVisual.json";
+
 export default {
   name: "VisualComp",
   props: {
-    source: {
-      type: String,
-      required: true,
-    },
-    relativePos: Array,
-    relativeSize: Array,
+    name: String,
+  },
+  data() {
+    return {
+      datas: mainVisual[this.name],
+    };
   },
   computed: {
     cssProps() {
       return {
-        //X Y position relative to parent
-        "--relative-pos-X": this.relativePos[0] + "%",
-        "--relative-pos-Y": this.relativePos[1] + "%",
-        //Z-index
-        "--relative-pos-Z": this.relativePos[2],
-        //relative h and w
-        "--relative-W": this.relativeSize[0] + "%",
-        "--relative-H": this.relativeSize[1] + "%",
+        "--relative-pos-X": this.datas.relativePos[0] + "%",
+        "--relative-pos-Y": this.datas.relativePos[1] + "%",
+
+        "--relative-pos-Z": this.datas.relativePos[2],
+
+        "--relative-W": this.datas.relativeSize[0] + "%",
+        "--relative-H": this.datas.relativeSize[1] + "%",
       };
     },
   },

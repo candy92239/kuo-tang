@@ -1,31 +1,20 @@
 <template>
   <div class="visual-wrapper" :class="{ zoomed: tableClicked }">
-    <VisualComp
-      source="main_visual/bed_back.svg"
-      :relativePos="[14.864, 1.471, -2]"
-      :relativeSize="[75.274, 70.398]"
-    />
-    <div @mouseenter="tableHover" @mouseleave="tableHover" @click="tableClick">
-      <Hotspot
-        :relativePos="[29.314, 33.335, 3]"
-        :relativeSize="[59.895, 41.384]"
-      />
+    <VisualComp name="bed_back" />
+    <div
+      @mouseenter="toggle('tableHovered')"
+      @mouseleave="toggle('tableHovered')"
+      @click="toggle('tableClicked')"
+    >
+      <Hotspot name="bed_back" indexZ="3" />
     </div>
-    <VisualComp
-      source="main_visual/table.svg"
-      :relativePos="[29.314, 33.335, -1]"
-      :relativeSize="[59.895, 41.384]"
-    />
+    <VisualComp name="table" />
     <Transition>
       <div
         :class="{ normalclass: true, disappear: tableHovered }"
         v-if="!tableClicked"
       >
-        <VisualComp
-          source="main_visual/bed_front.svg"
-          :relativePos="[15.052, 3.222, 2]"
-          :relativeSize="[74.8224, 95.563]"
-        />
+        <VisualComp name="bed_front" />
       </div>
     </Transition>
   </div>
@@ -45,11 +34,8 @@ export default {
     return { tableHovered: false, tableClicked: false };
   },
   methods: {
-    tableHover() {
-      this.tableHovered = !this.tableHovered;
-    },
-    tableClick() {
-      this.tableClicked = !this.tableClicked;
+    toggle(el) {
+      this[el] = !this[el];
     },
   },
 };

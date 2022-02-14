@@ -1,38 +1,38 @@
 <template>
   <div class="home">
-    <div :class="{ 'background-wrapper': !warningClicked }">
-      <MainVisual />
-    </div>
+    <!-- <div :class="{ 'background-wrapper': !warningClicked }"> -->
+    <MainVisual />
+    <!-- </div>
     <Transition>
       <div class="construction-wrapper" v-if="!warningClicked">
-        <ContructionPage @wasClicked="warningClick" />
+        <ContructionPage @wasClicked=toggle("warningClicked") />
       </div>
     </Transition>
     <Transition>
-      <WarningHeader v-if="warningClicked" @wasClicked="warningClick" />
-    </Transition>
+      <WarningHeader v-if="warningClicked" @wasClicked=toggle("warningClicked") />
+    </Transition> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
-import ContructionPage from "@/components/ContructionPage.vue";
-import WarningHeader from "@/components/layout/WarningHeader.vue";
+// import ContructionPage from "@/components/ContructionPage.vue";
+// import WarningHeader from "@/components/layout/WarningHeader.vue";
 
 export default {
   name: "Home",
   components: {
     MainVisual,
-    ContructionPage,
-    WarningHeader,
+    // ContructionPage,
+    // WarningHeader,
   },
   data() {
     return { warningClicked: false };
   },
   methods: {
-    warningClick() {
-      this.warningClicked = !this.warningClicked;
+    toggle(el) {
+      this[el] = !this[el];
     },
   },
 };
