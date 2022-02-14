@@ -1,5 +1,12 @@
 <template>
-  <svg class="visual_comp" :style="cssProps" @click="test" :id="name">
+  <svg
+    class="visual_comp"
+    :style="cssProps"
+    @click="test"
+    @mouseenter="test"
+    @mouseleave="test"
+    :id="name"
+  >
     <InlineSvg :src="require(`@/assets/${datas.source}`)" />
   </svg>
 
@@ -13,6 +20,7 @@ import mainVisual from "@/datas/mainVisual.json";
 import InlineSvg from "vue-inline-svg";
 
 export default {
+  emits: ["VCclicked"],
   name: "VisualComp",
   components: {
     InlineSvg,
@@ -32,23 +40,7 @@ export default {
       this[el] = !this[el];
     },
     test(event) {
-      console.log(event.currentTarget.id);
-      this.$emit(event.currentTarget.id);
-    },
-    addClickE() {
-      let nm = this.name;
-      //let el = document.getElementById(this.name).parentNode;
-
-      //var wrap = document.createElement("svg");
-      //wrap.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      (function () {
-        let e = document.getElementById(nm);
-        e.addEventListener("click", function () {
-          console.log("yeah" + nm);
-        });
-      })();
-
-      //el.insertBefore(wrap, e).appendChild(e);
+      this.$emit("VCclicked", { id: event.currentTarget.id, type: event.type });
     },
   },
   computed: {

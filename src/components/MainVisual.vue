@@ -1,36 +1,26 @@
 <template>
   <div class="visual-wrapper" :class="{ zoomed: tableClicked }">
-    <!-- <VisualComp name="bed_back" /> -->
-    <!-- <div
-      @mouseenter="toggle('tableHovered')"
-      @mouseleave="toggle('tableHovered')"
-      @click="toggle('tableClicked')"
-    >
-      <Hotspot name="bed_back" indexZ="3" />
-    </div> -->
-    <VisualComp name="table" />
-    <VisualComp name="bed_front" />
-
-    <!-- <Transition>
+    <Transition>
       <div
         :class="{ normalclass: true, disappear: tableHovered }"
         v-if="!tableClicked"
       >
-        <VisualComp name="bed_front" />
+        <VisualComp name="bed_front" @VCclicked="test" />
       </div>
-    </Transition> -->
+    </Transition>
+    <VisualComp name="bed_back" @VCclicked="test" />
+    <!-- TODO: all assets fpo -->
+    <VisualComp name="table" @VCclicked="test" />
   </div>
 </template>
 
 <script>
 import VisualComp from "@/components/layout/VisualComp.vue";
-// import Hotspot from "@/components/layout/Hotspot.vue";
 
 export default {
   name: "MainVisual",
   components: {
     VisualComp,
-    // Hotspot,
   },
   data() {
     return { tableHovered: false, tableClicked: false };
@@ -39,8 +29,14 @@ export default {
     toggle(el) {
       this[el] = !this[el];
     },
-    test() {
-      console.log("ccclick");
+    test(event) {
+      if (event.id == "table") {
+        if (event.type == "click") {
+          this.tableClicked = !this.tableClicked;
+        } else {
+          this.tableHovered = !this.tableHovered;
+        }
+      }
     },
   },
 };

@@ -1,13 +1,13 @@
 {
   "bed_back": {
     "source": "main_visual/bed_back.svg",
-    "relativePos": [14.864, 1.471, 0],
+    "relativePos": [14.864, 1.471, -2],
     "relativeSize": [75.274, 70.398],
     "description": "Back of the bed frame."
   },
   "table": {
     "source": "main_visual/table.svg",
-    "relativePos": [29.314, 33.335, 1],
+    "relativePos": [29.314, 33.335, -1],
     "relativeSize": [59.895, 41.384],
     "description": "Table of stuffs."
   },
