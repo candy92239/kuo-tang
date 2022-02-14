@@ -1,6 +1,6 @@
 <template>
   <div class="visual-wrapper" :class="{ zoomed: tableClicked }">
-    <VisualComp name="bed_back" />
+    <!-- <VisualComp name="bed_back" /> -->
     <!-- <div
       @mouseenter="toggle('tableHovered')"
       @mouseleave="toggle('tableHovered')"
@@ -10,6 +10,7 @@
     </div> -->
     <VisualComp name="table" />
     <VisualComp name="bed_front" />
+
     <!-- <Transition>
       <div
         :class="{ normalclass: true, disappear: tableHovered }"
@@ -37,6 +38,9 @@ export default {
   methods: {
     toggle(el) {
       this[el] = !this[el];
+    },
+    test() {
+      console.log("ccclick");
     },
   },
 };

@@ -1,13 +1,8 @@
 <template>
-  <!-- <div class="visual_comp" :style="cssProps"> -->
-  <object
-    :onload="addClickE"
-    class="visual_comp"
-    :style="cssProps"
-    :id="name"
-    :data="require(`@/assets/${datas.source}`)"
-    type="image/svg+xml"
-  />
+  <svg class="visual_comp" :style="cssProps" @click="test" :id="name">
+    <InlineSvg :src="require(`@/assets/${datas.source}`)" />
+  </svg>
+
   <div v-if="showDescription" class="description">
     {{ datas.description }}
   </div>
@@ -15,9 +10,13 @@
 
 <script>
 import mainVisual from "@/datas/mainVisual.json";
+import InlineSvg from "vue-inline-svg";
 
 export default {
   name: "VisualComp",
+  components: {
+    InlineSvg,
+  },
   props: {
     name: String,
     //showD: { default: false, type: Boolean },
@@ -32,17 +31,24 @@ export default {
     toggle(el) {
       this[el] = !this[el];
     },
+    test(event) {
+      console.log(event.currentTarget.id);
+      this.$emit(event.currentTarget.id);
+    },
     addClickE() {
-      let el = this.name;
-      let ele = document.getElementById(el);
-      let paths = ele.contentDocument.querySelectorAll("g");
+      let nm = this.name;
+      //let el = document.getElementById(this.name).parentNode;
 
+      //var wrap = document.createElement("svg");
+      //wrap.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       (function () {
-        paths[1].addEventListener("click", function () {
-          console.log(el);
+        let e = document.getElementById(nm);
+        e.addEventListener("click", function () {
+          console.log("yeah" + nm);
         });
       })();
-      console.log(paths);
+
+      //el.insertBefore(wrap, e).appendChild(e);
     },
   },
   computed: {
@@ -61,8 +67,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-object {
+<style lang="scss">
+.visual_comp {
   width: var(--relative-W);
   height: var(--relative-H);
   position: absolute;
@@ -70,14 +76,23 @@ object {
   top: var(--relative-pos-Y);
   left: var(--relative-pos-X);
 }
-#bed_front {
-  pointer-events: none;
-}
-//TODO: maybe remove pointer even when hovering???
 svg {
-  @extend object;
-  //pointer-events: none;
+  pointer-events: none;
+  cursor: pointer;
 }
+path {
+  pointer-events: fill;
+}
+
+polygon {
+  pointer-events: fill;
+}
+
+rect {
+  pointer-events: fill;
+}
+
+//TODO: maybe remove pointer even when hovering???
 .description {
   width: 40%;
   position: fixed;
