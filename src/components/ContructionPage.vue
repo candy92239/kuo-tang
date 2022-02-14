@@ -101,7 +101,7 @@ img {
   position: absolute;
   min-width: 110%;
   min-height: 100%;
-  opacity: 85%;
+  opacity: 0.85;
   filter: blur(5px);
 }
 </style>

@@ -42,6 +42,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #f2e2d2;
+  position: relative;
   overflow: hidden;
 }
 .construction-wrapper {

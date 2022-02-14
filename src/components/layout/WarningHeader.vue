@@ -32,11 +32,11 @@ div {
   background: #84c0c6;
   z-index: 100;
   cursor: pointer;
-  opacity: 75%;
+  opacity: 0.75;
   transition: opacity 0.25s;
   border-radius: 1em;
   &:hover {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 </style>
