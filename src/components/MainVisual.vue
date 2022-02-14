@@ -1,34 +1,35 @@
 <template>
   <div class="visual-wrapper" :class="{ zoomed: tableClicked }">
     <VisualComp name="bed_back" />
-    <div
+    <!-- <div
       @mouseenter="toggle('tableHovered')"
       @mouseleave="toggle('tableHovered')"
       @click="toggle('tableClicked')"
     >
       <Hotspot name="bed_back" indexZ="3" />
-    </div>
+    </div> -->
     <VisualComp name="table" />
-    <Transition>
+    <VisualComp name="bed_front" />
+    <!-- <Transition>
       <div
         :class="{ normalclass: true, disappear: tableHovered }"
         v-if="!tableClicked"
       >
         <VisualComp name="bed_front" />
       </div>
-    </Transition>
+    </Transition> -->
   </div>
 </template>
 
 <script>
 import VisualComp from "@/components/layout/VisualComp.vue";
-import Hotspot from "@/components/layout/Hotspot.vue";
+// import Hotspot from "@/components/layout/Hotspot.vue";
 
 export default {
   name: "MainVisual",
   components: {
     VisualComp,
-    Hotspot,
+    // Hotspot,
   },
   data() {
     return { tableHovered: false, tableClicked: false };

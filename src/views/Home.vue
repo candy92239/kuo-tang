@@ -5,11 +5,14 @@
     <!-- </div>
     <Transition>
       <div class="construction-wrapper" v-if="!warningClicked">
-        <ContructionPage @wasClicked=toggle("warningClicked") />
+        <ContructionPage @wasClicked="toggle('warningClicked')" />
       </div>
     </Transition>
     <Transition>
-      <WarningHeader v-if="warningClicked" @wasClicked=toggle("warningClicked") />
+      <WarningHeader
+        v-if="warningClicked"
+        @wasClicked="toggle('warningClicked')"
+      />
     </Transition> -->
   </div>
 </template>
