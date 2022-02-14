@@ -35,5 +35,8 @@ div {
   z-index: var(--relative-pos-Z);
   top: var(--relative-pos-Y);
   left: var(--relative-pos-X);
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
