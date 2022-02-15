@@ -1,12 +1,5 @@
 <template>
-  <svg
-    class="visual_comp"
-    :style="cssProps"
-    @click="test"
-    @mouseenter="test"
-    @mouseleave="test"
-    :id="name"
-  >
+  <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
     <InlineSvg :src="require(`@/assets/${datas.source}`)" />
   </svg>
 
@@ -31,6 +24,14 @@ export default {
   },
   data() {
     return {
+      events: {
+        ...Object.fromEntries(
+          ["click", "mouseleave", "mouseenter"].map((key) => [
+            key,
+            this.returnEvent,
+          ])
+        ),
+      },
       datas: mainVisual[this.name],
       showDescription: false,
     };
@@ -39,7 +40,7 @@ export default {
     toggle(el) {
       this[el] = !this[el];
     },
-    test(event) {
+    returnEvent(event) {
       this.$emit("VCclicked", { id: event.currentTarget.id, type: event.type });
     },
   },

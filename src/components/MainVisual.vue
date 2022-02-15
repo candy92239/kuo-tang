@@ -33,7 +33,7 @@ export default {
       if (event.id == "table") {
         if (event.type == "click") {
           this.tableClicked = !this.tableClicked;
-        } else {
+        } else if (event.type == ("mouseleave" | "mouseenter")) {
           this.tableHovered = !this.tableHovered;
         }
       }
