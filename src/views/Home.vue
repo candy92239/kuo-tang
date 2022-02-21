@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
-    <!-- <div :class="{ 'background-wrapper': !warningClicked }"> -->
-    <MainVisual />
-    <!-- </div>
+  <!-- <div :class="{ 'background-wrapper': !warningClicked }"> -->
+  <MainVisual />
+  <!-- </div>
     <Transition>
       <div class="construction-wrapper" v-if="!warningClicked">
         <ContructionPage @wasClicked="toggle('warningClicked')" />
@@ -14,7 +13,6 @@
         @wasClicked="toggle('warningClicked')"
       />
     </Transition> -->
-  </div>
 </template>
 
 <script>
@@ -42,13 +40,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.home {
-  width: 100vw;
-  height: 100vh;
-  background: #f2e2d2;
-  position: relative;
-  overflow: hidden;
-}
 .construction-wrapper {
   width: 100vw;
   height: 100vh;

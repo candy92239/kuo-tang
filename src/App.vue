@@ -1,6 +1,8 @@
 <template>
   <Menu />
-  <router-view />
+  <div class="main">
+    <router-view />
+  </div>
 </template>
 <script>
 import Menu from "@/components/layout/Menu.vue";
@@ -12,6 +14,13 @@ export default {
 };
 </script>
 <style lang="scss">
+.main {
+  width: 100vw;
+  height: 100vh;
+  background: #f2e2d2;
+  position: relative;
+  overflow: hidden;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
