@@ -14,10 +14,12 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "@/assets/scss/main.scss";
+
 .main {
   width: 100vw;
   height: 100vh;
-  background: #f2e2d2;
+  background: #fdfbfa;
   position: relative;
   overflow: hidden;
 }

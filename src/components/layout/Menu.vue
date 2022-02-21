@@ -14,7 +14,11 @@
       </KinesisElement>
       <Transition>
         <div class="menu-list-wrapper" v-if="menuActive">
-          <div v-for="item in listItems" :key="item.name">
+          <div
+            class="menu-item-wrapper"
+            v-for="item in listItems"
+            :key="item.name"
+          >
             <router-link :to="item.path">
               {{ item.name }}
             </router-link>
@@ -66,17 +70,22 @@ div {
   .menu-list-wrapper {
     background: rgba(255, 255, 255, 0.721);
     padding: 0.5em 0em;
-    margin: 1em 0em;
+    //margin: 1em 0em;
     display: flex;
     flex-direction: column;
     transform-origin: top center;
     border-radius: 1em;
+    &.menu-item-wrapper {
+      width: 100%;
+    }
   }
 }
 
 a {
-  padding: 0.5em;
+  padding: 0.5em 0em;
   margin: 0.25em 0.5em;
+  display: inline-block;
+  width: calc(100% - 1em);
 
   color: #2c3e50;
   border-radius: 0.75em;

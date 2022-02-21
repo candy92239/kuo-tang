@@ -1,6 +1,13 @@
 <template>
   <!-- <div :class="{ 'background-wrapper': !warningClicked }"> -->
-  <MainVisual />
+  <div class="pointer-event-wrap">
+    <div class="main-visual-wrapper">
+      <MainVisual />
+    </div>
+    <div class="portfolio-wrapper">
+      <Portfolio />
+    </div>
+  </div>
   <!-- </div>
     <Transition>
       <div class="construction-wrapper" v-if="!warningClicked">
@@ -18,6 +25,7 @@
 <script>
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
+import Portfolio from "@/components/Portfolio.vue";
 
 // import ContructionPage from "@/components/ContructionPage.vue";
 // import WarningHeader from "@/components/layout/WarningHeader.vue";
@@ -26,6 +34,7 @@ export default {
   name: "Home",
   components: {
     MainVisual,
+    Portfolio,
     // ContructionPage,
     // WarningHeader,
   },
@@ -52,6 +61,21 @@ export default {
 }
 .background-wrapper {
   filter: blur(5px);
+}
+
+.pointer-event-wrap {
+  pointer-events: none;
+}
+.portfolio-wrapper {
+  height: 100vh;
+  position: relative;
+  z-index: 100;
+  overflow: scroll;
+}
+.main-visual-wrapper {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .v-enter-active,

@@ -52,13 +52,12 @@ export default {
   height: 80vh;
   display: flex;
   align-items: center;
-  transition: width 1s, height 1s, top 1s, left 1s;
+  transition: transform-origin 1s, width 1s, height 1s, top 1s, left 1s,
+    transform 1s;
   &.zoomed {
-    top: -65%;
-    left: 50%;
-    transform: translate(-50%, 10%);
-    width: 175vh;
-    height: 175vh;
+    transform-origin: 59.895% 41.384%;
+    transform: scale(1.5);
+    //TODO: transfor origin to clicked item's position + 50% width/height < do it in visual comp, emit the value
   }
 }
 .normalclass {
