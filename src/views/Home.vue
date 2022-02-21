@@ -20,6 +20,7 @@
 <script>
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
+
 // import ContructionPage from "@/components/ContructionPage.vue";
 // import WarningHeader from "@/components/layout/WarningHeader.vue";
 
