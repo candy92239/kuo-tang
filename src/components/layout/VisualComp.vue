@@ -13,13 +13,14 @@ import mainVisual from "@/datas/mainVisual.json";
 import InlineSvg from "vue-inline-svg";
 
 export default {
-  emits: ["VCclicked"],
+  emits: ["VCmouse", "VCzoom"],
   name: "VisualComp",
   components: {
     InlineSvg,
   },
   props: {
     name: String,
+    zoomOrigin: Array,
     //showD: { default: false, type: Boolean },
   },
   data() {
@@ -41,7 +42,7 @@ export default {
       this[el] = !this[el];
     },
     returnEvent(event) {
-      this.$emit("VCclicked", { id: event.currentTarget.id, type: event.type });
+      this.$emit("VCmouse", { id: event.currentTarget.id, type: event.type });
     },
   },
   computed: {
@@ -76,7 +77,9 @@ svg {
 path {
   pointer-events: fill;
 }
-
+line {
+  pointer-events: visibleStroke;
+}
 polygon {
   pointer-events: fill;
 }

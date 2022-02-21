@@ -4,9 +4,9 @@
     <div class="main-visual-wrapper">
       <MainVisual />
     </div>
-    <div class="portfolio-wrapper">
-      <Portfolio />
-    </div>
+    <!-- <div class="portfolio-wrapper">
+    <Portfolio />
+  </div> -->
   </div>
   <!-- </div>
     <Transition>
@@ -25,7 +25,7 @@
 <script>
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
-import Portfolio from "@/components/Portfolio.vue";
+// import Portfolio from "@/components/Portfolio.vue";
 
 // import ContructionPage from "@/components/ContructionPage.vue";
 // import WarningHeader from "@/components/layout/WarningHeader.vue";
@@ -34,7 +34,7 @@ export default {
   name: "Home",
   components: {
     MainVisual,
-    Portfolio,
+    // Portfolio,
     // ContructionPage,
     // WarningHeader,
   },
@@ -70,9 +70,15 @@ export default {
   height: 100vh;
   position: relative;
   z-index: 100;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
 .main-visual-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 10;
   pointer-events: auto;

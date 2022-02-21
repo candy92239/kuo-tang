@@ -2,6 +2,7 @@
   <div class="sec-1">
     <h1>Hi there! How can I help you today?</h1>
   </div>
+  <div class="holder" />
   <div class="sec-2">
     <h1>22</h1>
   </div>
@@ -32,6 +33,12 @@ export default {
 
 <style scoped lang="scss">
 div {
+  display: flex;
   height: 100vh;
+  background: rgba(255, 255, 255, 0);
+  h1 {
+    width: 100vw;
+    background: rgba(255, 255, 255, 0);
+  }
 }
 </style>

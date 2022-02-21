@@ -3,18 +3,21 @@
     "source": "main_visual/bed_back.svg",
     "relativePos": [14.864, 1.471, -2],
     "relativeSize": [75.274, 70.398],
+    "zoomOrigin": [30, 55],
     "description": "Back of the bed frame."
   },
   "table": {
     "source": "main_visual/table.svg",
     "relativePos": [29.314, 33.335, -1],
     "relativeSize": [59.895, 41.384],
+    "zoomOrigin": [55, 55],
     "description": "Table of stuffs."
   },
   "bed_front": {
     "source": "main_visual/bed_front.svg",
     "relativePos": [15.052, 3.222, 2],
     "relativeSize": [74.8224, 95.563],
+    "zoomOrigin": [50, 10],
     "description": "Front of the bed frame."
   }
 }
