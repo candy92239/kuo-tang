@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="visual-wrapper"
-    :class="{ zoomed: VCClicked, moved: moved }"
-    :style="cssProps"
-  >
+  <div class="visual-wrapper" :class="{ zoomed: VCClicked }" :style="cssProps">
     <Transition>
       <div
         :class="{ normalclass: true, disappear: tableHovered }"
@@ -53,16 +49,15 @@ export default {
           this.zoomOrigin = this.currentOrigin;
           this.previousZoomOrigin = this.zoomOrigin;
         } else if (
+          //if moved
           this.zoomOrigin.x != this.currentOrigin.x ||
           this.zoomOrigin.y != this.currentOrigin.y
         ) {
           this.previousZoomOrigin = this.zoomOrigin;
           this.zoomOrigin = this.currentOrigin;
-          this.moved = false;
-          this.moved = true;
         } else {
+          //if clicked on same thing
           this.VCClicked = false;
-          this.moved = false;
           this.zoomOrigin = undefined;
           this.previousZoomOrigin = {};
         }
@@ -87,14 +82,12 @@ export default {
   computed: {
     cssProps() {
       return {
-        "--zoom-ori-X": this.previousZoomOrigin
-          ? this.previousZoomOrigin.x
-          : "0%",
-        "--zoom-ori-Y": this.previousZoomOrigin
-          ? this.previousZoomOrigin.y
-          : "0%",
-        "--zoom-X": this.zoomOrigin ? this.zoomOrigin.x : "0%",
-        "--zoom-Y": this.zoomOrigin ? this.zoomOrigin.y : "0%",
+        "--zoom-X": this.zoomOrigin
+          ? this.zoomOrigin.x + "%"
+          : this.previousZoomOrigin.x + "%",
+        "--zoom-Y": this.zoomOrigin
+          ? this.zoomOrigin.y + "%"
+          : this.previousZoomOrigin.y + "%",
       };
     },
   },
@@ -110,14 +103,11 @@ export default {
   height: 80vh;
   display: flex;
   align-items: center;
-  transform-origin: var(--zoom-ori-X) var(--zoom-ori-Y);
-  transition: transform-origin 0s, width 1s, height 1s, top 1s, left 1s,
+  transform-origin: var(--zoom-X) var(--zoom-Y);
+  transition: transform-origin 1s, width 1s, height 1s, top 1s, left 1s,
     transform 1s;
   &.zoomed {
     transform: scale(2);
-  }
-  &.moved {
-    transform-origin: var(--zoom-X) var(--zoom-Y);
   }
 }
 .normalclass {
