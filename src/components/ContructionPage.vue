@@ -12,6 +12,9 @@
       You can also download my
       <a href="2022 Feb Resume.pdf" target="_blank"><strong> resume</strong></a
       >,<br />
+      take a look at my
+      <router-link to="/devl-demo"><strong> eLearning demo</strong></router-link
+      >,<br />
       check out my
       <a href="https://www.linkedin.com/in/candytang92239/" target="_blank"
         ><strong> LinkedIn page</strong></a

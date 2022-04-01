@@ -1,42 +1,41 @@
 <template>
-  <!-- <div :class="{ 'background-wrapper': !warningClicked }"> -->
-  <div class="pointer-event-wrap">
-    <div class="main-visual-wrapper">
-      <MainVisual />
+  <Transition>
+    <div class="construction-wrapper" v-if="!warningClicked">
+      <ContructionPage @wasClicked="toggle('warningClicked')" />
     </div>
-    <!-- <div class="portfolio-wrapper">
-    <Portfolio />
-  </div> -->
-  </div>
-  <!-- </div>
-    <Transition>
-      <div class="construction-wrapper" v-if="!warningClicked">
-        <ContructionPage @wasClicked="toggle('warningClicked')" />
+  </Transition>
+  <Transition>
+    <WarningHeader
+      v-if="warningClicked"
+      @wasClicked="toggle('warningClicked')"
+    />
+  </Transition>
+  <div :class="{ 'background-wrapper': !warningClicked }">
+    -->
+    <div class="pointer-event-wrap">
+      <div class="portfolio-wrapper">
+        <Portfolio />
+        <MainVisual />
       </div>
-    </Transition>
-    <Transition>
-      <WarningHeader
-        v-if="warningClicked"
-        @wasClicked="toggle('warningClicked')"
-      />
-    </Transition> -->
+    </div>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
-// import Portfolio from "@/components/Portfolio.vue";
+import Portfolio from "@/components/Portfolio.vue";
 
-// import ContructionPage from "@/components/ContructionPage.vue";
-// import WarningHeader from "@/components/layout/WarningHeader.vue";
+import ContructionPage from "@/components/ContructionPage.vue";
+import WarningHeader from "@/components/layout/WarningHeader.vue";
 
 export default {
   name: "Home",
   components: {
     MainVisual,
-    // Portfolio,
-    // ContructionPage,
-    // WarningHeader,
+    Portfolio,
+    ContructionPage,
+    WarningHeader,
   },
   data() {
     return { warningClicked: false };
@@ -61,6 +60,8 @@ export default {
 }
 .background-wrapper {
   filter: blur(5px);
+  position: relative;
+  z-index: 0;
 }
 
 .pointer-event-wrap {
@@ -68,20 +69,10 @@ export default {
 }
 .portfolio-wrapper {
   height: 100vh;
+  width: 100vw;
   position: relative;
   z-index: 100;
-  overflow-y: scroll;
-  overflow-x: visible;
-}
-.main-visual-wrapper {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
+  overflow: visible;
 }
 
 .v-enter-active,

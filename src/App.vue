@@ -1,7 +1,11 @@
 <template>
   <Menu />
   <div class="main">
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </div>
 </template>
 <script>
@@ -16,13 +20,6 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/main.scss";
 
-.main {
-  width: 100vw;
-  height: 100vh;
-  background: #fdfbfa;
-  position: relative;
-  overflow: hidden;
-}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

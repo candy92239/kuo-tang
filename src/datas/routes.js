@@ -17,6 +17,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Contact.vue"),
   },
+  {
+    path: "/devl-demo",
+    name: "eLearning Demo",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/DEVLdemo.vue"),
+  },
 ];
 
 export default routes;

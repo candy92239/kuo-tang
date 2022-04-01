@@ -1,15 +1,24 @@
 <template>
-  <div class="visual-wrapper" :class="{ zoomed: VCClicked }" :style="cssProps">
-    <Transition>
-      <div
-        :class="{ normalclass: true, disappear: tableHovered }"
-        v-if="!zoomOrigin"
-      >
-        <VisualComp name="bed_front" @VCmouse="test" />
-      </div>
-    </Transition>
-    <VisualComp name="bed_back" @VCmouse="test" />
-    <VisualComp name="table" @VCmouse="test" />
+  <div
+    class="comp-description"
+    v-if="VCDes"
+    v-html="VCDes"
+    :style="cssProps"
+  ></div>
+  <div class="main-visual-wrapper" @mousemove="mouseMove">
+    <div
+      class="visual-wrapper"
+      :class="{ zoomed: VCClicked }"
+      :style="cssProps"
+    >
+      <Transition>
+        <div :class="{ normalclass: true, disappear: tableHovered }">
+          <VisualComp name="bed_front" @VCmouse="test" />
+          <VisualComp name="bed_back" @VCmouse="test" />
+          <VisualComp name="table" @VCmouse="test" />
+        </div>
+      </Transition>
+    </div>
   </div>
 </template>
 
@@ -26,11 +35,13 @@ export default {
     return {
       tableHovered: false,
       VCClicked: false,
+      VCDes: "",
       zoomOrigin: undefined,
       previousZoomOrigin: {},
       currentOrigin: {},
       datas: mainVisual,
       moved: false,
+      clientPos: { x: 0, y: 0 },
     };
   },
   methods: {
@@ -48,6 +59,8 @@ export default {
         if (!this.zoomOrigin) {
           this.zoomOrigin = this.currentOrigin;
           this.previousZoomOrigin = this.zoomOrigin;
+          this.VCDes = this.datas[e.id].description;
+          //hide any object in front
         } else if (
           //if moved
           this.zoomOrigin.x != this.currentOrigin.x ||
@@ -58,13 +71,70 @@ export default {
         } else {
           //if clicked on same thing
           this.VCClicked = false;
+          this.VCDes = "";
           this.zoomOrigin = undefined;
           this.previousZoomOrigin = {};
         }
-      } else {
-        //this.tableHovered = !this.tableHovered;
+
+        //show description div
+        this.VCDes = this.datas[e.id].description;
+      } else if (e.type == "mouseenter" && this.VCClicked) {
+        //only change when really moved on it
+        setTimeout(() => {
+          this.VCDes = this.datas[e.id].description;
+        }, 100);
+      } else if (e.type == "mouseleave") {
+        setTimeout(() => {
+          this.VCDes = "";
+        }, 500);
       }
     },
+    mouseMove(e) {
+      //update only if des is shown
+      if (this.VCDes) {
+        this.clientPos = {
+          x: e.clientX + 20,
+          y: e.clientY + 20,
+        };
+      }
+    },
+    //wirte separate function to update description
+    showDescription(e) {
+      if (e.type == "click") {
+        this.VCClicked = true;
+        //if not zoomed in already
+        if (!this.zoomOrigin) {
+          this.VCDes = this.datas[e.id].description;
+        } else if (
+          //if moved
+          this.zoomOrigin.x != this.currentOrigin.x ||
+          this.zoomOrigin.y != this.currentOrigin.y
+        ) {
+          this.previousZoomOrigin = this.zoomOrigin;
+          this.zoomOrigin = this.currentOrigin;
+        } else {
+          //if clicked on same thing
+          this.VCClicked = false;
+          this.VCDes = "";
+          this.zoomOrigin = undefined;
+          this.previousZoomOrigin = {};
+        }
+
+        //show description div
+        this.VCDes = this.datas[e.id].description;
+      } else if (e.type == "mouseenter" && this.VCClicked) {
+        //only change when really moved on it
+        setTimeout(() => {
+          this.VCDes = this.datas[e.id].description;
+        }, 100);
+      } else if (e.type == "mouseleave") {
+        setTimeout(() => {
+          this.VCDes = "";
+        }, 500);
+      }
+    },
+
+    //decide to update of not after timout sec
     updateZoom(e) {
       if (!this.zoomOrigin) {
         this.previousZoomOrigin = e;
@@ -88,6 +158,8 @@ export default {
         "--zoom-Y": this.zoomOrigin
           ? this.zoomOrigin.y + "%"
           : this.previousZoomOrigin.y + "%",
+        "--client-X": this.clientPos.x + "px",
+        "--client-Y": this.clientPos.y + "px",
       };
     },
   },
@@ -95,6 +167,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.main-visual-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0%;
+  left: auto;
+  right: auto;
+  //z-index: 10;
+  pointer-events: auto;
+}
 .visual-wrapper {
   position: relative;
 
@@ -102,10 +187,9 @@ export default {
   width: 80vh;
   height: 80vh;
   display: flex;
-  align-items: center;
+  //align-items: center;
   transform-origin: var(--zoom-X) var(--zoom-Y);
-  transition: transform-origin 1s, width 1s, height 1s, top 1s, left 1s,
-    transform 1s;
+  transition: 1s;
   &.zoomed {
     transform: scale(2);
   }
@@ -115,6 +199,19 @@ export default {
 }
 .disappear {
   opacity: 0.2;
+}
+
+.comp-description {
+  display: inline-flexbox;
+  position: fixed;
+  top: var(--client-Y);
+  left: var(--client-X);
+  z-index: 9999;
+  background-color: #25648a;
+  color: #ffff;
+  padding: 0.5em;
+  transition: 0.1s;
+  pointer-events: none;
 }
 
 .v-enter-active,
