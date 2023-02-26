@@ -9,6 +9,7 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "core-js": "^3.6.5",
     "three": "^0.134.0",
     "three-full": "^28.0.2",

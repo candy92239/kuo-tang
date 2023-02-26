@@ -1,32 +1,33 @@
 <template>
-  <h1 class="sec1">Hi there! <br />How can I help you today?</h1>
+  <AnimateText>Here is some text that will be animated.</AnimateText>
   <p class="t1"><b>Or scroll down to explore my workspace</b></p>
-  <h1 class="sec2">22</h1>
 </template>
 
 <script>
-import anime from "animejs";
+import AnimateText from "./layout/AnimateText.vue";
 
 export default {
   methods: {},
+  components: {
+    AnimateText,
+  },
   mounted() {
-    //h1 animation
-    var textWrapper = document.querySelector(".sec1");
-    textWrapper.innerHTML = textWrapper.textContent.replace(
-      /\S/g,
-      "<span class='letter'>$&</span>"
-    );
-
-    anime.timeline({ loop: false }).add({
-      targets: ".sec1 .letter",
-      //scale: [4, 1],
-      opacity: [0, 1],
-      translateZ: 0,
-      translateY: [100, 0],
-      easing: "easeOutExpo",
-      duration: 950,
-      delay: (el, i) => 70 * i,
-    });
+    // //h1 animation
+    // var textWrapper = document.querySelector(".sec1");
+    // textWrapper.innerHTML = textWrapper.textContent.replace(
+    //   /\S/g,
+    //   "<span class='letter'>$&</span>"
+    // );
+    // anime.timeline({ loop: false }).add({
+    //   targets: ".sec1 .letter",
+    //   //scale: [4, 1],
+    //   opacity: [0, 1],
+    //   translateZ: 0,
+    //   translateY: [100, 0],
+    //   easing: "easeOutExpo",
+    //   duration: 950,
+    //   delay: (el, i) => 70 * i,
+    // });
   },
 };
 </script>

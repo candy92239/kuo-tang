@@ -13,9 +13,15 @@
     >
       <Transition>
         <div :class="{ normalclass: true, disappear: tableHovered }">
-          <VisualComp name="bed_front" @VCmouse="test" />
-          <VisualComp name="bed_back" @VCmouse="test" />
-          <VisualComp name="table" @VCmouse="test" />
+          <div>
+            <VisualComp
+              v-for="(item, index) in datas"
+              :key="index"
+              :item="item"
+              :name="item.source"
+              @VCmouse="test"
+            />
+          </div>
         </div>
       </Transition>
     </div>
@@ -23,6 +29,16 @@
 </template>
 
 <script>
+//JSON template
+// {
+//   "source": "template",
+//   "relativePos": [null, null, null],
+//   "relativeSize": [null, null],
+//   "zoomOrigin": null,
+//   "layerGroup": "null",
+//   "description": "null"
+// },
+
 import VisualComp from "@/components/layout/VisualComp.vue";
 import mainVisual from "@/datas/mainVisual.json";
 
@@ -35,7 +51,6 @@ export default {
     return {
       tableHovered: false,
       VCClicked: false,
-      VCDes: "",
       zoomOrigin: undefined,
       previousZoomOrigin: {},
       currentOrigin: {},
@@ -49,7 +64,8 @@ export default {
       this[el] = !this[el];
     },
     test(e) {
-      if (e.type == "click") {
+      //only zoom if there's zoom value
+      if (e.type == "click" && this.datas[e.id].zoomOrigin) {
         this.VCClicked = true;
         this.currentOrigin = {
           x: this.datas[e.id].zoomOrigin[0],
@@ -59,7 +75,6 @@ export default {
         if (!this.zoomOrigin) {
           this.zoomOrigin = this.currentOrigin;
           this.previousZoomOrigin = this.zoomOrigin;
-          this.VCDes = this.datas[e.id].description;
           //hide any object in front
         } else if (
           //if moved
@@ -71,66 +86,9 @@ export default {
         } else {
           //if clicked on same thing
           this.VCClicked = false;
-          this.VCDes = "";
           this.zoomOrigin = undefined;
           this.previousZoomOrigin = {};
         }
-
-        //show description div
-        this.VCDes = this.datas[e.id].description;
-      } else if (e.type == "mouseenter" && this.VCClicked) {
-        //only change when really moved on it
-        setTimeout(() => {
-          this.VCDes = this.datas[e.id].description;
-        }, 100);
-      } else if (e.type == "mouseleave") {
-        setTimeout(() => {
-          this.VCDes = "";
-        }, 500);
-      }
-    },
-    mouseMove(e) {
-      //update only if des is shown
-      if (this.VCDes) {
-        this.clientPos = {
-          x: e.clientX + 20,
-          y: e.clientY + 20,
-        };
-      }
-    },
-    //wirte separate function to update description
-    showDescription(e) {
-      if (e.type == "click") {
-        this.VCClicked = true;
-        //if not zoomed in already
-        if (!this.zoomOrigin) {
-          this.VCDes = this.datas[e.id].description;
-        } else if (
-          //if moved
-          this.zoomOrigin.x != this.currentOrigin.x ||
-          this.zoomOrigin.y != this.currentOrigin.y
-        ) {
-          this.previousZoomOrigin = this.zoomOrigin;
-          this.zoomOrigin = this.currentOrigin;
-        } else {
-          //if clicked on same thing
-          this.VCClicked = false;
-          this.VCDes = "";
-          this.zoomOrigin = undefined;
-          this.previousZoomOrigin = {};
-        }
-
-        //show description div
-        this.VCDes = this.datas[e.id].description;
-      } else if (e.type == "mouseenter" && this.VCClicked) {
-        //only change when really moved on it
-        setTimeout(() => {
-          this.VCDes = this.datas[e.id].description;
-        }, 100);
-      } else if (e.type == "mouseleave") {
-        setTimeout(() => {
-          this.VCDes = "";
-        }, 500);
       }
     },
 
@@ -184,8 +142,8 @@ export default {
   position: relative;
 
   transform: translate(0%, 0%);
-  width: 80vh;
-  height: 80vh;
+  width: 100vh;
+  height: 100vh;
   display: flex;
   //align-items: center;
   transform-origin: var(--zoom-X) var(--zoom-Y);

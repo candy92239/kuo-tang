@@ -53,7 +53,7 @@ div {
   padding: 0.5em;
   .menu-wrapper {
     margin: 2em;
-    z-index: 999;
+    z-index: 998;
     position: fixed;
     right: 0;
   }
@@ -61,7 +61,7 @@ div {
     margin: 0em 1.5em;
     cursor: pointer;
     border-radius: 3em;
-    transition: background 0.25s, color 0.25s;
+    transition: 0.25s;
     &:hover {
       color: #173f58;
       background: white;
@@ -112,5 +112,6 @@ a {
 .v-enter-from,
 .v-leave-to {
   transform: scale(1, 0);
+  opacity: 0;
 }
 </style>

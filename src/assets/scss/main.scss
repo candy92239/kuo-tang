@@ -1,8 +1,15 @@
 h1 {
   font-family: "Aaux Next";
   font-weight: lighter;
-  font-size: 8em;
+  font-size: 8rem;
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.main {
+  width: 100vw;
+  //height: 100vh;
+  background: #fdfbfa;
+  position: relative;
+  overflow: auto;
 }

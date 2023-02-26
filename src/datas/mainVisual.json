@@ -1,23 +1,270 @@
-{
-  "bed_back": {
-    "source": "main_visual/bed_back.svg",
-    "relativePos": [14.864, 1.471, -2],
-    "relativeSize": [75.274, 70.398],
-    "zoomOrigin": [30, 55],
-    "description": "Back of the bed frame."
+[
+  {
+    "source": "sky",
+    "relativePos": [5.298, 11.97, 0],
+    "relativeSize": [113.882, 141.004],
+    "layerGroup": "Background",
+    "description": "View of Lake Ontario"
   },
-  "table": {
-    "source": "main_visual/table.svg",
-    "relativePos": [29.314, 33.335, -1],
-    "relativeSize": [59.895, 41.384],
-    "zoomOrigin": [55, 55],
-    "description": "Table of stuffs."
+  {
+    "source": "cloud",
+    "relativePos": [10.179, 40.298, 0],
+    "relativeSize": [100.194, 59.075],
+    "layerGroup": "Background",
+    "description": "View of Lake Ontario"
   },
-  "bed_front": {
-    "source": "main_visual/bed_front.svg",
-    "relativePos": [15.052, 3.222, 2],
-    "relativeSize": [74.8224, 95.563],
-    "zoomOrigin": [50, 10],
-    "description": "Front of the bed frame."
+  {
+    "source": "balcony",
+    "relativePos": [17.611, 80.558, 0],
+    "relativeSize": [109.688, 90.492],
+    "layerGroup": "Background",
+    "description": "Full of spiders in summer"
+  },
+  {
+    "source": "window",
+    "relativePos": [24.561, 19.658, 0],
+    "relativeSize": [105.767, 148.025],
+    "layerGroup": "Background",
+    "description": "Blind opened for the cat"
+  },
+
+  {
+    "source": "floor",
+    "relativePos": [12.326, 119.049, -1],
+    "relativeSize": [220.976, 92.833],
+    "layerGroup": "Background",
+    "locked": true
+  },
+  {
+    "source": "cattower",
+    "relativePos": [83.811, 47.972, 1],
+    "relativeSize": [36.765, 99.091],
+    "layerGroup": "Back",
+    "description": "The famous cat tower of Pisa"
+  },
+  {
+    "source": "catbed",
+    "relativePos": [64.87, 142.918, 2],
+    "relativeSize": [31.426, 17.401],
+    "layerGroup": "Back",
+    "description": "Fluffy cat bed"
+  },
+  {
+    "source": "bed_back",
+    "relativePos": [109.936, 51.331, 2],
+    "relativeSize": [99.39, 92.766],
+    "layerGroup": "Back",
+    "locked": true
+  },
+  {
+    "source": "board",
+    "relativePos": [114.74, 72.4, 3],
+    "relativeSize": [24.321, 40.797],
+    "layerGroup": "Back",
+    "description": "Board for photos and tickets"
+  },
+  {
+    "source": "paper1",
+    "relativePos": [141.231, 71.738, 1],
+    "relativeSize": [13.756, 15.862],
+    "layerGroup": "Back",
+    "locked": true
+  },
+  {
+    "source": "paper2",
+    "relativePos": [155.986, 78.875, 1],
+    "relativeSize": [7.852, 15.675],
+    "layerGroup": "Back",
+    "locked": true
+  },
+  {
+    "source": "paper3",
+    "relativePos": [162.195, 81.153, 0],
+    "relativeSize": [7.852, 15.675],
+    "layerGroup": "Back",
+    "locked": true
+  },
+  {
+    "source": "AVImap",
+    "relativePos": [175.147, 87.99, 1],
+    "relativeSize": [23.005, 22.804],
+    "layerGroup": "Back",
+    "description": "Aerodrome chart for leisure ATC listening"
+  },
+  {
+    "source": "tabletop",
+    "relativePos": [128.357, 104.806, 3],
+    "relativeSize": [80.585, 43.836],
+    "layerGroup": "Table",
+    "locked": true
+  },
+  {
+    "source": "drawer",
+    "relativePos": [166.089, 134.609, 2],
+    "relativeSize": [40.383, 39.058],
+    "layerGroup": "Table",
+    "description": "1/4 of places I store my clothes"
+  },
+  {
+    "source": "bucket",
+    "relativePos": [154.844, 134.094, 2],
+    "relativeSize": [8.906, 10.771],
+    "layerGroup": "Table",
+    "locked": true
+  },
+  {
+    "source": "pc1",
+    "relativePos": [133.679, 93.253, 4],
+    "relativeSize": [19.62, 22.412],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "rise1",
+    "relativePos": [148.932, 110.338, 5],
+    "relativeSize": [20.821, 11.622],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant6",
+    "relativePos": [132.985, 107.875, 5],
+    "relativeSize": [2.979, 3.957],
+    "layerGroup": "Table",
+    "description": "Had destroyed enough real plants in my life"
+  },
+  {
+    "source": "plant8",
+    "relativePos": [135.656, 109.075, 5],
+    "relativeSize": [3.848, 4.919],
+    "layerGroup": "Table",
+    "description": "Fake plants never wilt"
+  },
+  {
+    "source": "plant9",
+    "relativePos": [139.147, 109.724, 5],
+    "relativeSize": [4.641, 5.743],
+    "layerGroup": "Table",
+    "description": "Fake plants never let you down"
+  },
+  {
+    "source": "moni1",
+    "relativePos": [152.861, 96.37, 6],
+    "relativeSize": [17.645, 20.592],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "kb",
+    "relativePos": [146.324, 117.225, 6],
+    "relativeSize": [20.546, 10.096],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "mouse",
+    "relativePos": [164.166, 126.947, 6],
+    "relativeSize": [3.371, 2.149],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant3",
+    "relativePos": [157.558, 113.029, 6],
+    "relativeSize": [3.906, 5.139],
+    "layerGroup": "Table",
+    "description": "Always in search for more of those"
+  },
+  {
+    "source": "plant5",
+    "relativePos": [161.705, 115.034, 6],
+    "relativeSize": [3.398, 4.216],
+    "layerGroup": "Table",
+    "description": "Aren't them adorable"
+  },
+  {
+    "source": "pc2",
+    "relativePos": [163.925, 105.416, 7],
+    "relativeSize": [22.33, 24.047],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "rise2",
+    "relativePos": [183.093, 124.283, 8],
+    "relativeSize": [22.036, 15.849],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "moni2",
+    "relativePos": [185.23, 107.606, 9],
+    "relativeSize": [20.839, 23.095],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant4",
+    "relativePos": [168.1, 123.484, 8],
+    "relativeSize": [2.957, 7.035],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant3",
+    "relativePos": [169.326, 127.56, 9],
+    "relativeSize": [3.906, 5.139],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant2",
+    "relativePos": [190.457, 125.714, 9],
+    "relativeSize": [4.713, 6.765],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "plant1",
+    "relativePos": [194.23, 127.569, 10],
+    "relativeSize": [4.713, 6.765],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "pentab",
+    "relativePos": [172.663, 124.157, 10],
+    "relativeSize": [17.912, 19.237],
+    "layerGroup": "Table"
+  },
+  {
+    "source": "pentab_pen",
+    "relativePos": [190.277, 135.864, 10],
+    "relativeSize": [2.048, 7.431],
+    "layerGroup": "Table",
+    "description": "Always finds its way into pencil case"
+  },
+  {
+    "source": "cord",
+    "relativePos": [183.045, 139.479, 12],
+    "relativeSize": [26.773, 13.293],
+    "layerGroup": "Table",
+    "locked": true
+  },
+  {
+    "source": "coffee",
+    "relativePos": [171.5, 141.413, 9],
+    "relativeSize": [12.685, 9.01],
+    "layerGroup": "Table",
+    "description": "Mug warmer - a Canadian essential"
+  },
+  {
+    "source": "chair",
+    "relativePos": [114.571, 97.869, 9],
+    "relativeSize": [32.45, 68.292],
+    "layerGroup": "Table",
+    "description": "Not doing a great job correcting my posture despite being erognomic"
+  },
+  {
+    "source": "bed_front",
+    "relativePos": [109.936, 52.968, 11],
+    "relativeSize": [99.006, 127.136],
+    "layerGroup": "Front",
+    "description": "Wow is that a bunk bed? </br> - by eveyone on a video call"
+  },
+  {
+    "source": "shark",
+    "relativePos": [151.562, 59.138, 11],
+    "relativeSize": [42.694, 21.009],
+    "layerGroup": "Front",
+    "description": "What every adult need"
   }
-}
+]

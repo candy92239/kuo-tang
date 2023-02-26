@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <iframe :src="`demo/demoindex.html`" width="100%" height="100%" frameborder="0">
+    <iframe :src="`/demoindex.html`" width="100%" height="100%" frameborder="0">
     </iframe>
   </div>
 </template>

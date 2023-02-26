@@ -30,7 +30,7 @@ div {
   padding: 1em;
   margin: 1em;
   background: #84c0c6;
-  z-index: 100;
+  z-index: 999;
   cursor: pointer;
   opacity: 0.75;
   transition: opacity 0.25s;

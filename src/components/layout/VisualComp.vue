@@ -1,16 +1,16 @@
 <template>
-  <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
-    <InlineSvg :src="require(`@/assets/${datas.source}`)" />
-  </svg>
-
-  <div v-if="showDescription" class="description">
-    {{ datas.description }}
-  </div>
+  <button :id="name" ref="button" @click="showPopup">
+    <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
+      <InlineSvg :src="require(`@/assets/main_visual/${datas.source}.svg`)" />
+    </svg>
+  </button>
 </template>
 
 <script>
-import mainVisual from "@/datas/mainVisual.json";
+//import mainVisual from "@/datas/mainVisual.json";
 import InlineSvg from "vue-inline-svg";
+import tippy, { followCursor } from "tippy.js";
+import "tippy.js/dist/tippy.css";
 
 export default {
   emits: ["VCmouse", "VCzoom"],
@@ -21,6 +21,10 @@ export default {
   props: {
     name: String,
     zoomOrigin: Array,
+    item: {
+      type: Object,
+      required: true,
+    },
     //showD: { default: false, type: Boolean },
   },
   data() {
@@ -33,28 +37,47 @@ export default {
           ])
         ),
       },
-      datas: mainVisual[this.name],
-      showDescription: false,
+      datas: this.item,
     };
   },
   methods: {
     toggle(el) {
       this[el] = !this[el];
     },
-    returnEvent(event) {
-      this.$emit("VCmouse", { id: event.currentTarget.id, type: event.type });
+    createPopup() {
+      if (this.datas.description) {
+        this.popup = tippy(this.$refs.button, {
+          content: this.datas.description,
+          followCursor: true,
+          trigger: "mouseenter",
+          hideOnClick: false,
+          plugins: [followCursor],
+          allowHTML: true,
+        });
+      }
     },
+    returnEvent(event) {
+      this.$emit("VCmouse", {
+        id: event.currentTarget.id,
+        type: event.type,
+      });
+    },
+  },
+  mounted() {
+    this.createPopup();
   },
   computed: {
     cssProps() {
       return {
-        "--relative-pos-X": this.datas.relativePos[0] + "%",
-        "--relative-pos-Y": this.datas.relativePos[1] + "%",
+        "--relative-pos-X": (this.datas.relativePos[0] / 236.07) * 100 + "%",
+        "--relative-pos-Y": (this.datas.relativePos[1] / 236.07) * 100 + "%",
 
         "--relative-pos-Z": this.datas.relativePos[2],
 
-        "--relative-W": this.datas.relativeSize[0] + "%",
-        "--relative-H": this.datas.relativeSize[1] + "%",
+        "--relative-W": (this.datas.relativeSize[0] / 236.07) * 100 + "%",
+        "--relative-H": (this.datas.relativeSize[1] / 236.07) * 100 + "%",
+
+        "--cursor": this.datas.locked ? "auto" : "pointer",
       };
     },
   },
@@ -72,7 +95,7 @@ export default {
 }
 svg {
   pointer-events: none;
-  cursor: pointer;
+  cursor: var(--cursor);
 }
 path {
   pointer-events: fill;
@@ -88,10 +111,11 @@ rect {
   pointer-events: fill;
 }
 
-//TODO: maybe remove pointer even when hovering???
-.description {
-  width: 40%;
-  position: fixed;
-  background: gray;
+button {
+  appearance: none;
+  //display: flex;
+  //width: 100%;
+  background-color: transparent;
+  border: none;
 }
 </style>
