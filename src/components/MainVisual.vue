@@ -1,10 +1,4 @@
 <template>
-  <div
-    class="comp-description"
-    v-if="VCDes"
-    v-html="VCDes"
-    :style="cssProps"
-  ></div>
   <div class="main-visual-wrapper" @mousemove="mouseMove">
     <div
       class="visual-wrapper"
@@ -12,15 +6,23 @@
       :style="cssProps"
     >
       <Transition>
-        <div :class="{ normalclass: true, disappear: tableHovered }">
-          <div>
-            <VisualComp
-              v-for="(item, index) in datas"
-              :key="index"
-              :item="item"
-              :name="item.source"
-              @VCmouse="test"
-            />
+        <div>
+          <div
+            v-for="(item, index) in datas"
+            :key="index"
+            :group="item.layerGroup"
+          >
+            <Transition>
+              <VisualComp
+                :item="item"
+                :name="item.source"
+                :class="{
+                  normalclass: true,
+                  fadeout: item.layerGroup == 'Front' ? tableHovered : '',
+                  disappear: item.layerGroup == 'Front' ? zoomOrigin : '',
+                }"
+                @VCmouse="test"
+            /></Transition>
           </div>
         </div>
       </Transition>
@@ -55,8 +57,8 @@ export default {
       previousZoomOrigin: {},
       currentOrigin: {},
       datas: mainVisual,
-      moved: false,
-      clientPos: { x: 0, y: 0 },
+      tableGroup: [],
+      timeoutId: null,
     };
   },
   methods: {
@@ -64,12 +66,17 @@ export default {
       this[el] = !this[el];
     },
     test(e) {
+      //find obj based on name
+      const findObj = (array, key, value) => {
+        return array.find((obj) => obj[key] === value);
+      };
+      const currentZoom = findObj(this.datas, "source", e.id).zoomOrigin;
       //only zoom if there's zoom value
-      if (e.type == "click" && this.datas[e.id].zoomOrigin) {
+      if (e.type == "click" && currentZoom) {
         this.VCClicked = true;
         this.currentOrigin = {
-          x: this.datas[e.id].zoomOrigin[0],
-          y: this.datas[e.id].zoomOrigin[1],
+          x: currentZoom[0],
+          y: currentZoom[1],
         };
         //if not zoomed in already
         if (!this.zoomOrigin) {
@@ -89,6 +96,16 @@ export default {
           this.zoomOrigin = undefined;
           this.previousZoomOrigin = {};
         }
+      }
+      const currentGroup = findObj(this.datas, "source", e.id).layerGroup;
+      //Hover in and hide front
+      if (e.type == "mouseenter" && currentGroup == "Table") {
+        clearTimeout(this.timeoutId);
+        this.tableHovered = true;
+      } else if (e.type == "mouseleave" && currentGroup == "Table") {
+        this.timeoutId = setTimeout(() => {
+          this.tableHovered = false;
+        }, 500);
       }
     },
 
@@ -116,8 +133,6 @@ export default {
         "--zoom-Y": this.zoomOrigin
           ? this.zoomOrigin.y + "%"
           : this.previousZoomOrigin.y + "%",
-        "--client-X": this.clientPos.x + "px",
-        "--client-Y": this.clientPos.y + "px",
       };
     },
   },
@@ -125,53 +140,73 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.main-visual-wrapper {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0%;
-  left: auto;
-  right: auto;
-  //z-index: 10;
-  pointer-events: auto;
-}
-.visual-wrapper {
-  position: relative;
+@media screen and (orientation: landscape), screen and (min-width: 1000px) {
+  .main-visual-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0%;
+    left: auto;
+    right: auto;
+    //z-index: 10;
+    pointer-events: auto;
+  }
+  .visual-wrapper {
+    position: relative;
 
-  transform: translate(0%, 0%);
-  width: 100vh;
-  height: 100vh;
-  display: flex;
-  //align-items: center;
-  transform-origin: var(--zoom-X) var(--zoom-Y);
-  transition: 1s;
-  &.zoomed {
-    transform: scale(2);
+    transform: translate(0%, 0%);
+    width: 150vh;
+    height: 150vh;
+    display: flex;
+    //align-items: center;
+    transform-origin: var(--zoom-X) var(--zoom-Y);
+    transition: 1s;
+    &.zoomed {
+      transform: scale(2.4);
+    }
   }
 }
-.normalclass {
-  transition: opacity 0.5s;
-}
-.disappear {
-  opacity: 0.2;
+@media screen and (orientation: portrait), screen and (max-height: 600px) {
+  .main-visual-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-60%);
+    pointer-events: auto;
+  }
+  .visual-wrapper {
+    position: relative;
+
+    transform: translate(0%, 0%);
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    //align-items: center;
+    transform-origin: var(--zoom-X) var(--zoom-Y);
+    transition: 1s;
+    &.zoomed {
+      transform: scale(2);
+    }
+  }
 }
 
-.comp-description {
-  display: inline-flexbox;
-  position: fixed;
-  top: var(--client-Y);
-  left: var(--client-X);
-  z-index: 9999;
-  background-color: #25648a;
-  color: #ffff;
-  padding: 0.5em;
-  transition: 0.1s;
+.normalclass {
+  transition: opacity 0.1s;
+}
+.fadeout {
+  opacity: 0.2;
   pointer-events: none;
 }
-
+.disappear {
+  opacity: 0;
+}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;

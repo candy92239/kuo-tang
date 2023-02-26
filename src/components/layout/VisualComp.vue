@@ -1,9 +1,9 @@
 <template>
-  <button :id="name" ref="button" @click="showPopup">
+  <div :id="name" ref="div">
     <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
       <InlineSvg :src="require(`@/assets/main_visual/${datas.source}.svg`)" />
     </svg>
-  </button>
+  </div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import tippy, { followCursor } from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
 export default {
-  emits: ["VCmouse", "VCzoom"],
+  emits: ["VCmouse"],
   name: "VisualComp",
   components: {
     InlineSvg,
@@ -46,7 +46,7 @@ export default {
     },
     createPopup() {
       if (this.datas.description) {
-        this.popup = tippy(this.$refs.button, {
+        this.popup = tippy(this.$refs.div, {
           content: this.datas.description,
           followCursor: true,
           trigger: "mouseenter",
@@ -109,13 +109,5 @@ polygon {
 
 rect {
   pointer-events: fill;
-}
-
-button {
-  appearance: none;
-  //display: flex;
-  //width: 100%;
-  background-color: transparent;
-  border: none;
 }
 </style>

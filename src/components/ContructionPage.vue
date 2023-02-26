@@ -10,7 +10,7 @@
     </p>
     <p>
       You can also download my
-      <a href="2022 Feb Resume.pdf" target="_blank"><strong> resume</strong></a
+      <a href="2022 Nov Resume.pdf" target="_blank"><strong> resume</strong></a
       >,<br />
       take a look at my
       <router-link to="/devl-demo"><strong> eLearning demo</strong></router-link
@@ -35,7 +35,7 @@
     <div class="progress-bar">
       <div class="progress-bar-fill" />
     </div>
-    <p>Current progress: <b>&lt;1%</b></p>
+    <p>Current progress: <b>5%</b></p>
   </div>
 </template>
 
@@ -97,7 +97,7 @@ a {
 }
 .progress-bar-fill {
   background: #f2e2d2;
-  width: 1%;
+  width: 5%;
   height: inherit;
 }
 img {

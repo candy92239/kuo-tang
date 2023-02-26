@@ -21,6 +21,13 @@
     "description": "Full of spiders in summer"
   },
   {
+    "source": "floor",
+    "relativePos": [12.326, 119.049, 0],
+    "relativeSize": [220.976, 101.292],
+    "layerGroup": "Background",
+    "locked": true
+  },
+  {
     "source": "window",
     "relativePos": [24.561, 19.658, 0],
     "relativeSize": [105.767, 148.025],
@@ -28,13 +35,6 @@
     "description": "Blind opened for the cat"
   },
 
-  {
-    "source": "floor",
-    "relativePos": [12.326, 119.049, -1],
-    "relativeSize": [220.976, 92.833],
-    "layerGroup": "Background",
-    "locked": true
-  },
   {
     "source": "cattower",
     "relativePos": [83.811, 47.972, 1],
@@ -60,35 +60,35 @@
     "source": "board",
     "relativePos": [114.74, 72.4, 3],
     "relativeSize": [24.321, 40.797],
-    "layerGroup": "Back",
+    "layerGroup": "Table",
     "description": "Board for photos and tickets"
   },
   {
     "source": "paper1",
     "relativePos": [141.231, 71.738, 1],
     "relativeSize": [13.756, 15.862],
-    "layerGroup": "Back",
+    "layerGroup": "Table",
     "locked": true
   },
   {
     "source": "paper2",
     "relativePos": [155.986, 78.875, 1],
     "relativeSize": [7.852, 15.675],
-    "layerGroup": "Back",
+    "layerGroup": "Table",
     "locked": true
   },
   {
     "source": "paper3",
     "relativePos": [162.195, 81.153, 0],
     "relativeSize": [7.852, 15.675],
-    "layerGroup": "Back",
+    "layerGroup": "Table",
     "locked": true
   },
   {
     "source": "AVImap",
     "relativePos": [175.147, 87.99, 1],
     "relativeSize": [23.005, 22.804],
-    "layerGroup": "Back",
+    "layerGroup": "Table",
     "description": "Aerodrome chart for leisure ATC listening"
   },
   {
@@ -116,7 +116,8 @@
     "source": "pc1",
     "relativePos": [133.679, 93.253, 4],
     "relativeSize": [19.62, 22.412],
-    "layerGroup": "Table"
+    "layerGroup": "Table",
+    "zoomOrigin": [70, 50]
   },
   {
     "source": "rise1",
@@ -149,7 +150,8 @@
     "source": "moni1",
     "relativePos": [152.861, 96.37, 6],
     "relativeSize": [17.645, 20.592],
-    "layerGroup": "Table"
+    "layerGroup": "Table",
+    "zoomOrigin": [70, 50]
   },
   {
     "source": "kb",
@@ -250,7 +252,7 @@
     "source": "chair",
     "relativePos": [114.571, 97.869, 9],
     "relativeSize": [32.45, 68.292],
-    "layerGroup": "Table",
+    "layerGroup": "Other",
     "description": "Not doing a great job correcting my posture despite being erognomic"
   },
   {
@@ -258,7 +260,7 @@
     "relativePos": [109.936, 52.968, 11],
     "relativeSize": [99.006, 127.136],
     "layerGroup": "Front",
-    "description": "Wow is that a bunk bed? </br> - by eveyone on a video call"
+    "description": "<i><b>Wow is that a bunk bed?</i></b> </br> - by eveyone on a video call"
   },
   {
     "source": "shark",
@@ -266,5 +268,26 @@
     "relativeSize": [42.694, 21.009],
     "layerGroup": "Front",
     "description": "What every adult need"
+  },
+  {
+    "source": "cart",
+    "relativePos": [147.181, 152.561, 12],
+    "relativeSize": [30.43, 51.446],
+    "layerGroup": "Others",
+    "description": "Art Materials Cart"
+  },
+  {
+    "source": "prtTable",
+    "relativePos": [192.676, 142.614, 12],
+    "relativeSize": [36.786, 36.834],
+    "layerGroup": "Others",
+    "locked": true
+  },
+  {
+    "source": "printer",
+    "relativePos": [200.252, 139.616, 12],
+    "relativeSize": [25.358, 17.647],
+    "layerGroup": "Others",
+    "description": "Brothers got your back"
   }
 ]

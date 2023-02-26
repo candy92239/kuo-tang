@@ -10,14 +10,13 @@
       @wasClicked="toggle('warningClicked')"
     />
   </Transition>
-  <div :class="{ 'background-wrapper': !warningClicked }"> -->
-  <div class="pointer-event-wrap">
-
-  <div class="portfolio-wrapper">
-    <Portfolio />
-    <MainVisual />
-  </div>
-  </div>
+  <div :class="{ 'background-wrapper': !warningClicked }">
+    <div class="pointer-event-wrap">
+      <div class="portfolio-wrapper">
+        <MainVisual />
+        <Portfolio />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,7 +27,6 @@ import Portfolio from "@/components/Portfolio.vue";
 
 import ContructionPage from "@/components/ContructionPage.vue";
 import WarningHeader from "@/components/layout/WarningHeader.vue";
-
 
 export default {
   name: "Home",

@@ -1,6 +1,11 @@
 <template>
-  <AnimateText>Here is some text that will be animated.</AnimateText>
-  <p class="t1"><b>Or scroll down to explore my workspace</b></p>
+  <div class="scroll-wrapper">
+    ttest
+    <AnimateText>Here is some text that will be animated.</AnimateText>
+  </div>
+  <div class="fix-wrapper">
+    <p class="t1"><b>Or scroll down to explore my workspace</b></p>
+  </div>
 </template>
 
 <script>
@@ -11,28 +16,14 @@ export default {
   components: {
     AnimateText,
   },
-  mounted() {
-    // //h1 animation
-    // var textWrapper = document.querySelector(".sec1");
-    // textWrapper.innerHTML = textWrapper.textContent.replace(
-    //   /\S/g,
-    //   "<span class='letter'>$&</span>"
-    // );
-    // anime.timeline({ loop: false }).add({
-    //   targets: ".sec1 .letter",
-    //   //scale: [4, 1],
-    //   opacity: [0, 1],
-    //   translateZ: 0,
-    //   translateY: [100, 0],
-    //   easing: "easeOutExpo",
-    //   duration: 950,
-    //   delay: (el, i) => 70 * i,
-    // });
-  },
+  mounted() {},
 };
 </script>
 
 <style lang="scss">
+.scroll-wrapper {
+  z-index: 100;
+}
 h1 {
   &.sec1 {
     width: 43vw;
