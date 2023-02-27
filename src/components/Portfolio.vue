@@ -1,35 +1,53 @@
 <template>
-  <div class="scroll-wrapper data-scroll-container" ref="scrollContainer">
-    <div class="sec1 data-scroll-section">
-      <h1 class="data-scroll data-scroll-speed='1'">
+  <div class="scroll-wrapper" data-scroll-container ref="scrollContainer">
+    <div class="sec1">
+      <h1 data-scroll-speed="1" data-scroll>
         Hi there! <br />
         I’m
         <span class="outlined"> Kuo</span>, <br />how can I help you today?
       </h1>
       <div
-        class="data-scroll backdrop"
-        style="transform: translate(-22vw, -11vw)"
+        class="backdrop"
+        data-scroll
+        data-scroll-speed="3"
+        data-scroll-delay="0.1"
+        style="top: calc(50vh - 16vw); width: 26vw"
       ></div>
       <div
-        class="data-scroll backdrop"
-        style="transform: translate(-18vw, -3vw)"
+        class="backdrop"
+        data-scroll
+        data-scroll-speed="3"
+        data-scroll-delay="0.14"
+        style="top: calc(50vh - 8vw); width: 30vw"
       ></div>
       <div
-        class="data-scroll backdrop"
-        style="transform: translate(-5vw, 5vw)"
+        class="backdrop"
+        data-scroll
+        data-scroll-speed="3"
+        data-scroll-delay="0.18"
+        style="top: calc(50vh); width: 43vw"
       ></div>
       <div
-        class="data-scroll backdrop"
-        style="transform: translate(-16vw, 13vw)"
+        class="backdrop"
+        data-scroll
+        data-scroll-speed="3"
+        data-scroll-delay="0.22"
+        style="top: calc(50vh + 8vw); width: 32vw"
       ></div>
     </div>
-    <div class="sec1 data-scroll-section">
-      <h1 class="data-scroll data-scroll-speed='1'">
+    <div class="sec1">
+      <h1 data-scroll>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor.
       </h1>
     </div>
-    <div class="spacer"></div>
+
+    <div
+      class="spacer"
+      data-scroll
+      data-scroll-repeat
+      data-scroll-call="triggerFunction"
+    ></div>
   </div>
   <div class="fix-wrapper">
     <p class="t1"><b>Or scroll down to explore my workspace</b></p>
@@ -57,18 +75,19 @@ export default {
         smooth: true,
         scrollFromAnywhere: true,
         lerp: 0.07,
-        getDirection: function () {
-          return scroll.instance.scroll.y > 0 ? "down" : "up";
-        },
-        getSpeed: function () {
-          return Math.max(
-            0.5,
-            Math.min(1.5, Math.abs(scroll.instance.scroll.y / 500))
-          );
-        },
       });
 
-      return scroll;
+      scroll.on("call", (func, state) => {
+        switch (func) {
+          case "triggerFunction":
+            if (state === "enter") {
+              this.$emit("triggered", true);
+            } else {
+              this.$emit("triggered", false);
+            }
+            break;
+        }
+      });
     },
     animeBackdrop() {
       anime({
@@ -79,6 +98,7 @@ export default {
         delay: anime.stagger(500),
       });
     },
+    //emit when spacer was scrolled to remove blur
   },
   components: {},
   mounted() {
@@ -111,24 +131,30 @@ export default {
 }
 .spacer {
   height: 100vh;
+  width: 5vw;
+  background-color: red;
   //width: 100vw;
   //pointer-events: none;
 }
+.backdrop-wrapper {
+  position: absolute;
+  transform: translate(3vw, 43vh);
+  z-index: -1;
+  height: 100vh;
+}
 .backdrop {
   position: absolute;
-  //top: 0;
-  //left: 0;
-  width: 50vw;
+  left: 3vw;
+  top: 43vh;
   height: 6vw;
-  background-color: #8bcedd;
-  opacity: 1;
+  //transform: translate(3vw, 43vh);
   z-index: -1;
-  transform: translate(-5vw, 1vw);
+  background-color: #8bcedd;
   transform-origin: top left;
 }
 
 .sec1 {
-  //width: 40vw;
+  width: 100vw;
   //z-index: 100;
   display: flex;
   flex-direction: column;
@@ -139,6 +165,7 @@ export default {
 }
 h1 {
   position: relative;
+  transform: translateY(-3vh);
   font-size: 7vw;
   line-height: 1;
   margin: auto 0.5em;
@@ -147,13 +174,14 @@ h1 {
   font-weight: 500;
   .outlined {
     font-size: 10vw;
-    font-weight: 800;
+    font-weight: 600;
     color: rgba(255, 228, 196, 0);
     -webkit-text-stroke: 5px #14364c;
     transition: all 0.3s ease;
   }
   .outlined:hover {
     color: #14364c;
+    font-size: 12vw;
   }
 }
 p {

@@ -13,8 +13,12 @@
   <div :class="{ 'background-wrapper': !warningClicked }">
     <div class="pointer-event-wrap">
       <div class="portfolio-wrapper">
-        <MainVisual />
-        <Portfolio />
+        <MainVisual
+          :class="{
+            blurred: mainBlurred,
+          }"
+        />
+        <Portfolio @triggered="toggle('mainBlurred')" />
       </div>
     </div>
   </div>
@@ -37,7 +41,7 @@ export default {
     WarningHeader,
   },
   data() {
-    return { warningClicked: false };
+    return { warningClicked: false, mainBlurred: true };
   },
   methods: {
     toggle(el) {
@@ -61,6 +65,10 @@ export default {
   filter: blur(5px);
   position: relative;
   z-index: 0;
+}
+
+.blurred {
+  filter: blur(10px);
 }
 
 .pointer-event-wrap {
