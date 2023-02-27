@@ -46,7 +46,6 @@ export default {
       this[el] = !this[el];
     },
     createPopup() {
-      console.log(this.datas);
       if (this.datas.description) {
         var themeName;
         if (!this.datas.interactive) {

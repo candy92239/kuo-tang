@@ -139,7 +139,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media screen and (orientation: landscape), screen and (min-width: 1200px) {
+@media screen and (orientation: landscape), screen and (min-width: 2000px) {
   .main-visual-wrapper {
     height: 100vh;
     width: 100vw;
