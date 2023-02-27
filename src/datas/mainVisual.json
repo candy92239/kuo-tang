@@ -117,7 +117,9 @@
     "relativePos": [133.679, 93.253, 4],
     "relativeSize": [19.62, 22.412],
     "layerGroup": "Table",
-    "zoomOrigin": [70, 50]
+    "zoomOrigin": [70, 50],
+    "description": "Interactive Media",
+    "interactive": true
   },
   {
     "source": "rise1",
@@ -151,7 +153,9 @@
     "relativePos": [152.861, 96.37, 6],
     "relativeSize": [17.645, 20.592],
     "layerGroup": "Table",
-    "zoomOrigin": [70, 50]
+    "zoomOrigin": [70, 50],
+    "description": "Interactive Media",
+    "interactive": true
   },
   {
     "source": "kb",
@@ -183,7 +187,9 @@
     "source": "pc2",
     "relativePos": [163.925, 105.416, 7],
     "relativeSize": [22.33, 24.047],
-    "layerGroup": "Table"
+    "layerGroup": "Table",
+    "description": "Animation",
+    "interactive": true
   },
   {
     "source": "rise2",
@@ -195,7 +201,9 @@
     "source": "moni2",
     "relativePos": [185.23, 107.606, 9],
     "relativeSize": [20.839, 23.095],
-    "layerGroup": "Table"
+    "layerGroup": "Table",
+    "description": "Graphic Design",
+    "interactive": true
   },
   {
     "source": "plant4",
@@ -225,7 +233,9 @@
     "source": "pentab",
     "relativePos": [172.663, 124.157, 10],
     "relativeSize": [17.912, 19.237],
-    "layerGroup": "Table"
+    "layerGroup": "Table",
+    "description": "Illustration",
+    "interactive": true
   },
   {
     "source": "pentab_pen",

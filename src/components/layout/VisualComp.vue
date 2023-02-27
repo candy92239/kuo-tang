@@ -1,5 +1,5 @@
 <template>
-  <div :id="name" ref="div">
+  <div class="comp_wrap" :id="name" ref="div">
     <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
       <InlineSvg :src="require(`@/assets/main_visual/${datas.source}.svg`)" />
     </svg>
@@ -9,8 +9,9 @@
 <script>
 //import mainVisual from "@/datas/mainVisual.json";
 import InlineSvg from "vue-inline-svg";
-import tippy, { followCursor } from "tippy.js";
+import tippy, { followCursor, roundArrow } from "tippy.js";
 import "tippy.js/dist/tippy.css";
+import "tippy.js/dist/svg-arrow.css";
 
 export default {
   emits: ["VCmouse"],
@@ -45,14 +46,23 @@ export default {
       this[el] = !this[el];
     },
     createPopup() {
+      console.log(this.datas);
       if (this.datas.description) {
+        var themeName;
+        if (!this.datas.interactive) {
+          themeName = "normal";
+        } else {
+          themeName = "interactive";
+        }
         this.popup = tippy(this.$refs.div, {
+          theme: themeName,
           content: this.datas.description,
           followCursor: true,
           trigger: "mouseenter",
           hideOnClick: false,
           plugins: [followCursor],
           allowHTML: true,
+          arrow: roundArrow,
         });
       }
     },
@@ -93,21 +103,60 @@ export default {
   top: var(--relative-pos-Y);
   left: var(--relative-pos-X);
 }
-svg {
-  pointer-events: none;
-  cursor: var(--cursor);
-}
-path {
-  pointer-events: fill;
-}
-line {
-  pointer-events: visibleStroke;
-}
-polygon {
-  pointer-events: fill;
-}
+.comp_wrap {
+  svg {
+    transition: opacity 0.5s;
+    opacity: 1;
+    pointer-events: none;
+    cursor: var(--cursor);
+  }
+  path {
+    pointer-events: fill;
+  }
+  line {
+    pointer-events: visibleStroke;
+  }
+  polygon {
+    pointer-events: fill;
+  }
 
-rect {
-  pointer-events: fill;
+  rect {
+    pointer-events: fill;
+  }
+}
+.comp_wrap.fadeout {
+  svg {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  path {
+    pointer-events: none;
+  }
+  line {
+    pointer-events: none;
+  }
+  polygon {
+    pointer-events: none;
+  }
+  rect {
+    pointer-events: none;
+  }
+}
+.tippy-box[data-theme~="normal"] {
+  background-color: #353d41;
+  color: #ffffff;
+  font-family: Avenir;
+  > .tippy-svg-arrow {
+    fill: #353d41;
+  }
+}
+.tippy-box[data-theme~="interactive"] {
+  background-color: #94c9ce;
+  color: #030404;
+  font-family: Avenir;
+  font-weight: bold;
+  > .tippy-svg-arrow {
+    fill: #94c9ce;
+  }
 }
 </style>

@@ -11,8 +11,10 @@
   "dependencies": {
     "animejs": "^3.2.1",
     "core-js": "^3.6.5",
+    "locomotive-scroll": "^4.1.4",
     "three": "^0.134.0",
     "three-full": "^28.0.2",
+    "tippy.js": "^6.3.7",
     "troisjs": "^0.3.3",
     "vue": "^3.0.0",
     "vue-inline-svg": "^3.1.0",

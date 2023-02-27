@@ -64,7 +64,7 @@ export default {
 }
 
 .pointer-event-wrap {
-  pointer-events: none;
+  //pointer-events: none;
 }
 .portfolio-wrapper {
   height: 100vh;

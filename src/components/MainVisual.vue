@@ -17,7 +17,6 @@
                 :item="item"
                 :name="item.source"
                 :class="{
-                  normalclass: true,
                   fadeout: item.layerGroup == 'Front' ? tableHovered : '',
                   disappear: item.layerGroup == 'Front' ? zoomOrigin : '',
                 }"
@@ -105,7 +104,7 @@ export default {
       } else if (e.type == "mouseleave" && currentGroup == "Table") {
         this.timeoutId = setTimeout(() => {
           this.tableHovered = false;
-        }, 500);
+        }, 300);
       }
     },
 
@@ -140,7 +139,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media screen and (orientation: landscape), screen and (min-width: 1000px) {
+@media screen and (orientation: landscape), screen and (min-width: 1200px) {
   .main-visual-wrapper {
     height: 100vh;
     width: 100vw;
@@ -197,13 +196,6 @@ export default {
   }
 }
 
-.normalclass {
-  transition: opacity 0.1s;
-}
-.fadeout {
-  opacity: 0.2;
-  pointer-events: none;
-}
 .disappear {
   opacity: 0;
 }
