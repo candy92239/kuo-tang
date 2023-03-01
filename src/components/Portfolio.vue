@@ -37,13 +37,16 @@
         ></div>
       </div>
       <div class="sec1-selections">
-        <h1>I’m looking for</h1>
+        <h1>I’m looking for:</h1>
         <div class="buttons-wrap">
           <ButtonComp
             v-for="(item, index) in datas"
             :key="index"
             :id="item.source + '_wrap'"
             :item="item"
+            data-scroll
+            data-scroll-speed="4"
+            :data-scroll-delay="(index + 1) * 0.04 + 0.1"
           />
         </div>
       </div>
@@ -144,7 +147,8 @@ export default {
 <style lang="scss">
 .scroll-wrapper {
   z-index: 100;
-  position: static;
+  perspective: 1px;
+  //position: fixed;
   display: block;
   //pointer-events: none;
   width: 0;
@@ -220,6 +224,7 @@ h1 {
   position: absolute;
   > h1 {
     color: white;
+    font-size: 5vw;
     margin: 0.2em 0;
   }
 }
