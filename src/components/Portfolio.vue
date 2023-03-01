@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-wrapper" data-scroll-container ref="scrollContainer">
     <div class="sec1">
-      <h1 data-scroll-speed="1" data-scroll>
+      <h1 data-scroll-speed="4" data-scroll>
         Hi there! <br />
         I’m
         <span class="outlined"> Kuo</span>, <br />how can I help you today?
@@ -9,30 +9,30 @@
       <div
         class="backdrop"
         data-scroll
-        data-scroll-speed="3"
+        data-scroll-speed="4"
         data-scroll-delay="0.1"
-        style="top: calc(50vh - 16vw); width: 26vw"
+        style="top: calc(50vh - 12vw); width: 26vw"
       ></div>
       <div
         class="backdrop"
         data-scroll
-        data-scroll-speed="3"
-        data-scroll-delay="0.14"
-        style="top: calc(50vh - 8vw); width: 30vw"
+        data-scroll-speed="4"
+        data-scroll-delay="0.15"
+        style="top: calc(50vh - 6vw); width: 30vw"
       ></div>
       <div
         class="backdrop"
         data-scroll
-        data-scroll-speed="3"
-        data-scroll-delay="0.18"
+        data-scroll-speed="4"
+        data-scroll-delay="0.20"
         style="top: calc(50vh); width: 43vw"
       ></div>
       <div
         class="backdrop"
         data-scroll
-        data-scroll-speed="3"
-        data-scroll-delay="0.22"
-        style="top: calc(50vh + 8vw); width: 32vw"
+        data-scroll-speed="4"
+        data-scroll-delay="0.25"
+        style="top: calc(50vh + 6vw); width: 32vw"
       ></div>
     </div>
     <div class="sec1">
@@ -61,7 +61,7 @@ import anime from "animejs/lib/anime.es.js";
 
 //import VueTypedJs from "vue-typed-js";
 
-import tippy, { roundArrow } from "tippy.js";
+import tippy, { followCursor, roundArrow } from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/dist/svg-arrow.css";
 import "tippy.js/animations/shift-away.css";
@@ -111,9 +111,10 @@ export default {
       followCursor: true,
       trigger: "mouseenter",
       hideOnClick: false,
-      //placement: "right-start",
+      placement: "top-start",
       allowHTML: true,
       arrow: roundArrow + roundArrow,
+      plugins: [followCursor],
       animation: "shift-away",
     });
   },
@@ -131,8 +132,8 @@ export default {
 }
 .spacer {
   height: 100vh;
-  width: 5vw;
-  background-color: red;
+  width: 0;
+  //background-color: red;
   //width: 100vw;
   //pointer-events: none;
 }
@@ -180,6 +181,7 @@ h1 {
     transition: all 0.3s ease;
   }
   .outlined:hover {
+    cursor: pointer;
     color: #14364c;
     font-size: 12vw;
   }

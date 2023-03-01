@@ -5,37 +5,34 @@
     @mouseover="menuActive = true"
     @mouseleave="menuActive = false"
   >
-    <KinesisContainer>
-      <KinesisElement :strength="10" :type="depth">
-        <div class="menu-button">
-          <div v-if="!menuActive">Menu</div>
-          <div v-if="menuActive">Close</div>
+    <div>
+      <div class="menu-button">
+        <div v-if="!menuActive">Menu</div>
+        <div v-if="menuActive">Close</div>
+      </div>
+    </div>
+    <Transition>
+      <div class="menu-list-wrapper" v-if="menuActive">
+        <div
+          class="menu-item-wrapper"
+          v-for="item in listItems"
+          :key="item.name"
+        >
+          <router-link :to="item.path">
+            {{ item.name }}
+          </router-link>
         </div>
-      </KinesisElement>
-      <Transition>
-        <div class="menu-list-wrapper" v-if="menuActive">
-          <div
-            class="menu-item-wrapper"
-            v-for="item in listItems"
-            :key="item.name"
-          >
-            <router-link :to="item.path">
-              {{ item.name }}
-            </router-link>
-          </div>
-        </div>
-      </Transition>
-    </KinesisContainer>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script>
-import { KinesisContainer, KinesisElement } from "vue-kinesis";
 import Routes from "@/datas/routes.js";
 
 export default {
   name: "Menu",
-  components: { KinesisContainer, KinesisElement },
+  components: {},
   data() {
     return { menuActive: false, listItems: Routes };
   },

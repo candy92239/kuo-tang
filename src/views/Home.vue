@@ -28,9 +28,10 @@
 // @ is an alias to /src
 import MainVisual from "@/components/MainVisual.vue";
 import Portfolio from "@/components/Portfolio.vue";
-
 import ContructionPage from "@/components/ContructionPage.vue";
 import WarningHeader from "@/components/layout/WarningHeader.vue";
+
+//import Atropos from "atropos";
 
 export default {
   name: "Home",
@@ -68,12 +69,10 @@ export default {
 }
 
 .blurred {
-  filter: blur(10px);
+  //TODO: remove before deploy
+  //filter: blur(10px);
 }
 
-.pointer-event-wrap {
-  //pointer-events: none;
-}
 .portfolio-wrapper {
   height: 100vh;
   width: 100vw;

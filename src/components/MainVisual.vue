@@ -1,35 +1,34 @@
 <template>
-  <div class="main-visual-wrapper" @mousemove="mouseMove">
+  <div class="main-visual-wrapper">
     <div
       class="visual-wrapper"
       :class="{ zoomed: VCClicked }"
       :style="cssProps"
     >
-      <Transition>
-        <div>
-          <div
-            v-for="(item, index) in datas"
-            :key="index"
-            :group="item.layerGroup"
-          >
-            <Transition>
-              <VisualComp
-                :item="item"
-                :name="item.source"
-                :class="{
-                  fadeout: item.layerGroup == 'Front' ? tableHovered : '',
-                  disappear: item.layerGroup == 'Front' ? zoomOrigin : '',
-                }"
-                @VCmouse="test"
-            /></Transition>
-          </div>
-        </div>
-      </Transition>
+      <div
+        v-for="(item, index) in datas"
+        :key="index"
+        :group="item.layerGroup"
+        :id="item.source + '_wrap'"
+      >
+        <VisualComp
+          :item="item"
+          :name="item.source"
+          :mousePos="this.mousePos"
+          :class="{
+            fadeout: item.layerGroup == 'Front' ? tableHovered : '',
+            disappear: item.layerGroup == 'Front' ? zoomOrigin : '',
+          }"
+          @VCmouse="test"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+//          :style="{ transform: parallax(item.parallax) }"
+
 //JSON template
 // {
 //   "source": "template",
@@ -58,9 +57,19 @@ export default {
       datas: mainVisual,
       tableGroup: [],
       timeoutId: null,
+      cartClick: 0,
+
+      //parallax stuffs
+      mousePos: { x: 0, y: 0 },
     };
   },
   methods: {
+    //parallax stuff
+    handleMouseMove(e) {
+      this.mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+      this.mousePos.y = 1 - (e.clientY / window.innerHeight) * 2;
+    },
+
     toggle(el) {
       this[el] = !this[el];
     },
@@ -69,9 +78,12 @@ export default {
       const findObj = (array, key, value) => {
         return array.find((obj) => obj[key] === value);
       };
+
       const currentZoom = findObj(this.datas, "source", e.id).zoomOrigin;
       //only zoom if there's zoom value
       if (e.type == "click" && currentZoom) {
+        //remove parallax
+        window.removeEventListener("mousemove", this.handleMouseMove);
         this.VCClicked = true;
         this.currentOrigin = {
           x: currentZoom[0],
@@ -94,6 +106,7 @@ export default {
           this.VCClicked = false;
           this.zoomOrigin = undefined;
           this.previousZoomOrigin = {};
+          window.addEventListener("mousemove", this.handleMouseMove);
         }
       }
       const currentGroup = findObj(this.datas, "source", e.id).layerGroup;
@@ -106,22 +119,27 @@ export default {
           this.tableHovered = false;
         }, 300);
       }
-    },
-
-    //decide to update of not after timout sec
-    updateZoom(e) {
-      if (!this.zoomOrigin) {
-        this.previousZoomOrigin = e;
-        this.zoomOrigin = e;
-      } else if (this.previousZoomOrigin != this.zoomOrigin) {
-        this.zoomOrigin = e;
-      } else {
-        this.zoomOrigin = undefined;
+      //push cart around
+      if (e.type == "click" && e.id == "cart") {
+        const cart = document.getElementById(e.id);
+        switch (this.cartClick) {
+          case 0:
+            cart.style.translate = "-12vw -5vh";
+            this.cartClick += 1;
+            break;
+          case 1:
+            cart.style.translate = "-21vw -3vh";
+            this.cartClick += 1;
+            break;
+          case 2:
+            cart.style.translate = "0vw 0vh";
+            this.cartClick = 0;
+        }
       }
     },
-    resetZoom() {
-      this.zoomOrigin = undefined;
-    },
+  },
+  mounted() {
+    window.addEventListener("mousemove", this.handleMouseMove);
   },
   computed: {
     cssProps() {
@@ -139,59 +157,71 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media screen and (orientation: landscape), screen and (min-width: 2000px) {
-  .main-visual-wrapper {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0%;
-    left: auto;
-    right: auto;
-    //z-index: 10;
-    pointer-events: auto;
-  }
-  .visual-wrapper {
-    position: relative;
+.main-visual-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0%;
+  left: auto;
+  right: auto;
+  //z-index: 10;
+  pointer-events: auto;
+}
+.visual-wrapper {
+  position: relative;
+  display: flex;
+  //align-items: center;
+  //transform-origin: var(--zoom-X) var(--zoom-Y);
+  transition: 1s;
+}
 
-    transform: translate(0%, 0%);
+@media screen and (orientation: landscape),
+  screen and (min-aspect-ratio: 1.5/1) {
+  .visual-wrapper {
     width: 150vh;
     height: 150vh;
-    display: flex;
-    //align-items: center;
     transform-origin: var(--zoom-X) var(--zoom-Y);
-    transition: 1s;
     &.zoomed {
-      transform: scale(2.4);
+      transform: scale(2.5);
     }
   }
 }
-@media screen and (orientation: portrait), screen and (max-height: 600px) {
+
+@media screen and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 1.5/1) {
   .main-visual-wrapper {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0%;
+    //top: 0%;
+    //right: auto;
     left: 50%;
-    transform: translateX(-60%);
-    pointer-events: auto;
+    translate: -50% 0;
+    //background-color: green;
   }
   .visual-wrapper {
-    position: relative;
-
-    transform: translate(0%, 0%);
     width: 100vh;
     height: 100vh;
-    display: flex;
-    //align-items: center;
     transform-origin: var(--zoom-X) var(--zoom-Y);
-    transition: 1s;
     &.zoomed {
-      transform: scale(2);
+      transform: scale(4);
+    }
+  }
+}
+
+@media screen and (orientation: portrait), screen and (max-aspect-ratio: 1/1) {
+  .main-visual-wrapper {
+    transition: left 0.5s, translate 0.5s;
+    width: 100vh;
+    left: 40%;
+    translate: -60% 0;
+    //background-color: red;
+  }
+  .visual-wrapper {
+    width: 100vh;
+    height: 100vh;
+    transform-origin: var(--zoom-X) var(--zoom-Y);
+    &.zoomed {
+      transform: scale(4);
     }
   }
 }

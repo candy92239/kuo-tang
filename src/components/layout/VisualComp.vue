@@ -1,5 +1,5 @@
 <template>
-  <div class="comp_wrap" :id="name" ref="div">
+  <div class="comp_wrap" ref="div">
     <svg class="visual_comp" :style="cssProps" v-on="events" :id="name">
       <InlineSvg :src="require(`@/assets/main_visual/${datas.source}.svg`)" />
     </svg>
@@ -26,6 +26,7 @@ export default {
       type: Object,
       required: true,
     },
+    mousePos: Object,
     //showD: { default: false, type: Boolean },
   },
   data() {
@@ -87,6 +88,9 @@ export default {
         "--relative-H": (this.datas.relativeSize[1] / 236.07) * 100 + "%",
 
         "--cursor": this.datas.locked ? "auto" : "pointer",
+
+        "--parallax-X": -this.mousePos.x * this.datas.parallax.x * 0.5 + "vw",
+        "--parallax-Y": this.mousePos.y * this.datas.parallax.y + "vh",
       };
     },
   },
@@ -104,10 +108,14 @@ export default {
 }
 .comp_wrap {
   svg {
-    transition: opacity 0.5s;
+    transition-property: opacity, translate;
+    transition-duration: 0.5s, 1s;
+    transition-timing-function: linear, ease;
+
     opacity: 1;
     pointer-events: none;
     cursor: var(--cursor);
+    transform: translate(var(--parallax-X), var(--parallax-Y));
   }
   path {
     pointer-events: fill;

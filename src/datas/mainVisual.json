@@ -1,6 +1,7 @@
 [
   {
     "source": "sky",
+    "parallax": { "x": 3, "y": 3 },
     "relativePos": [5.298, 11.97, 0],
     "relativeSize": [113.882, 141.004],
     "layerGroup": "Background",
@@ -8,6 +9,7 @@
   },
   {
     "source": "cloud",
+    "parallax": { "x": 4, "y": 4 },
     "relativePos": [10.179, 40.298, 0],
     "relativeSize": [100.194, 59.075],
     "layerGroup": "Background",
@@ -15,6 +17,7 @@
   },
   {
     "source": "balcony",
+    "parallax": { "x": 2.5, "y": 2.5 },
     "relativePos": [17.611, 80.558, 0],
     "relativeSize": [109.688, 90.492],
     "layerGroup": "Background",
@@ -22,6 +25,7 @@
   },
   {
     "source": "floor",
+    "parallax": { "x": 1.1, "y": 1.1 },
     "relativePos": [12.326, 119.049, 0],
     "relativeSize": [220.976, 101.292],
     "layerGroup": "Background",
@@ -29,6 +33,7 @@
   },
   {
     "source": "window",
+    "parallax": { "x": 1.5, "y": 1.5 },
     "relativePos": [24.561, 19.658, 0],
     "relativeSize": [105.767, 148.025],
     "layerGroup": "Background"
@@ -36,6 +41,7 @@
 
   {
     "source": "cattower",
+    "parallax": { "x": 2, "y": 1 },
     "relativePos": [83.811, 47.972, 1],
     "relativeSize": [36.765, 99.091],
     "layerGroup": "Back",
@@ -43,6 +49,7 @@
   },
   {
     "source": "catbed",
+    "parallax": { "x": 2, "y": 1 },
     "relativePos": [64.87, 142.918, 2],
     "relativeSize": [31.426, 17.401],
     "layerGroup": "Back",
@@ -50,6 +57,7 @@
   },
   {
     "source": "bed_back",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [109.936, 51.331, 2],
     "relativeSize": [99.39, 92.766],
     "layerGroup": "Back",
@@ -57,6 +65,7 @@
   },
   {
     "source": "board",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [114.74, 72.4, 3],
     "relativeSize": [24.321, 40.797],
     "layerGroup": "Table",
@@ -64,6 +73,7 @@
   },
   {
     "source": "paper1",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [141.231, 71.738, 1],
     "relativeSize": [13.756, 15.862],
     "layerGroup": "Table",
@@ -71,6 +81,7 @@
   },
   {
     "source": "paper2",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [155.986, 78.875, 1],
     "relativeSize": [7.852, 15.675],
     "layerGroup": "Table",
@@ -78,6 +89,7 @@
   },
   {
     "source": "paper3",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [162.195, 81.153, 0],
     "relativeSize": [7.852, 15.675],
     "layerGroup": "Table",
@@ -85,6 +97,7 @@
   },
   {
     "source": "AVImap",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [175.147, 87.99, 1],
     "relativeSize": [23.005, 22.804],
     "layerGroup": "Table",
@@ -92,6 +105,7 @@
   },
   {
     "source": "tabletop",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [128.357, 104.806, 3],
     "relativeSize": [80.585, 43.836],
     "layerGroup": "Table",
@@ -99,6 +113,7 @@
   },
   {
     "source": "drawer",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [166.089, 134.609, 2],
     "relativeSize": [40.383, 39.058],
     "layerGroup": "Table",
@@ -106,6 +121,7 @@
   },
   {
     "source": "bucket",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [154.844, 134.094, 2],
     "relativeSize": [8.906, 10.771],
     "layerGroup": "Table",
@@ -113,6 +129,7 @@
   },
   {
     "source": "pc1",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [133.679, 93.253, 4],
     "relativeSize": [19.62, 22.412],
     "layerGroup": "Table",
@@ -122,12 +139,14 @@
   },
   {
     "source": "rise1",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [148.932, 110.338, 5],
     "relativeSize": [20.821, 11.622],
     "layerGroup": "Table"
   },
   {
     "source": "plant6",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [132.985, 107.875, 5],
     "relativeSize": [2.979, 3.957],
     "layerGroup": "Table",
@@ -135,6 +154,7 @@
   },
   {
     "source": "plant8",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [135.656, 109.075, 5],
     "relativeSize": [3.848, 4.919],
     "layerGroup": "Table",
@@ -142,6 +162,7 @@
   },
   {
     "source": "plant9",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [139.147, 109.724, 5],
     "relativeSize": [4.641, 5.743],
     "layerGroup": "Table",
@@ -149,6 +170,7 @@
   },
   {
     "source": "moni1",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [152.861, 96.37, 6],
     "relativeSize": [17.645, 20.592],
     "layerGroup": "Table",
@@ -158,18 +180,21 @@
   },
   {
     "source": "kb",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [146.324, 117.225, 6],
     "relativeSize": [20.546, 10.096],
     "layerGroup": "Table"
   },
   {
     "source": "mouse",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [164.166, 126.947, 6],
     "relativeSize": [3.371, 2.149],
     "layerGroup": "Table"
   },
   {
     "source": "plant3",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [157.558, 113.029, 6],
     "relativeSize": [3.906, 5.139],
     "layerGroup": "Table",
@@ -177,6 +202,7 @@
   },
   {
     "source": "plant5",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [161.705, 115.034, 6],
     "relativeSize": [3.398, 4.216],
     "layerGroup": "Table",
@@ -184,6 +210,7 @@
   },
   {
     "source": "pc2",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [163.925, 105.416, 7],
     "relativeSize": [22.33, 24.047],
     "layerGroup": "Table",
@@ -193,12 +220,14 @@
   },
   {
     "source": "rise2",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [183.093, 124.283, 8],
     "relativeSize": [22.036, 15.849],
     "layerGroup": "Table"
   },
   {
     "source": "moni2",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [185.23, 107.606, 9],
     "relativeSize": [20.839, 23.095],
     "layerGroup": "Table",
@@ -208,30 +237,35 @@
   },
   {
     "source": "plant4",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [168.1, 123.484, 8],
     "relativeSize": [2.957, 7.035],
     "layerGroup": "Table"
   },
   {
     "source": "plant3",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [169.326, 127.56, 9],
     "relativeSize": [3.906, 5.139],
     "layerGroup": "Table"
   },
   {
     "source": "plant2",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [190.457, 125.714, 9],
     "relativeSize": [4.713, 6.765],
     "layerGroup": "Table"
   },
   {
     "source": "plant1",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [194.23, 127.569, 10],
     "relativeSize": [4.713, 6.765],
     "layerGroup": "Table"
   },
   {
     "source": "pentab",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [172.663, 124.157, 10],
     "relativeSize": [17.912, 19.237],
     "layerGroup": "Table",
@@ -241,6 +275,7 @@
   },
   {
     "source": "pentab_pen",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [190.277, 135.864, 10],
     "relativeSize": [2.048, 7.431],
     "layerGroup": "Table",
@@ -248,6 +283,7 @@
   },
   {
     "source": "cord",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [183.045, 139.479, 12],
     "relativeSize": [26.773, 13.293],
     "layerGroup": "Table",
@@ -255,6 +291,7 @@
   },
   {
     "source": "coffee",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [171.5, 141.413, 9],
     "relativeSize": [12.685, 9.01],
     "layerGroup": "Table",
@@ -262,6 +299,7 @@
   },
   {
     "source": "chair",
+    "parallax": { "x": 0.1, "y": 1 },
     "relativePos": [114.571, 97.869, 9],
     "relativeSize": [32.45, 68.292],
     "layerGroup": "Other",
@@ -269,6 +307,7 @@
   },
   {
     "source": "bed_front",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [109.936, 52.968, 11],
     "relativeSize": [99.006, 127.136],
     "layerGroup": "Front",
@@ -276,6 +315,7 @@
   },
   {
     "source": "shark",
+    "parallax": { "x": 1, "y": 1 },
     "relativePos": [151.562, 59.138, 11],
     "relativeSize": [42.694, 21.009],
     "layerGroup": "Front",
@@ -283,6 +323,7 @@
   },
   {
     "source": "cart",
+    "parallax": { "x": -0.5, "y": 1 },
     "relativePos": [147.181, 152.561, 12],
     "relativeSize": [30.43, 51.446],
     "layerGroup": "Others",
@@ -290,6 +331,7 @@
   },
   {
     "source": "prtTable",
+    "parallax": { "x": 0.2, "y": 1 },
     "relativePos": [192.676, 142.614, 12],
     "relativeSize": [36.786, 36.834],
     "layerGroup": "Others",
@@ -297,6 +339,7 @@
   },
   {
     "source": "printer",
+    "parallax": { "x": 0.2, "y": 1 },
     "relativePos": [200.252, 139.616, 12],
     "relativeSize": [25.358, 17.647],
     "layerGroup": "Others",
