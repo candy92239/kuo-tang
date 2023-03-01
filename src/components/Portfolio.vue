@@ -1,39 +1,52 @@
 <template>
   <div class="scroll-wrapper" data-scroll-container ref="scrollContainer">
     <div class="sec1">
-      <h1 data-scroll-speed="4" data-scroll>
-        Hi there! <br />
-        I’m
-        <span class="outlined"> Kuo</span>, <br />how can I help you today?
-      </h1>
-      <div
-        class="backdrop"
-        data-scroll
-        data-scroll-speed="4"
-        data-scroll-delay="0.1"
-        style="top: calc(50vh - 12vw); width: 26vw"
-      ></div>
-      <div
-        class="backdrop"
-        data-scroll
-        data-scroll-speed="4"
-        data-scroll-delay="0.15"
-        style="top: calc(50vh - 6vw); width: 30vw"
-      ></div>
-      <div
-        class="backdrop"
-        data-scroll
-        data-scroll-speed="4"
-        data-scroll-delay="0.20"
-        style="top: calc(50vh); width: 43vw"
-      ></div>
-      <div
-        class="backdrop"
-        data-scroll
-        data-scroll-speed="4"
-        data-scroll-delay="0.25"
-        style="top: calc(50vh + 6vw); width: 32vw"
-      ></div>
+      <div class="sec1-text">
+        <h1 data-scroll-speed="4" data-scroll>
+          Hi there :), <br />
+          I’m
+          <span class="outlined"> Kuo</span>! <br />How can I help you today?
+        </h1>
+        <div
+          class="backdrop"
+          data-scroll
+          data-scroll-speed="4"
+          data-scroll-delay="0.1"
+          style="top: calc(50vh - 12vw); width: 31vw"
+        ></div>
+        <div
+          class="backdrop"
+          data-scroll
+          data-scroll-speed="4"
+          data-scroll-delay="0.15"
+          style="top: calc(50vh - 6vw); width: 30vw"
+        ></div>
+        <div
+          class="backdrop"
+          data-scroll
+          data-scroll-speed="4"
+          data-scroll-delay="0.20"
+          style="top: calc(50vh); width: 43vw"
+        ></div>
+        <div
+          class="backdrop"
+          data-scroll
+          data-scroll-speed="4"
+          data-scroll-delay="0.25"
+          style="top: calc(50vh + 6vw); width: 32vw"
+        ></div>
+      </div>
+      <div class="sec1-selections">
+        <h1>I’m looking for</h1>
+        <div class="buttons-wrap">
+          <ButtonComp
+            v-for="(item, index) in datas"
+            :key="index"
+            :id="item.source + '_wrap'"
+            :item="item"
+          />
+        </div>
+      </div>
     </div>
     <div class="sec1">
       <h1 data-scroll>
@@ -67,7 +80,14 @@ import "tippy.js/dist/svg-arrow.css";
 import "tippy.js/animations/shift-away.css";
 import "tippy.js/dist/border.css";
 
+import ButtonComp from "@/components/layout/ButtonComp.vue";
+import mainIcons from "@/datas/mainIcons.json";
+
 export default {
+  components: { ButtonComp },
+  data() {
+    return { datas: mainIcons };
+  },
   methods: {
     initLocomotiveScroll() {
       const scroll = new LocomotiveScroll({
@@ -100,7 +120,7 @@ export default {
     },
     //emit when spacer was scrolled to remove blur
   },
-  components: {},
+
   mounted() {
     this.initLocomotiveScroll();
     this.animeBackdrop();
@@ -153,6 +173,13 @@ export default {
   background-color: #8bcedd;
   transform-origin: top left;
 }
+//h1 global here
+h1 {
+  font-size: 7vw;
+  line-height: 1;
+  margin: auto 0.5em;
+  font-weight: 500;
+}
 
 .sec1 {
   width: 100vw;
@@ -164,15 +191,10 @@ export default {
   position: relative;
   //overflow: hidden;
 }
-h1 {
-  position: relative;
+.sec1-text > h1 {
   transform: translateY(-3vh);
-  font-size: 7vw;
-  line-height: 1;
-  margin: auto 0.5em;
   text-align: left;
   width: 50vw;
-  font-weight: 500;
   .outlined {
     font-size: 10vw;
     font-weight: 600;
@@ -186,6 +208,22 @@ h1 {
     font-size: 12vw;
   }
 }
+
+.sec1-selections {
+  background-color: #12526e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  right: 0;
+  width: 50vw;
+  height: 50vh;
+  position: absolute;
+  > h1 {
+    color: white;
+    margin: 0.2em 0;
+  }
+}
+
 p {
   &.t1 {
     position: fixed;
@@ -194,6 +232,14 @@ p {
     left: 0;
     z-index: 100;
   }
+}
+
+//button class here
+.buttons-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 2vw;
 }
 
 //tippy

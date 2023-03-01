@@ -21,13 +21,11 @@ export default {
   },
   props: {
     name: String,
-    zoomOrigin: Array,
     item: {
       type: Object,
       required: true,
     },
     mousePos: Object,
-    //showD: { default: false, type: Boolean },
   },
   data() {
     return {
@@ -43,9 +41,6 @@ export default {
     };
   },
   methods: {
-    toggle(el) {
-      this[el] = !this[el];
-    },
     createPopup() {
       if (this.datas.description) {
         var themeName;

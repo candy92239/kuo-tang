@@ -1,0 +1,18 @@
+[
+  {
+    "source": "des",
+    "name": "Graphic Design"
+  },
+  {
+    "source": "illu",
+    "name": "Illustration"
+  },
+  {
+    "source": "interact",
+    "name": "Interactive Media"
+  },
+  {
+    "source": "animate",
+    "name": "Animation"
+  }
+]
