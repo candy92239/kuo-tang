@@ -1,10 +1,6 @@
 <template>
   <div class="button-wrap" @mouseenter="playLottie" @mouseleave="reverseLottie">
-    <div class="icon" :class="{ zoomed: hoverZoom }" ref="lottie">
-      <!-- <svg>
-        <InlineSvg :src="require(`@/assets/UI/${datas.source}L2.svg`)" />
-      </svg> -->
-    </div>
+    <div class="icon" :class="{ zoomed: hoverZoom }" ref="lottie"></div>
     <div class="text">
       <p>{{ datas.name }}</p>
     </div>
@@ -14,8 +10,6 @@
 <script>
 //import InlineSvg from "vue-inline-svg";
 import lottie from "lottie-web";
-//import animationData from '@/assets/UI//lottie/des_trans_L.json';
-
 export default {
   emits: [],
   name: "ButtonComp",
@@ -32,6 +26,7 @@ export default {
     return {
       datas: this.item,
       hoverZoom: false,
+      animationData: null,
     };
   },
   methods: {
@@ -47,14 +42,18 @@ export default {
     },
   },
   mounted() {
-    const options = {
-      container: this.$refs.lottie,
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      path: "/lottie/" + this.datas.source + "_trans_L.json",
-    };
-    this.animation = lottie.loadAnimation(options);
+    import(`@/assets/UI/lottie/${this.item.source}_trans_L.json`).then(
+      (animationData) => {
+        const options = {
+          container: this.$refs.lottie,
+          renderer: "svg",
+          loop: false,
+          autoplay: false,
+          animationData,
+        };
+        this.animation = lottie.loadAnimation(options);
+      }
+    );
   },
   computed: {},
 };

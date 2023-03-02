@@ -35,7 +35,7 @@
     <div class="progress-bar">
       <div class="progress-bar-fill" />
     </div>
-    <p>Current progress: <b>5%</b></p>
+    <p>Current progress: <b>10%</b></p>
   </div>
 </template>
 

@@ -6,7 +6,7 @@
 export NODE_OPTIONS=--openssl-legacy-provider
 npm run serve
 
-Hi me: DO NO, I repeat, DO NO try to psuh using VSC source contorl. It'll ruin you. Use bash.
+Hi me: DO NOT, I repeat, DO NOT try to psuh using VSC source contorl. It'll ruin you. Use bash.
 ```
 
 ### Compiles and minifies for production
