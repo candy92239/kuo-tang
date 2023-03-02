@@ -52,7 +52,7 @@ export default {
       renderer: "svg",
       loop: false,
       autoplay: false,
-      path: "/lottie/des_trans_L.json",
+      path: "/lottie/" + this.datas.source + "_trans_L.json",
     };
     this.animation = lottie.loadAnimation(options);
   },
@@ -74,6 +74,7 @@ export default {
   display: flex;
   //flex: 1 0 100%;
   //width: 100%;
+  margin: 1vw;
   transition: transform 0.5s ease;
   svg {
     //position: absolute;

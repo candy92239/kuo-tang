@@ -148,7 +148,7 @@ export default {
 .scroll-wrapper {
   z-index: 100;
   perspective: 1px;
-  //position: fixed;
+  position: fixed;
   display: block;
   //pointer-events: none;
   width: 0;
@@ -203,7 +203,7 @@ h1 {
     font-size: 10vw;
     font-weight: 600;
     color: rgba(255, 228, 196, 0);
-    -webkit-text-stroke: 5px #14364c;
+    -webkit-text-stroke: 0.35vw #14364c;
     transition: all 0.3s ease;
   }
   .outlined:hover {
