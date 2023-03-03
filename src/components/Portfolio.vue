@@ -1,11 +1,18 @@
 <template>
-  <div class="scroll-wrapper" data-scroll-container ref="scrollContainer">
+  <div
+    :class="{
+      'scroll-wrapper': true,
+      'smooth-scroll-active': !this.mobileTrue,
+    }"
+    data-scroll-container
+    ref="scrollContainer"
+  >
     <div class="sec1">
       <div class="sec1-text">
         <h1 data-scroll-speed="4" data-scroll>
-          Hi there :), <br />
+          Hi there :) <br />
           I’m
-          <span class="outlined"> Kuo</span>! <br />How can I help you today?
+          <span class="outlined"> Kuo</span>, <br />how can I help you today?
         </h1>
         <div
           class="backdrop"
@@ -47,6 +54,7 @@
             data-scroll
             data-scroll-speed="4"
             :data-scroll-delay="(index + 1) * 0.04 + 0.1"
+            @jumpTo="jumpToSection"
           />
         </div>
       </div>
@@ -57,14 +65,50 @@
         ligula eget dolor.
       </h1>
     </div>
-
     <div
       class="spacer"
       data-scroll
       data-scroll-repeat
       data-scroll-call="triggerFunction"
     ></div>
+    <div
+      class="cat_wrapper"
+      ref="des"
+      data-scroll
+      data-scroll-repeat
+      data-scroll-call="catViewing"
+    >
+      <h1>
+        <b>DES</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing elit.
+        Aenean commodo ligula eget dolor.
+      </h1>
+    </div>
+    <div
+      class="cat_wrapper"
+      ref="illu"
+      data-scroll
+      data-scroll-repeat
+      data-scroll-call="catViewing"
+    >
+      <h1>
+        <b>ILLU</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing elit.
+        Aenean commodo ligula eget dolor.
+      </h1>
+    </div>
+    <div
+      class="cat_wrapper"
+      ref="interact"
+      data-scroll
+      data-scroll-repeat
+      data-scroll-call="catViewing"
+    >
+      <h1>
+        <b>INTERACT</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing
+        elit. Aenean commodo ligula eget dolor.
+      </h1>
+    </div>
   </div>
+
   <div class="fix-wrapper">
     <p class="t1"><b>Or scroll down to explore my workspace</b></p>
   </div>
@@ -89,24 +133,32 @@ import mainIcons from "@/datas/mainIcons.json";
 export default {
   components: { ButtonComp },
   data() {
-    return { datas: mainIcons };
+    return { datas: mainIcons, scroll: null };
   },
+  props: { warningClosed: Boolean, mobileTrue: Boolean },
+  emits: ["jumpTo"],
   methods: {
+    jumpToSection(value) {
+      this.scroll.scrollTo(this.$refs[value]);
+    },
     initLocomotiveScroll() {
-      const scroll = new LocomotiveScroll({
+      this.scroll = new LocomotiveScroll({
         el: this.$refs.scrollContainer,
         smooth: true,
         scrollFromAnywhere: true,
         lerp: 0.07,
       });
 
-      scroll.on("call", (func, state) => {
+      this.scroll.on("call", (func, state) => {
         switch (func) {
+          case "catViewing":
+            this.$emit("blurred", false);
+            break;
           case "triggerFunction":
             if (state === "enter") {
-              this.$emit("triggered", true);
+              this.$emit("blurred", false);
             } else {
-              this.$emit("triggered", false);
+              this.$emit("blurred", true);
             }
             break;
         }
@@ -123,9 +175,10 @@ export default {
     },
     //emit when spacer was scrolled to remove blur
   },
-
   mounted() {
-    this.initLocomotiveScroll();
+    if (!this.mobileTrue) {
+      this.initLocomotiveScroll();
+    }
     this.animeBackdrop();
     tippy(".outlined", {
       theme: "glossary",
@@ -148,11 +201,13 @@ export default {
 .scroll-wrapper {
   z-index: 100;
   perspective: 1px;
-  position: fixed;
   display: block;
   //pointer-events: none;
   width: 0;
   overflow-y: visible;
+  &.smooth-scroll-active {
+    position: fixed;
+  }
 }
 .spacer {
   height: 100vh;
@@ -195,6 +250,17 @@ h1 {
   position: relative;
   //overflow: hidden;
 }
+
+.cat_wrapper {
+  width: 100vw;
+  //z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  //overflow: hidden;
+}
 .sec1-text > h1 {
   transform: translateY(-3vh);
   text-align: left;
@@ -214,7 +280,7 @@ h1 {
 }
 
 .sec1-selections {
-  background-color: #12526e;
+  //background-color: #12526e;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,9 +289,10 @@ h1 {
   height: 50vh;
   position: absolute;
   > h1 {
-    color: white;
+    color: #14364c;
     font-size: 5vw;
     margin: 0.2em 0;
+    //background-color: #14364c;
   }
 }
 

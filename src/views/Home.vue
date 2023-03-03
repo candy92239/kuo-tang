@@ -17,8 +17,13 @@
           :class="{
             blurred: mainBlurred,
           }"
+          :warningClosed="warningClicked"
         />
-        <Portfolio @triggered="toggle('mainBlurred')" />
+        <Portfolio
+          @blurred="onBlurTripped"
+          :warningClosed="warningClicked"
+          :mobileTrue="mobileTrue"
+        />
       </div>
     </div>
   </div>
@@ -42,12 +47,27 @@ export default {
     WarningHeader,
   },
   data() {
-    return { warningClicked: false, mainBlurred: true };
+    return { warningClicked: false, mainBlurred: true, mobileTrue: null };
   },
   methods: {
     toggle(el) {
       this[el] = !this[el];
     },
+    onBlurTripped(value) {
+      this.mainBlurred = value;
+      console.log(value); // someValue
+    },
+  },
+  mounted() {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      this.mobileTrue = true;
+    } else {
+      this.mobileTrue = false;
+    }
   },
 };
 </script>
@@ -66,11 +86,15 @@ export default {
   filter: blur(5px);
   position: relative;
   z-index: 0;
+  //add this css for blurring to enforce GPU!!
+  // transform: translate3d(0, 0, 0);
+  // -ms-transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 .blurred {
   //TODO: remove before deploy
-  //filter: blur(10px);
+  filter: blur(10px);
 }
 
 .portfolio-wrapper {

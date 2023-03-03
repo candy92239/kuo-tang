@@ -1,18 +1,22 @@
 [
   {
     "source": "des",
-    "name": "Graphic Design"
+    "name": "Graphic Design",
+    "id": "graphic-design"
   },
   {
     "source": "illu",
-    "name": "Illustration"
+    "name": "Illustration",
+    "id":"illustration"
   },
   {
     "source": "interact",
-    "name": "Interactive Media"
+    "name": "Interactive Media",
+    "id":"interactive-media"
   },
   {
     "source": "animate",
-    "name": "Animation"
+    "name": "Animation",
+    "id":"animation"
   }
 ]

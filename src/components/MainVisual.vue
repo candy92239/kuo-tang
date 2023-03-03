@@ -47,6 +47,7 @@ export default {
   components: {
     VisualComp,
   },
+  props: { warningClosed: Boolean },
   data() {
     return {
       tableHovered: false,
@@ -58,10 +59,20 @@ export default {
       tableGroup: [],
       timeoutId: null,
       cartClick: 0,
+      chairClick: 0,
 
       //parallax stuffs
       mousePos: { x: 0, y: 0 },
     };
+  },
+  watch: {
+    warningClosed(newValue) {
+      if (newValue) {
+        this.enableMouseTracking();
+      } else {
+        this.disableMouseTracking();
+      }
+    },
   },
   methods: {
     //parallax stuff
@@ -136,10 +147,31 @@ export default {
             this.cartClick = 0;
         }
       }
+      if (e.type == "click" && e.id == "chair") {
+        const chair = document.getElementById(e.id);
+        switch (this.chairClick) {
+          case 0:
+            chair.style.translate = "-12vw 7vh";
+            this.chairClick += 1;
+            break;
+          case 1:
+            chair.style.translate = "0vw 0vh";
+            this.chairClick = 0;
+            break;
+        }
+      }
+    },
+    enableMouseTracking() {
+      window.addEventListener("mousemove", this.handleMouseMove);
+    },
+    disableMouseTracking() {
+      window.removeEventListener("mousemove", this.handleMouseMove);
     },
   },
   mounted() {
-    window.addEventListener("mousemove", this.handleMouseMove);
+    if (this.warningClosed) {
+      this.enableMouseTracking();
+    }
   },
   computed: {
     cssProps() {

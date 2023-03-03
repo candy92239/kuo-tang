@@ -1,9 +1,15 @@
 <template>
-  <div class="button-wrap" @mouseenter="playLottie" @mouseleave="reverseLottie">
+  <div
+    class="button-wrap"
+    @mouseenter="playLottie"
+    @mouseleave="reverseLottie"
+    @click="emitJumpSection"
+  >
     <div class="icon" :class="{ zoomed: hoverZoom }" ref="lottie"></div>
-    <div class="text">
+    <div class="text" :class="{ zoomed: hoverZoom }">
       <p>{{ datas.name }}</p>
     </div>
+    <div class="bacbackdrop_button" :class="{ zoomed: hoverZoom }"></div>
   </div>
 </template>
 
@@ -40,6 +46,11 @@ export default {
       this.animation.play();
       this.hoverZoom = false;
     },
+    emitJumpSection() {
+      //console.log(this.datas.source);
+      this.$emit("jumpTo", this.datas.source);
+      //console.log("emitted!");
+    },
   },
   mounted() {
     import(`@/assets/UI/lottie/${this.item.source}_trans_L.json`).then(
@@ -67,6 +78,7 @@ export default {
   flex-shrink: 0;
   flex-grow: 0;
   cursor: pointer;
+  //background-color: #14364c;
 }
 .icon {
   //position: relative;
@@ -74,7 +86,7 @@ export default {
   //flex: 1 0 100%;
   //width: 100%;
   margin: 1vw;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
   svg {
     //position: absolute;
     height: 100%;
@@ -91,8 +103,30 @@ export default {
   // justify-content: center;
   white-space: nowrap;
   margin: 0;
+  transition: all 0.3s ease;
   p {
     color: white;
+  }
+  &.zoomed {
+    font-weight: bold;
+    transform: scale(1.2);
+  }
+}
+
+.bacbackdrop_button {
+  position: absolute;
+  background-color: #14364c;
+  width: 100%;
+  height: 100%;
+  top: 3%;
+  left: 3%;
+  z-index: -1;
+  transform: scale(0.95);
+  border-radius: 1em;
+  transition: all 0.3s ease;
+  &.zoomed {
+    transform: scale(1.1);
+    // border: 3px solid #ffffff;
   }
 }
 </style>
