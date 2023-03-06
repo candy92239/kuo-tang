@@ -135,7 +135,7 @@
     "layerGroup": "Table",
     "zoomOrigin": [65, 40],
     "description": "Interactive Media",
-    "interactive": true
+    "interactive": "interact"
   },
   {
     "source": "rise1",
@@ -176,7 +176,7 @@
     "layerGroup": "Table",
     "zoomOrigin": [70, 45],
     "description": "Interactive Media",
-    "interactive": true
+    "interactive": "interact"
   },
   {
     "source": "kb",
@@ -216,7 +216,7 @@
     "layerGroup": "Table",
     "zoomOrigin": [80, 53],
     "description": "Animation",
-    "interactive": true
+    "interactive": "animate"
   },
   {
     "source": "rise2",
@@ -233,7 +233,7 @@
     "layerGroup": "Table",
     "zoomOrigin": [90, 57],
     "description": "Graphic Design",
-    "interactive": true
+    "interactive": "des"
   },
   {
     "source": "plant4",
@@ -271,7 +271,7 @@
     "layerGroup": "Table",
     "zoomOrigin": [85, 60],
     "description": "Illustration",
-    "interactive": true
+    "interactive": "illu"
   },
   {
     "source": "pentab_pen",

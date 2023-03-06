@@ -18,9 +18,11 @@
             blurred: mainBlurred,
           }"
           :warningClosed="warningClicked"
+          :scrollZoom="this.scrollZoom"
         />
         <Portfolio
           @blurred="onBlurTripped"
+          @secZoom="secZoom"
           :warningClosed="warningClicked"
           :mobileTrue="mobileTrue"
         />
@@ -47,7 +49,12 @@ export default {
     WarningHeader,
   },
   data() {
-    return { warningClicked: false, mainBlurred: true, mobileTrue: null };
+    return {
+      warningClicked: false,
+      mainBlurred: true,
+      mobileTrue: null,
+      scrollZoom: null,
+    };
   },
   methods: {
     toggle(el) {
@@ -55,7 +62,10 @@ export default {
     },
     onBlurTripped(value) {
       this.mainBlurred = value;
-      console.log(value); // someValue
+    },
+    secZoom(value) {
+      console.log("parent received! " + value);
+      this.scrollZoom = value;
     },
   },
   mounted() {
@@ -102,7 +112,7 @@ export default {
   width: 100vw;
   position: relative;
   z-index: 100;
-  overflow: visible;
+  //overflow: visible;
 }
 
 .v-enter-active,

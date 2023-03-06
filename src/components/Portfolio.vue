@@ -72,40 +72,20 @@
       data-scroll-call="triggerFunction"
     ></div>
     <div
-      class="cat_wrapper"
-      ref="des"
-      data-scroll
-      data-scroll-repeat
-      data-scroll-call="catViewing"
+      class="main-sec-wrap"
+      v-for="(item, index) in datas"
+      :key="index"
+      :id="item.id + '_wrap'"
     >
-      <h1>
-        <b>DES</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing elit.
-        Aenean commodo ligula eget dolor.
-      </h1>
-    </div>
-    <div
-      class="cat_wrapper"
-      ref="illu"
-      data-scroll
-      data-scroll-repeat
-      data-scroll-call="catViewing"
-    >
-      <h1>
-        <b>ILLU</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing elit.
-        Aenean commodo ligula eget dolor.
-      </h1>
-    </div>
-    <div
-      class="cat_wrapper"
-      ref="interact"
-      data-scroll
-      data-scroll-repeat
-      data-scroll-call="catViewing"
-    >
-      <h1>
-        <b>INTERACT</b> Lorem ipsum dolor sit asmet, consectetuer adipiscing
-        elit. Aenean commodo ligula eget dolor.
-      </h1>
+      <MainSection
+        :id="item.id"
+        :data-scroll-id="item.source"
+        :item="item"
+        data-scroll-call="catViewing"
+        data-scroll-offset="60%"
+        data-scroll-position="top"
+        class="cat_wrapper"
+      />
     </div>
   </div>
 
@@ -127,19 +107,33 @@ import "tippy.js/dist/svg-arrow.css";
 import "tippy.js/animations/shift-away.css";
 import "tippy.js/dist/border.css";
 
+import MainSection from "@/components/layout/MainSection.vue";
 import ButtonComp from "@/components/layout/ButtonComp.vue";
 import mainIcons from "@/datas/mainIcons.json";
 
 export default {
-  components: { ButtonComp },
+  components: { ButtonComp, MainSection },
   data() {
-    return { datas: mainIcons, scroll: null };
+    return {
+      datas: mainIcons,
+      scroll: null,
+      secViewing: false,
+      spacerViewing: false,
+    };
   },
   props: { warningClosed: Boolean, mobileTrue: Boolean },
-  emits: ["jumpTo"],
+  emits: ["jumpTo", "secZoom", "blurred"],
   methods: {
+    catViewing(value) {
+      this.$emit("secZoom", value);
+    },
+    secZoomBackground(value) {
+      console.log("comp portfolio emitted " + value);
+      this.$emit("secZoom", value);
+    },
     jumpToSection(value) {
-      this.scroll.scrollTo(this.$refs[value]);
+      let e = document.getElementById(value);
+      this.scroll.scrollTo(e);
     },
     initLocomotiveScroll() {
       this.scroll = new LocomotiveScroll({
@@ -149,16 +143,30 @@ export default {
         lerp: 0.07,
       });
 
-      this.scroll.on("call", (func, state) => {
+      this.scroll.on("call", (func, state, obj) => {
         switch (func) {
           case "catViewing":
-            this.$emit("blurred", false);
+            if (state === "enter") {
+              this.secViewing = true;
+              this.$emit("blurred", false);
+              this.$emit("secZoom", obj.id);
+            } else {
+              if (obj.id == "des" && !this.spacerViewing) {
+                this.$emit("secZoom", "RESET");
+                this.secViewing = false;
+              }
+            }
+            //console.log(obj.id);
             break;
           case "triggerFunction":
             if (state === "enter") {
+              this.spacerViewing = false;
               this.$emit("blurred", false);
             } else {
-              this.$emit("blurred", true);
+              this.spacerViewing = true;
+              if (!this.secViewing) {
+                this.$emit("blurred", true);
+              }
             }
             break;
         }
@@ -204,7 +212,7 @@ export default {
   display: block;
   //pointer-events: none;
   width: 0;
-  overflow-y: visible;
+  //overflow-y: visible;
   &.smooth-scroll-active {
     position: fixed;
   }
@@ -251,14 +259,24 @@ h1 {
   //overflow: hidden;
 }
 
+.main-sec-wrap {
+  height: 130vh;
+  position: relative;
+  //display: initial;
+  //overflow: scroll;
+}
 .cat_wrapper {
   width: 100vw;
   //z-index: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  position: relative;
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  height: 80vh;
+  position: sticky;
+  top: 0;
+  //bottom: 0;
+
+  border: 3px solid #000000;
   //overflow: hidden;
 }
 .sec1-text > h1 {

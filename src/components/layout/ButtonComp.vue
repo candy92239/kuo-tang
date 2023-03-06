@@ -48,7 +48,7 @@ export default {
     },
     emitJumpSection() {
       //console.log(this.datas.source);
-      this.$emit("jumpTo", this.datas.source);
+      this.$emit("jumpTo", this.datas.id);
       //console.log("emitted!");
     },
   },
@@ -73,8 +73,8 @@ export default {
 <style lang="scss">
 .button-wrap {
   //position: relative;
-  max-width: calc(50vw / 4);
-  //padding: 0 2vw;
+  max-width: calc(48vw / 4);
+  //padding: 2vw;
   flex-shrink: 0;
   flex-grow: 0;
   cursor: pointer;
@@ -119,7 +119,7 @@ export default {
   width: 100%;
   height: 100%;
   top: 3%;
-  left: 3%;
+  left: -3%;
   z-index: -1;
   transform: scale(0.95);
   border-radius: 1em;

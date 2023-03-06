@@ -47,12 +47,13 @@ export default {
   components: {
     VisualComp,
   },
-  props: { warningClosed: Boolean },
+  props: { warningClosed: Boolean, scrollZoom: String },
   data() {
     return {
       tableHovered: false,
       VCClicked: false,
       zoomOrigin: undefined,
+      currentZoom: undefined,
       previousZoomOrigin: {},
       currentOrigin: {},
       datas: mainVisual,
@@ -73,6 +74,20 @@ export default {
         this.disableMouseTracking();
       }
     },
+    scrollZoom(Value) {
+      //find obj based on name
+      const findObj = (array, key, value) => {
+        return array.find((obj) => obj[key] === value);
+      };
+      if (Value != "RESET") {
+        //look for zoom origin using interaction src
+        this.currentZoom = findObj(this.datas, "interactive", Value).zoomOrigin;
+
+        this.zoomToObj();
+      } else {
+        this.resetZoom();
+      }
+    },
   },
   methods: {
     //parallax stuff
@@ -84,41 +99,53 @@ export default {
     toggle(el) {
       this[el] = !this[el];
     },
+    zoomToObj() {
+      //remove parallax
+      window.removeEventListener("mousemove", this.handleMouseMove);
+      this.VCClicked = true;
+      this.currentOrigin = {
+        x: this.currentZoom[0],
+        y: this.currentZoom[1],
+      };
+      //if not zoomed in already
+      if (!this.zoomOrigin) {
+        this.zoomOrigin = this.currentOrigin;
+        this.previousZoomOrigin = this.zoomOrigin;
+        //hide any object in front
+      } else if (
+        //if moved
+        this.zoomOrigin.x != this.currentOrigin.x ||
+        this.zoomOrigin.y != this.currentOrigin.y
+      ) {
+        this.previousZoomOrigin = this.zoomOrigin;
+        this.zoomOrigin = this.currentOrigin;
+      } else {
+        this.resetZoom();
+      }
+    },
+    resetZoom() {
+      //if clicked on same thing -> reset zoom
+      this.VCClicked = false;
+      this.zoomOrigin = undefined;
+      this.previousZoomOrigin = {};
+      window.addEventListener("mousemove", this.handleMouseMove);
+    },
     test(e) {
       //find obj based on name
       const findObj = (array, key, value) => {
         return array.find((obj) => obj[key] === value);
       };
 
-      const currentZoom = findObj(this.datas, "source", e.id).zoomOrigin;
+      //different between zoom because zoom or zoom because click
+      if (e.id) {
+        this.currentZoom = findObj(this.datas, "source", e.id).zoomOrigin;
+      } else {
+        this.currentZoom = e.zoomOrigin;
+      }
+
       //only zoom if there's zoom value
-      if (e.type == "click" && currentZoom) {
-        //remove parallax
-        window.removeEventListener("mousemove", this.handleMouseMove);
-        this.VCClicked = true;
-        this.currentOrigin = {
-          x: currentZoom[0],
-          y: currentZoom[1],
-        };
-        //if not zoomed in already
-        if (!this.zoomOrigin) {
-          this.zoomOrigin = this.currentOrigin;
-          this.previousZoomOrigin = this.zoomOrigin;
-          //hide any object in front
-        } else if (
-          //if moved
-          this.zoomOrigin.x != this.currentOrigin.x ||
-          this.zoomOrigin.y != this.currentOrigin.y
-        ) {
-          this.previousZoomOrigin = this.zoomOrigin;
-          this.zoomOrigin = this.currentOrigin;
-        } else {
-          //if clicked on same thing
-          this.VCClicked = false;
-          this.zoomOrigin = undefined;
-          this.previousZoomOrigin = {};
-          window.addEventListener("mousemove", this.handleMouseMove);
-        }
+      if (e.type == "click" && this.currentZoom) {
+        this.zoomToObj();
       }
       const currentGroup = findObj(this.datas, "source", e.id).layerGroup;
       //Hover in and hide front
@@ -160,6 +187,9 @@ export default {
             break;
         }
       }
+    },
+    test1() {
+      console.log("main viz received!");
     },
     enableMouseTracking() {
       window.addEventListener("mousemove", this.handleMouseMove);
@@ -259,6 +289,7 @@ export default {
 }
 
 .disappear {
+  transition: opacity 0.5s ease;
   opacity: 0;
 }
 .v-enter-active,
