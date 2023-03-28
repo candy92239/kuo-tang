@@ -7,21 +7,21 @@ const routes = [
     meta: { transition: "slide-left" },
   },
   {
-    path: "/about",
+    path: "/kuo-tang/about",
     name: "About",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
     meta: { transition: "slide-left" },
   },
   {
-    path: "/contact",
+    path: "/kuo-tang/about",
     name: "Contact",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Contact.vue"),
     meta: { transition: "slide-left" },
   },
   {
-    path: "/devl-demo",
+    path: "/kuo-tang/about",
     name: "eLearning Demo",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DEVLdemo.vue"),
