@@ -7,24 +7,24 @@ const routes = [
     meta: { transition: "slide-left" },
   },
   {
-    path: "/kuo-tang/about",
+    path: "/about",
     name: "About",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
     meta: { transition: "slide-left" },
   },
   {
-    path: "/kuo-tang/about",
+    path: "/contact",
     name: "Contact",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Contact.vue"),
+      import(/* webpackChunkName: "contact" */ "../views/Contact.vue"),
     meta: { transition: "slide-left" },
   },
   {
-    path: "/kuo-tang/about",
+    path: "/devl-demo",
     name: "eLearning Demo",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/DEVLdemo.vue"),
+      import(/* webpackChunkName: "devl" */ "../views/DEVLdemo.vue"),
   },
 ];
 

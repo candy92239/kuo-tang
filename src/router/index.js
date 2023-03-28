@@ -4,7 +4,7 @@ import Routes from "@/datas/routes.js";
 const routes = Routes;
 
 const router = createRouter({
-  history: createWebHashHistory("/kuo-tang/"),
+  history: createWebHashHistory("/"),
   routes,
 });
 
