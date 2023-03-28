@@ -1,5 +1,4 @@
 <template>
-  <img class="bg-image" src="@/assets/Construction.png" />
   <div class="msg">
     <p>Hi there! This page is under construction!</p>
     <p>
@@ -37,6 +36,7 @@
     </div>
     <p>Current progress: <b>10%</b></p>
   </div>
+  <img class="bg-image" src="@/assets/Construction.png" />
 </template>
 
 <script>
@@ -69,7 +69,7 @@ a {
   margin: 1em;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 1em;
-  pointer-events: none;
+  //pointer-events: none;
 }
 .progress {
   position: relative;
@@ -107,6 +107,7 @@ a {
   min-height: 100%;
   opacity: 0.85;
   filter: blur(5px);
+  z-index: -1;
   //will-change: transform;
   //backdrop-filter: blur(5px);
 }
