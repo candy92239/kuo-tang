@@ -9,8 +9,12 @@
         <h1 data-scroll-speed="4" data-scroll>
           Hi there :) <br />
           I’m
-          <router-link to="/about" style="text-decoration: none"
-            ><span class="outlined"> Kuo</span></router-link
+          <router-link
+            to="/about"
+            style="text-decoration: none"
+            @click="hideTooltip"
+          >
+            <span class="outlined"> Kuo</span> </router-link
           >, <br />how can I help you today?
         </h1>
         <div
@@ -66,9 +70,6 @@
       />
     </div>
   </div>
-  <!-- <div class="fix-wrapper">
-    <p class="t1"><b>Or scroll down to explore my workspace</b></p>
-  </div> -->
 </template>
 
 <script>
@@ -96,6 +97,7 @@ export default {
       secViewing: false,
       spacerViewing: false,
       backdropWidths: ["31vw", "30vw", "43vw", "32vw"],
+      tippyInstances: [], // Define tippyInstances here
     };
   },
   props: { warningClosed: Boolean, mobileTrue: Boolean, data: String },
@@ -155,13 +157,21 @@ export default {
         delay: anime.stagger(500),
       });
     },
+    hideTooltip() {
+      const tooltipInstance = this.tippyInstances.find((instance) =>
+        instance.props.content.includes("Kuo Tang")
+      );
+      if (tooltipInstance) {
+        tooltipInstance.hide();
+      }
+    },
   },
   mounted() {
     if (!this.mobileTrue) {
       this.initLocomotiveScroll();
     }
     this.animeBackdrop();
-    tippy(".outlined", {
+    this.tippyInstances = tippy(".outlined", {
       theme: "glossary",
       content:
         "<span class='glosTitle'><b>Kuo Tang</b></span> <br>/kwoʊ ˈtæŋ/<br><br>Your Jill of all trade on learning material design - from adult eLearning development to children's book illustration.",
@@ -215,6 +225,7 @@ h1 {
   height: 100vh;
   position: relative;
   background-color: #f7ede462;
+  z-index: -1;
   //border: 5px solid #000000;
 }
 .main-sec-wrap {
