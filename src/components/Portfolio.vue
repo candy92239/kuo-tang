@@ -58,6 +58,7 @@
         :id="item.id"
         :data-scroll-id="item.source"
         :item="item"
+        :index="index"
         data-scroll-call="catViewing"
         data-scroll-offset="30%"
         data-scroll-position="top"

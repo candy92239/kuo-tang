@@ -1,6 +1,11 @@
 <template>
   <div data-scroll data-scroll-repeat class="sec-wrapper">
-    <h1>
+    <h1
+      data-scroll
+      data-scroll-repeat
+      data-scroll-position="top"
+      :data-scroll-speed="-0.15 + index * 0.03"
+    >
       <b>{{ this.datas.name }}</b>
     </h1>
     <div class="back-fill"></div>
@@ -17,6 +22,10 @@ export default {
   props: {
     item: {
       type: Object,
+      required: true,
+    },
+    index: {
+      type: Number,
       required: true,
     },
   },
