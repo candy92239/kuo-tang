@@ -15,7 +15,7 @@
       <div class="portfolio-wrapper">
         <MainVisual
           :class="{
-            blurred: mainBlurred,
+            blurred: mainBlurred || !warningClicked,
           }"
           :warningClosed="warningClicked"
           :scrollZoom="this.scrollZoom"
@@ -25,6 +25,7 @@
           @secZoom="secZoom"
           :warningClosed="warningClicked"
           :mobileTrue="mobileTrue"
+          :initialBlur="warningClicked"
         />
       </div>
     </div>
@@ -33,10 +34,10 @@
 
 <script>
 // @ is an alias to /src
-import MainVisual from "@/components/MainVisual.vue";
-import Portfolio from "@/components/Portfolio.vue";
 import ContructionPage from "@/components/ContructionPage.vue";
 import WarningHeader from "@/components/layout/WarningHeader.vue";
+import MainVisual from "@/components/MainVisual.vue";
+import Portfolio from "@/components/Portfolio.vue";
 
 //import Atropos from "atropos";
 
@@ -61,7 +62,10 @@ export default {
       this[el] = !this[el];
     },
     onBlurTripped(value) {
-      this.mainBlurred = value;
+      clearTimeout(this.blurDebounceTimer);
+      this.blurDebounceTimer = setTimeout(() => {
+        this.mainBlurred = value;
+      }, 50);
     },
     secZoom(value) {
       console.log("parent received! " + value);

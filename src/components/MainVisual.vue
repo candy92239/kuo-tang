@@ -1,52 +1,40 @@
 <template>
-  <div class="main-visual-wrapper">
-    <div
-      class="visual-wrapper"
-      :class="{ zoomed: VCClicked }"
-      :style="cssProps"
-    >
+  <div :class="{ blurred: blurred, zoomed: zoom }">
+    <div class="main-visual-wrapper">
       <div
-        v-for="(item, index) in datas"
-        :key="index"
-        :group="item.layerGroup"
-        :id="item.source + '_wrap'"
+        class="visual-wrapper"
+        :class="{ zoomed: VCClicked }"
+        :style="cssProps"
       >
-        <VisualComp
-          :item="item"
-          :name="item.source"
-          :mousePos="this.mousePos"
-          :class="{
-            fadeout: item.layerGroup == 'Front' ? tableHovered : '',
-            disappear: item.layerGroup == 'Front' ? zoomOrigin : '',
-          }"
-          @VCmouse="test"
-        />
+        <div
+          v-for="(item, index) in datas"
+          :key="index"
+          :group="item.layerGroup"
+          :id="item.source + '_wrap'"
+        >
+          <VisualComp
+            :item="item"
+            :name="item.source"
+            :mousePos="mousePos"
+            :class="{
+              fadeout: item.layerGroup === 'Front' && tableHovered,
+              disappear: item.layerGroup === 'Front' && zoomOrigin,
+            }"
+            @VCmouse="handleVCmouse"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-//          :style="{ transform: parallax(item.parallax) }"
-
-//JSON template
-// {
-//   "source": "template",
-//   "relativePos": [null, null, null],
-//   "relativeSize": [null, null],
-//   "zoomOrigin": null,
-//   "layerGroup": "null",
-//   "description": "null"
-// },
-
 import VisualComp from "@/components/layout/VisualComp.vue";
 import mainVisual from "@/datas/mainVisual.json";
 
 export default {
   name: "MainVisual",
-  components: {
-    VisualComp,
-  },
+  components: { VisualComp },
   props: { warningClosed: Boolean, scrollZoom: String },
   data() {
     return {
@@ -57,32 +45,22 @@ export default {
       previousZoomOrigin: {},
       currentOrigin: {},
       datas: mainVisual,
-      tableGroup: [],
       timeoutId: null,
       cartClick: 0,
       chairClick: 0,
-
-      //parallax stuffs
       mousePos: { x: 0, y: 0 },
     };
   },
   watch: {
+    // Watch for changes in warningClosed prop to enable or disable mouse tracking
     warningClosed(newValue) {
-      if (newValue) {
-        this.enableMouseTracking();
-      } else {
-        this.disableMouseTracking();
-      }
+      newValue ? this.enableMouseTracking() : this.disableMouseTracking();
     },
-    scrollZoom(Value) {
-      //find obj based on name
-      const findObj = (array, key, value) => {
-        return array.find((obj) => obj[key] === value);
-      };
-      if (Value != "RESET") {
-        //look for zoom origin using interaction src
-        this.currentZoom = findObj(this.datas, "interactive", Value).zoomOrigin;
-
+    // Watch for changes in scrollZoom prop to handle zoom logic
+    scrollZoom(newValue) {
+      if (newValue !== "RESET") {
+        const obj = this.findObj("interactive", newValue);
+        this.currentZoom = obj?.zoomOrigin;
         this.zoomToObj();
       } else {
         this.resetZoom();
@@ -90,32 +68,27 @@ export default {
     },
   },
   methods: {
-    //parallax stuff
+    // Handle mouse movement for parallax effect
     handleMouseMove(e) {
-      this.mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
-      this.mousePos.y = 1 - (e.clientY / window.innerHeight) * 2;
+      this.mousePos = {
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: 1 - (e.clientY / window.innerHeight) * 2,
+      };
     },
-
     toggle(el) {
       this[el] = !this[el];
     },
+    // Zoom into the object
     zoomToObj() {
-      //remove parallax
       window.removeEventListener("mousemove", this.handleMouseMove);
       this.VCClicked = true;
-      this.currentOrigin = {
-        x: this.currentZoom[0],
-        y: this.currentZoom[1],
-      };
-      //if not zoomed in already
+      this.currentOrigin = { x: this.currentZoom[0], y: this.currentZoom[1] };
       if (!this.zoomOrigin) {
         this.zoomOrigin = this.currentOrigin;
         this.previousZoomOrigin = this.zoomOrigin;
-        //hide any object in front
       } else if (
-        //if moved
-        this.zoomOrigin.x != this.currentOrigin.x ||
-        this.zoomOrigin.y != this.currentOrigin.y
+        this.zoomOrigin.x !== this.currentOrigin.x ||
+        this.zoomOrigin.y !== this.currentOrigin.y
       ) {
         this.previousZoomOrigin = this.zoomOrigin;
         this.zoomOrigin = this.currentOrigin;
@@ -123,73 +96,61 @@ export default {
         this.resetZoom();
       }
     },
+    // Reset the zoom state
     resetZoom() {
-      //if clicked on same thing -> reset zoom
       this.VCClicked = false;
       this.zoomOrigin = undefined;
       this.previousZoomOrigin = {};
       window.addEventListener("mousemove", this.handleMouseMove);
     },
-    test(e) {
-      //find obj based on name
-      const findObj = (array, key, value) => {
-        return array.find((obj) => obj[key] === value);
-      };
+    // Handle mouse events from VisualComp components
+    handleVCmouse(e) {
+      const obj = this.findObj("source", e.id);
+      this.currentZoom = e.id ? obj?.zoomOrigin : e.zoomOrigin;
 
-      //different between zoom because zoom or zoom because click
-      if (e.id) {
-        this.currentZoom = findObj(this.datas, "source", e.id).zoomOrigin;
-      } else {
-        this.currentZoom = e.zoomOrigin;
-      }
-
-      //only zoom if there's zoom value
-      if (e.type == "click" && this.currentZoom) {
+      if (e.type === "click" && this.currentZoom) {
         this.zoomToObj();
       }
-      const currentGroup = findObj(this.datas, "source", e.id).layerGroup;
-      //Hover in and hide front
-      if (e.type == "mouseenter" && currentGroup == "Table") {
-        clearTimeout(this.timeoutId);
-        this.tableHovered = true;
-      } else if (e.type == "mouseleave" && currentGroup == "Table") {
-        this.timeoutId = setTimeout(() => {
-          this.tableHovered = false;
-        }, 300);
-      }
-      //push cart around
-      if (e.type == "click" && e.id == "cart") {
-        const cart = document.getElementById(e.id);
-        switch (this.cartClick) {
-          case 0:
-            cart.style.translate = "-12vw -5vh";
-            this.cartClick += 1;
-            break;
-          case 1:
-            cart.style.translate = "-21vw -3vh";
-            this.cartClick += 1;
-            break;
-          case 2:
-            cart.style.translate = "0vw 0vh";
-            this.cartClick = 0;
+
+      if (obj?.layerGroup === "Table") {
+        if (e.type === "mouseenter") {
+          clearTimeout(this.timeoutId);
+          this.tableHovered = true;
+        } else if (e.type === "mouseleave") {
+          this.timeoutId = setTimeout(() => {
+            this.tableHovered = false;
+          }, 300);
         }
       }
-      if (e.type == "click" && e.id == "chair") {
-        const chair = document.getElementById(e.id);
-        switch (this.chairClick) {
-          case 0:
-            chair.style.translate = "-12vw 7vh";
-            this.chairClick += 1;
-            break;
-          case 1:
-            chair.style.translate = "0vw 0vh";
-            this.chairClick = 0;
-            break;
-        }
+
+      if (e.type === "click" && e.id) {
+        this.handleItemClick(e.id);
       }
     },
-    test1() {
-      console.log("main viz received!");
+    // Find object in datas array based on key-value pair
+    findObj(key, value) {
+      return this.datas.find((obj) => obj[key] === value);
+    },
+    // Handle click events for specific items
+    handleItemClick(id) {
+      const element = document.getElementById(id);
+      if (id === "cart") {
+        this.cartClick = this.toggleTranslate(element, this.cartClick, [
+          "-12vw -5vh",
+          "-21vw -3vh",
+          "0vw 0vh",
+        ]);
+      } else if (id === "chair") {
+        this.chairClick = this.toggleTranslate(element, this.chairClick, [
+          "-12vw 7vh",
+          "0vw 0vh",
+        ]);
+      }
+    },
+    // Toggle the translation of an element based on click count
+    toggleTranslate(element, clickCount, positions) {
+      element.style.translate = positions[clickCount % positions.length];
+      return clickCount + 1;
     },
     enableMouseTracking() {
       window.addEventListener("mousemove", this.handleMouseMove);
@@ -204,15 +165,11 @@ export default {
     }
   },
   computed: {
+    // Compute CSS properties for zoom
     cssProps() {
-      return {
-        "--zoom-X": this.zoomOrigin
-          ? this.zoomOrigin.x + "%"
-          : this.previousZoomOrigin.x + "%",
-        "--zoom-Y": this.zoomOrigin
-          ? this.zoomOrigin.y + "%"
-          : this.previousZoomOrigin.y + "%",
-      };
+      const x = this.zoomOrigin ? this.zoomOrigin.x : this.previousZoomOrigin.x;
+      const y = this.zoomOrigin ? this.zoomOrigin.y : this.previousZoomOrigin.y;
+      return { "--zoom-X": `${x}%`, "--zoom-Y": `${y}%` };
     },
   },
 };
@@ -226,17 +183,15 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 0%;
+  top: 0;
   left: auto;
   right: auto;
-  //z-index: 10;
   pointer-events: auto;
 }
+
 .visual-wrapper {
   position: relative;
   display: flex;
-  //align-items: center;
-  //transform-origin: var(--zoom-X) var(--zoom-Y);
   transition: 1s;
 }
 
@@ -254,16 +209,13 @@ export default {
 
 @media screen and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 1.5/1) {
   .main-visual-wrapper {
-    //top: 0%;
-    //right: auto;
     left: 50%;
     translate: -50% 0;
-    //background-color: green;
   }
   .visual-wrapper {
     width: 100vh;
     height: 100vh;
-    transform-origin: var(--zoom-X) var(--zoom-Y);
+    transform-origin: var(--zoom-X) var (--zoom-Y);
     &.zoomed {
       transform: scale(4);
     }
@@ -276,7 +228,6 @@ export default {
     width: 100vh;
     left: 40%;
     translate: -60% 0;
-    //background-color: red;
   }
   .visual-wrapper {
     width: 100vh;
@@ -292,6 +243,7 @@ export default {
   transition: opacity 0.5s ease;
   opacity: 0;
 }
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -300,5 +252,11 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+.blurred {
+  filter: blur(10px);
+}
+.zoomed {
+  transform: scale(1.2);
 }
 </style>

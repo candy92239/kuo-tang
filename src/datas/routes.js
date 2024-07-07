@@ -21,7 +21,7 @@ const routes = [
     meta: { transition: "slide-left" },
   },
   {
-    path: "/devl-demo",
+    path: "/devl",
     name: "eLearning Demo",
     component: () =>
       import(/* webpackChunkName: "devl" */ "../views/DEVLdemo.vue"),
