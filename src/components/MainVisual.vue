@@ -104,6 +104,9 @@ export default {
 
       if (e.type === "click" && this.currentZoom) {
         this.zoomToObj();
+        if (obj.id) {
+          this.$emit("clickToSection", obj.id);
+        }
       }
 
       if (obj?.layerGroup === "Table") {

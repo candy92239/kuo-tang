@@ -83,6 +83,11 @@ import "tippy.js/dist/tippy.css";
 
 export default {
   components: { ButtonComp, MainSection },
+  watch: {
+    data(newVal) {
+      this.jumpToSection(newVal);
+    },
+  },
   data() {
     return {
       datas: mainIcons,
@@ -92,7 +97,7 @@ export default {
       backdropWidths: ["31vw", "30vw", "43vw", "32vw"],
     };
   },
-  props: { warningClosed: Boolean, mobileTrue: Boolean },
+  props: { warningClosed: Boolean, mobileTrue: Boolean, data: String },
   emits: ["jumpTo", "secZoom", "blurred"],
   methods: {
     handleJumpToSection(sectionId) {

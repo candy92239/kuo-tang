@@ -19,7 +19,7 @@
           }"
           :warningClosed="warningClicked"
           :scrollZoom="this.scrollZoom"
-          @jumpTo="handleJumpTo"
+          @clickToSection="handleClicktoSec"
         />
         <Portfolio
           @blurred="onBlurTripped"
@@ -27,6 +27,7 @@
           :warningClosed="warningClicked"
           :mobileTrue="mobileTrue"
           :initialBlur="warningClicked"
+          :data="sharedData"
         />
       </div>
     </div>
@@ -55,9 +56,13 @@ export default {
       mainBlurred: true,
       mobileTrue: null,
       scrollZoom: null,
+      sharedData: null,
     };
   },
   methods: {
+    handleClicktoSec(data) {
+      this.sharedData = data;
+    },
     toggle(el) {
       this[el] = !this[el];
     },
