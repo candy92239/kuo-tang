@@ -19,6 +19,7 @@
           }"
           :warningClosed="warningClicked"
           :scrollZoom="this.scrollZoom"
+          @jumpTo="handleJumpTo"
         />
         <Portfolio
           @blurred="onBlurTripped"
@@ -38,7 +39,6 @@ import ContructionPage from "@/components/ContructionPage.vue";
 import WarningHeader from "@/components/layout/WarningHeader.vue";
 import MainVisual from "@/components/MainVisual.vue";
 import Portfolio from "@/components/Portfolio.vue";
-
 //import Atropos from "atropos";
 
 export default {

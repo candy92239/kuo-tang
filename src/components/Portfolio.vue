@@ -8,8 +8,10 @@
       <div class="sec1-text">
         <h1 data-scroll-speed="4" data-scroll>
           Hi there :) <br />
-          I’m <span class="outlined"> Kuo</span>, <br />how can I help you
-          today?
+          I’m
+          <router-link to="/about" style="text-decoration: none"
+            ><span class="outlined"> Kuo</span></router-link
+          >, <br />how can I help you today?
         </h1>
         <div
           v-for="(width, index) in backdropWidths"
@@ -37,10 +39,9 @@
           />
         </div>
       </div>
+      <div class="float-text">Or scroll down to explore my workspace</div>
     </div>
-    <div class="sec1" style="height: 50vh">
-      <h1 data-scroll></h1>
-    </div>
+    <div style="height: 10vh"></div>
     <div
       class="spacer"
       data-scroll
@@ -94,6 +95,13 @@ export default {
   props: { warningClosed: Boolean, mobileTrue: Boolean },
   emits: ["jumpTo", "secZoom", "blurred"],
   methods: {
+    handleJumpToSection(sectionId) {
+      // Logic to handle the jump to the specified section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    },
     catViewing(value) {
       this.$emit("secZoom", value);
     },
@@ -175,7 +183,7 @@ export default {
   }
 }
 .spacer {
-  height: 100vh;
+  height: 110vh;
   width: 0;
 }
 .backdrop {
@@ -200,7 +208,8 @@ h1 {
   justify-content: center;
   height: 100vh;
   position: relative;
-  background-color: #e6c7a820;
+  background-color: #f7ede462;
+  //border: 5px solid #000000;
 }
 .main-sec-wrap {
   height: 120vh;
@@ -209,11 +218,11 @@ h1 {
   background-color: #00000000;
 }
 .cat_wrapper {
-  width: 100vw;
-  height: 80vh;
+  width: 65vw;
+  height: 100vh;
   position: sticky;
   top: 0;
-  border: 3px solid #ffffff;
+  //border: 3px solid #ffffff;
 }
 .sec1-text > h1 {
   transform: translateY(-3vh);
@@ -279,5 +288,18 @@ p.t1 {
 }
 .button:hover {
   z-index: 4;
+}
+.float-text {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center; /* Centers the text horizontally */
+  align-items: center;
+  margin: 2%;
+  font-size: 1.3em;
+  -webkit-text-stroke: 1px #ffffff20;
+  font-weight: 600;
+  //color: rgba(0, 0, 0, 0);
 }
 </style>

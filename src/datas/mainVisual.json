@@ -133,9 +133,10 @@
     "relativePos": [133.679, 93.253, 4],
     "relativeSize": [19.62, 22.412],
     "layerGroup": "Table",
-    "zoomOrigin": [65, 40],
+    "zoomOrigin": [50, 40],
     "description": "Interactive Media",
-    "interactive": "interact"
+    "interactive": "interact",
+      "id":"interactive-media"
   },
   {
     "source": "rise1",
@@ -174,9 +175,10 @@
     "relativePos": [152.861, 96.37, 6],
     "relativeSize": [17.645, 20.592],
     "layerGroup": "Table",
-    "zoomOrigin": [70, 45],
+    "zoomOrigin": [50, 40],
     "description": "Interactive Media",
-    "interactive": "interact"
+    "interactive": "interact",
+      "id":"interactive-media"
   },
   {
     "source": "kb",
@@ -214,9 +216,10 @@
     "relativePos": [163.925, 105.416, 7],
     "relativeSize": [22.33, 24.047],
     "layerGroup": "Table",
-    "zoomOrigin": [80, 53],
+    "zoomOrigin": [65, 53],
     "description": "Animation",
-    "interactive": "animate"
+    "interactive": "animate",
+     "id":"animation"
   },
   {
     "source": "rise2",
@@ -231,9 +234,10 @@
     "relativePos": [185.23, 107.606, 9],
     "relativeSize": [20.839, 23.095],
     "layerGroup": "Table",
-    "zoomOrigin": [90, 57],
+    "zoomOrigin": [80, 57],
     "description": "Graphic Design",
-    "interactive": "des"
+    "interactive": "des",
+    "id": "graphic-design"
   },
   {
     "source": "plant4",
@@ -269,9 +273,10 @@
     "relativePos": [172.663, 124.157, 10],
     "relativeSize": [17.912, 19.237],
     "layerGroup": "Table",
-    "zoomOrigin": [85, 60],
+    "zoomOrigin": [70, 60],
     "description": "Illustration",
-    "interactive": "illu"
+    "interactive": "illu",
+      "id":"illustration"
   },
   {
     "source": "pentab_pen",

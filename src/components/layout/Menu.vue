@@ -1,17 +1,14 @@
 <template>
   <div
     class="menu-wrapper"
-    @mouseenter="menuActive - true"
-    @mouseover="menuActive = true"
+    @mouseenter="menuActive = true"
     @mouseleave="menuActive = false"
   >
-    <div>
-      <div class="menu-button">
-        <div v-if="!menuActive">Menu</div>
-        <div v-if="menuActive">Close</div>
-      </div>
+    <div class="menu-button">
+      <div v-if="!menuActive">Menu</div>
+      <div v-else>Close</div>
     </div>
-    <Transition>
+    <transition name="menu">
       <div class="menu-list-wrapper" v-if="menuActive">
         <div
           class="menu-item-wrapper"
@@ -23,7 +20,7 @@
           </router-link>
         </div>
       </div>
-    </Transition>
+    </transition>
   </div>
 </template>
 
@@ -32,30 +29,21 @@ import Routes from "@/datas/routes.js";
 
 export default {
   name: "Menu",
-  components: {},
   data() {
     return { menuActive: false, listItems: Routes };
-  },
-  methods: {
-    toggle(el) {
-      this[el] = !this[el];
-      console.log(this.menuActive);
-    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-div {
-  padding: 0.5em;
-  .menu-wrapper {
-    margin: 2em;
-    z-index: 998;
-    position: fixed;
-    right: 0;
-  }
+.menu-wrapper {
+  margin: 2em;
+  z-index: 998;
+  position: fixed;
+  right: 0;
   .menu-button {
     margin: 0em 1.5em;
+    padding: 2em;
     cursor: pointer;
     border-radius: 3em;
     transition: 0.25s;
@@ -66,28 +54,26 @@ div {
   }
   .menu-list-wrapper {
     background: rgba(255, 255, 255, 0.721);
-    padding: 0.5em 0em;
-    //margin: 1em 0em;
+    padding: 0.5em 0;
     display: flex;
     flex-direction: column;
     transform-origin: top center;
     border-radius: 1em;
-    &.menu-item-wrapper {
+    .menu-item-wrapper {
       width: 100%;
     }
   }
 }
 
 a {
-  padding: 0.5em 0em;
+  padding: 0.5em 0;
   margin: 0.25em 0.5em;
   display: inline-block;
   width: calc(100% - 1em);
-
   color: #2c3e50;
   border-radius: 0.75em;
   transition: background 0.5s, color 0.5s;
-  text-decoration-line: none;
+  text-decoration: none;
   &:hover {
     background: #5cbbd0;
     color: white;
@@ -101,13 +87,13 @@ a {
   }
 }
 
-.v-enter-active,
-.v-leave-active {
+.menu-enter-active,
+.menu-leave-active {
   transition: all 0.25s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.menu-enter-from,
+.menu-leave-to {
   transform: scale(1, 0);
   opacity: 0;
 }

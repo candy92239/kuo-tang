@@ -45,9 +45,9 @@ export default {
   height: 100%;
 }
 .back-fill {
-  background-color: azure;
+  background-color: #1b4965;
   flex: 1;
   //width: 100%;
-  margin: 3%;
+  margin: 0 0 3% 3%;
 }
 </style>

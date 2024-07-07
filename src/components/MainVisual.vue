@@ -52,11 +52,9 @@ export default {
     };
   },
   watch: {
-    // Watch for changes in warningClosed prop to enable or disable mouse tracking
     warningClosed(newValue) {
       newValue ? this.enableMouseTracking() : this.disableMouseTracking();
     },
-    // Watch for changes in scrollZoom prop to handle zoom logic
     scrollZoom(newValue) {
       if (newValue !== "RESET") {
         const obj = this.findObj("interactive", newValue);
@@ -68,7 +66,6 @@ export default {
     },
   },
   methods: {
-    // Handle mouse movement for parallax effect
     handleMouseMove(e) {
       this.mousePos = {
         x: (e.clientX / window.innerWidth) * 2 - 1,
@@ -78,7 +75,6 @@ export default {
     toggle(el) {
       this[el] = !this[el];
     },
-    // Zoom into the object
     zoomToObj() {
       window.removeEventListener("mousemove", this.handleMouseMove);
       this.VCClicked = true;
@@ -96,14 +92,12 @@ export default {
         this.resetZoom();
       }
     },
-    // Reset the zoom state
     resetZoom() {
       this.VCClicked = false;
       this.zoomOrigin = undefined;
       this.previousZoomOrigin = {};
       window.addEventListener("mousemove", this.handleMouseMove);
     },
-    // Handle mouse events from VisualComp components
     handleVCmouse(e) {
       const obj = this.findObj("source", e.id);
       this.currentZoom = e.id ? obj?.zoomOrigin : e.zoomOrigin;
@@ -127,11 +121,9 @@ export default {
         this.handleItemClick(e.id);
       }
     },
-    // Find object in datas array based on key-value pair
     findObj(key, value) {
       return this.datas.find((obj) => obj[key] === value);
     },
-    // Handle click events for specific items
     handleItemClick(id) {
       const element = document.getElementById(id);
       if (id === "cart") {
@@ -147,7 +139,6 @@ export default {
         ]);
       }
     },
-    // Toggle the translation of an element based on click count
     toggleTranslate(element, clickCount, positions) {
       element.style.translate = positions[clickCount % positions.length];
       return clickCount + 1;
@@ -165,7 +156,6 @@ export default {
     }
   },
   computed: {
-    // Compute CSS properties for zoom
     cssProps() {
       const x = this.zoomOrigin ? this.zoomOrigin.x : this.previousZoomOrigin.x;
       const y = this.zoomOrigin ? this.zoomOrigin.y : this.previousZoomOrigin.y;
@@ -215,7 +205,7 @@ export default {
   .visual-wrapper {
     width: 100vh;
     height: 100vh;
-    transform-origin: var(--zoom-X) var (--zoom-Y);
+    transform-origin: var(--zoom-X) var(--zoom-Y);
     &.zoomed {
       transform: scale(4);
     }
@@ -252,11 +242,5 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-.blurred {
-  filter: blur(10px);
-}
-.zoomed {
-  transform: scale(1.2);
 }
 </style>
