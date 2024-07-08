@@ -136,7 +136,7 @@
     "zoomOrigin": [50, 40],
     "description": "Interactive Media",
     "interactive": "interact",
-      "id":"interactive-media"
+    "id":"interactive-media"
   },
   {
     "source": "rise1",
@@ -178,7 +178,7 @@
     "zoomOrigin": [50, 40],
     "description": "Interactive Media",
     "interactive": "interact",
-      "id":"interactive-media"
+    "id":"interactive-media"
   },
   {
     "source": "kb",

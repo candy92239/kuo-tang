@@ -5,32 +5,28 @@
         data-scroll
         data-scroll-repeat
         data-scroll-position="top"
-        :data-scroll-speed="-0.15 + index * 0.03"
+        :data-scroll-speed="(-0.15 + index * 0.03) * 1.1"
         style="color: #84c0c6"
       >
         <b>{{ datas.name }}</b>
       </h1>
-      <!-- <div
-        class="backdrop-cat"
-        data-scroll
-        data-scroll-repeat
-        data-scroll-position="top"
-        :data-scroll-speed="-0.2 + index * 0.03"
-      >
-        <h1 style="color: transparent; margin: 0">
-          <b>{{ datas.name }}</b>
-        </h1>
-      </div> -->
     </div>
-    <div class="back-fill"></div>
+    <div class="content-wrap">
+      <!-- <div class="content-box"></div> -->
+      <MainBoxes :item="datas.block" />
+      <div class="back-fill"></div>
+    </div>
   </div>
 </template>
 
 <script>
+import MainBoxes from "@/components/layout/MainBoxes.vue";
+
 export default {
   emits: [],
   name: "MainSection",
   components: {
+    MainBoxes,
     //InlineSvg
   },
   props: {
@@ -68,29 +64,28 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  transform: translate(0, 50%);
+  transform: translate(0, 3vw);
 }
 
 .title-text {
   position: relative;
-  z-index: 2; /* Ensure h1 is on top of backdrop-cat */
+  z-index: 2;
+}
+
+.content-wrap {
+  position: relative;
+  height: 100%;
+  //padding: 5%;
 }
 
 .back-fill {
-  position: relative;
-  background-color: #1b4965;
-  flex: 1;
-  z-index: -10; /* Ensure back-fill is behind everything */
-  margin: 0 0 3% 3%;
-  border-radius: 1em;
-}
-
-.backdrop-cat {
   position: absolute;
-  height: 5vw;
-  //width: 100%; /* Ensure it covers the width of the title-wrapper */
-  z-index: -1; /* Ensure it is between title-text and back-fill */
-  background-color: #ffffff37;
-  bottom: -1vw;
+  width: 100%;
+  height: 100%;
+  background-color: #173f58;
+  border-radius: 1em;
+  flex: 1;
+  z-index: -10;
+  top: 0;
 }
 </style>

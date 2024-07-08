@@ -30,7 +30,10 @@ import Routes from "@/datas/routes.js";
 export default {
   name: "Menu",
   data() {
-    return { menuActive: false, listItems: Routes };
+    return {
+      menuActive: false,
+      listItems: Routes.filter((route) => route.meta.showInMenu),
+    };
   },
 };
 </script>

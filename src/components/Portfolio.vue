@@ -234,13 +234,7 @@ h1 {
   position: relative;
   background-color: #00000000;
 }
-.cat_wrapper {
-  width: 65vw;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  //border: 3px solid #ffffff;
-}
+
 .sec1-text > h1 {
   transform: translateY(-3vh);
   text-align: left;
@@ -318,5 +312,33 @@ p.t1 {
   -webkit-text-stroke: 1px #ffffff20;
   font-weight: 600;
   //color: rgba(0, 0, 0, 0);
+}
+
+.cat_wrapper {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+//responsive elements goes here:
+
+@media screen and (orientation: landscape),
+  screen and (min-aspect-ratio: 1.5/1) {
+  .cat_wrapper {
+    width: 65vw;
+    padding: 0 0 3% 3%;
+  }
+}
+@media screen and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 1.5/1) {
+  .cat_wrapper {
+    width: 65vw;
+    padding: 0 0 3% 3%;
+  }
+}
+@media screen and (orientation: portrait), screen and (max-aspect-ratio: 1/1) {
+  .cat_wrapper {
+    width: auto;
+    padding: 3%;
+  }
 }
 </style>

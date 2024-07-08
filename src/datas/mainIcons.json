@@ -2,21 +2,175 @@
   {
     "source": "des",
     "name": "Graphic Design",
-    "id": "graphic-design"
+    "id": "graphic-design",
+    "block": [
+      [
+        {
+          "width": 2,
+          "name": "Researching work & Learning Internation Conference",
+          "sub": "University of Toronto OISE",
+          "description": "test",
+          "link": "",
+          "height": 1
+        },
+        {
+          "width": 1,
+          "name": "Staff Training Course",
+          "sub": "Mount Sinai Hospital Interpreter & Translation Service",
+          "description": "test",
+          "link": ""
+        }
+      ],
+      [
+        {
+          "width": 1,
+          "name": "Personal Portfolio",
+          "sub": "Personal Project",
+          "description": "test",
+          "link": "",
+          "height": 1
+        },
+        {
+          "width": 2,
+          "name": "RGB Postcard Design",
+          "description": "test",
+          "sub": "Academic Assignment",
+          "link": ""
+        }
+      ],
+      [
+        {
+          "width": 1,
+          "name": "Diagramming Myself",
+          "description": "test",
+          "sub": "Academic Assignment",
+          "link": "",
+          "height": 1
+        },
+        {
+          "width": 1,
+          "name": "Sculpture Interpretation",
+          "description": "test",
+          "sub": "Academic Assignment",
+          "link": ""
+        },
+        {
+          "width": 1,
+          "name": "Others",
+          "description": "test",
+          "sub": "Personal/Various Clients",
+          "link": ""
+        }
+      ]
+    ]
   },
   {
     "source": "illu",
     "name": "Illustration",
-    "id":"illustration"
+    "id": "illustration",
+    "block": [
+      [
+        {
+          "width": 1,
+          "name": "Scientific Illustration",
+          "description": "test",
+          "sub": "Academic Assignment",
+          "link": "",
+          "height": 2
+        },
+        {
+          "width": 2,
+          "name": "Children Book Illustration",
+          "description": "test",
+          "sub": "Various Clients",
+          "link": ""
+        },
+        {
+          "width": 1,
+          "name": "Digital Illustration",
+          "description": "test",
+          "sub": "Personal/Various Clients",
+          "link": ""
+        }
+      ],
+      [
+        {
+          "width": 3,
+          "name": "Fan Arts",
+          "description": "test",
+          "sub": "Personal Works",
+          "link": "",
+          "height": 1
+        }
+      ]
+    ]
   },
   {
     "source": "interact",
     "name": "Interactive Media",
-    "id":"interactive-media"
+    "id": "interactive-media",
+    "block": [
+      [
+        {
+          "width": 2,
+          "height": 2,
+          "name": "eLearning",
+          "description": "test",
+          "sub": "Personal Works",
+          "link": ""
+        },
+        {
+          "width": 1,
+          "name": "Motion Graphic",
+          "name": "Staff Training Course",
+          "sub": "Mount Sinai Hospital Interpreter & Translation Service",
+          "link": ""
+        }
+      ],
+      [
+        {
+          "width": 3,
+          "height": 1,
+          "name": "Front-end Developement",
+          "description": "test",
+          "sub": "Personal Project",
+          "link": ""
+        }
+      ]
+    ]
   },
   {
     "source": "animate",
     "name": "Animation",
-    "id":"animation"
+    "id": "animation",
+    "block": [
+      [
+        {
+          "width": 3,
+          "height": 2,
+          "name": "Pedagogies to Classroom Engagement",
+          "description": "test",
+          "sub": "OISE, University of Toronto",
+          "link": ""
+        }
+      ],
+      [
+        {
+          "width": 2,
+          "height": 1,
+          "name": "Motion Graphic",
+          "description": "test",
+          "sub": "Personal Works",
+          "link": ""
+        },
+        {
+          "width": 1,
+          "name": "GIFs",
+          "description": "test",
+          "sub": "Personal Works",
+          "link": ""
+        }
+      ]
+    ]
   }
 ]

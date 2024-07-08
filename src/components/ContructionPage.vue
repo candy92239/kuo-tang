@@ -34,7 +34,7 @@
     <div class="progress-bar">
       <div class="progress-bar-fill" />
     </div>
-    <p>Current progress: <b>10%</b></p>
+    <p>Current progress: <b>20%</b></p>
   </div>
   <img class="bg-image" src="@/assets/Construction.png" />
 </template>
@@ -98,7 +98,7 @@ a {
 }
 .progress-bar-fill {
   background: #f2e2d2;
-  width: 5%;
+  width: 20%;
   height: inherit;
 }
 .bg-image {
