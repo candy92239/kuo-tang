@@ -13,7 +13,7 @@
     </div>
     <div class="content-wrap">
       <!-- <div class="content-box"></div> -->
-      <MainBoxes :item="datas.block" />
+      <MainBoxes :item="datas.block" :category="datas.source" />
       <div class="back-fill"></div>
     </div>
   </div>

@@ -4,6 +4,7 @@
       class="content-row"
       v-for="(item, index) in datas"
       :key="index"
+      :category="item.source"
       :id="`row${index}`"
       :style="{
         '--height': item[0].height,
@@ -11,15 +12,23 @@
     >
       <div
         class="individual-block"
-        v-for="(item, i) in datas[index]"
+        v-for="(subItem, i) in datas[index]"
         :key="i"
-        :id="`${item.name}_wrap`"
+        :id="`${subItem.name}_wrap`"
         :style="{
-          '--width': item.width,
+          '--width': subItem.width,
         }"
       >
-        <div class="block-name">{{ item.name }}</div>
-        <div class="block-sub">{{ item.sub }}</div>
+        <div class="block-name">{{ subItem.name }}</div>
+        <div class="block-sub">{{ subItem.sub }}</div>
+        <div class="bg-image"></div>
+        <img
+          :src="
+            require(`@/assets/box_img/${this.category}/${index + 1}-${
+              i + 1
+            }.jpg`)
+          "
+        />
       </div>
     </div>
     <!-- <div class="content-row"></div> -->
@@ -33,6 +42,7 @@ export default {
     //InlineSvg
   },
   props: {
+    category: String,
     item: {
       type: Array,
       required: true,
@@ -96,6 +106,13 @@ export default {
   box-sizing: border-box;
   overflow-wrap: anywhere;
 }
-
+.bg-image {
+  position: absolute;
+}
+.individual-block > img {
+  overflow: hidden;
+  object-fit: cover;
+  flex-shrink: 1;
+}
 //responsiviness: row flex change, width to 100%, height set to smaller? Parent blue box disappear, leaving border
 </style>

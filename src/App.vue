@@ -1,11 +1,12 @@
 <template>
   <Menu />
   <div class="main">
-    <router-view v-slot="{ Component, route }">
-      <transition name="fade">
+    <transition name="slide">
+      <router-view v-slot="{ Component, route }">
+        <!-- <router-view /> -->
         <component :is="Component" :key="route.path" />
-      </transition>
-    </router-view>
+      </router-view>
+    </transition>
   </div>
 </template>
 <script>
@@ -43,5 +44,25 @@ export default {
       color: #42b983;
     }
   }
+}
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(100%);
+}
+
+.slide-enter-to {
+  transform: translateX(0);
+}
+
+.slide-leave-from {
+  transform: translateX(0);
+}
+
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 </style>
