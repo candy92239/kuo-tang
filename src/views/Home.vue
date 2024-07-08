@@ -113,7 +113,7 @@ export default {
 
 .blurred {
   //TODO: remove before deploy
-  filter: blur(10px);
+  //filter: blur(10px);
 }
 
 .portfolio-wrapper {

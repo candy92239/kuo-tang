@@ -4,7 +4,7 @@
     data-scroll-container
     ref="scrollContainer"
   >
-    <div class="sec1">
+    <div class="sec1 glass">
       <div class="sec1-text">
         <h1 data-scroll-speed="4" data-scroll>
           Hi there :) <br />
@@ -45,7 +45,7 @@
       </div>
       <div class="float-text">Or scroll down to explore my workspace</div>
     </div>
-    <div style="height: 10vh"></div>
+    <div style="height: 15vh; background-color: #f7ede462"></div>
     <div
       class="spacer"
       data-scroll
@@ -226,8 +226,11 @@ h1 {
   position: relative;
   background-color: #f7ede462;
   z-index: -1;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   //border: 5px solid #000000;
 }
+
 .main-sec-wrap {
   height: 120vh;
   width: 100vw;

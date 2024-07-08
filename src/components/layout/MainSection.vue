@@ -6,7 +6,6 @@
         data-scroll-repeat
         data-scroll-position="top"
         :data-scroll-speed="(-0.15 + index * 0.03) * 1.1"
-        style="color: #84c0c6"
       >
         <b>{{ datas.name }}</b>
       </h1>
@@ -65,11 +64,7 @@ export default {
   display: flex;
   justify-content: center;
   transform: translate(0, 3vw);
-}
-
-.title-text {
-  position: relative;
-  z-index: 2;
+  color: #14364c;
 }
 
 .content-wrap {
@@ -82,10 +77,12 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #173f58;
+  background-color: #f7ede462;
   border-radius: 1em;
   flex: 1;
   z-index: -10;
   top: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 </style>

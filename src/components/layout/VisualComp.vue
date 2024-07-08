@@ -8,10 +8,10 @@
 
 <script>
 //import mainVisual from "@/datas/mainVisual.json";
-import InlineSvg from "vue-inline-svg";
 import tippy, { followCursor, roundArrow } from "tippy.js";
-import "tippy.js/dist/tippy.css";
 import "tippy.js/dist/svg-arrow.css";
+import "tippy.js/dist/tippy.css";
+import InlineSvg from "vue-inline-svg";
 
 export default {
   emits: ["VCmouse"],
@@ -84,8 +84,9 @@ export default {
 
         "--cursor": this.datas.locked ? "auto" : "pointer",
 
-        "--parallax-X": -this.mousePos.x * this.datas.parallax.x * 0.5 + "vw",
-        "--parallax-Y": this.mousePos.y * this.datas.parallax.y + "vh",
+        "--parallax-X":
+          -this.mousePos.x * this.datas.parallax.x * 0.5 * 0.4 + "vw",
+        "--parallax-Y": this.mousePos.y * this.datas.parallax.y * 0.4 + "vh",
       };
     },
   },

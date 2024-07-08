@@ -15,12 +15,18 @@
         v-for="(subItem, i) in datas[index]"
         :key="i"
         :id="`${subItem.name}_wrap`"
+        data-scroll
+        data-scroll-repeat
+        :data-scroll-speed="0"
+        :data-scroll-delay="0.05 * (index + 1) + 0.2 * (i + 1)"
         :style="{
           '--width': subItem.width,
         }"
       >
-        <div class="block-name">{{ subItem.name }}</div>
-        <div class="block-sub">{{ subItem.sub }}</div>
+        <div class="text-wrap">
+          <div class="block-name">{{ subItem.name }}</div>
+          <div class="block-sub">{{ subItem.sub }}</div>
+        </div>
         <div class="bg-image"></div>
         <img
           :src="
@@ -31,7 +37,9 @@
         />
       </div>
     </div>
-    <!-- <div class="content-row"></div> -->
+    <!-- <div class="content-row">
+      this.category === 'animate' ? 'gif' : 'jpg'
+    </div> -->
   </div>
 </template>
 <script>
@@ -75,11 +83,17 @@ export default {
   flex-direction: row;
 }
 .individual-block {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   //flex-grow: var(--width);
   width: calc(100% / 3 * var(--width) - 2%);
   margin: 1%;
   padding: 1%;
-  background-color: #f2e2d2;
+  background-color: #14364c;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
@@ -87,6 +101,8 @@ export default {
   justify-content: flex-start;
   box-sizing: border-box;
   overflow: hidden;
+  color: beige;
+  line-height: 0.9;
 }
 .block-name {
   display: table-caption;
@@ -94,7 +110,7 @@ export default {
   font-size: 4vh;
   text-align: left;
   box-sizing: border-box;
-  line-height: 0.9;
+
   overflow-wrap: anywhere;
   text-transform: uppercase;
 }
