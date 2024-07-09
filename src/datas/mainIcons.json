@@ -24,7 +24,7 @@
       [
         {
           "width": 1,
-          "name": "Personal Portfolio",
+          "name": "Digital Portfolio",
           "sub": "Personal Project",
           "description": "test",
           "link": "",
@@ -41,7 +41,7 @@
       [
         {
           "width": 1,
-          "name": "Diagramming Myself",
+          "name": "Sculpture Interpretation",
           "description": "test",
           "sub": "Academic Assignment",
           "link": "",
@@ -49,7 +49,7 @@
         },
         {
           "width": 1,
-          "name": "Sculpture Interpretation",
+          "name": "Diagramming Myself",
           "description": "test",
           "sub": "Academic Assignment",
           "link": ""
@@ -156,16 +156,17 @@
       ],
       [
         {
-          "width": 2,
+          "width": 1,
           "height": 1,
-          "name": "Motion Graphic",
+          "name": "GIFs",
           "description": "test",
           "sub": "Personal Works",
           "link": ""
         },
         {
-          "width": 1,
-          "name": "GIFs",
+          "width": 2,
+
+          "name": "Motion Graphic",
           "description": "test",
           "sub": "Personal Works",
           "link": ""

@@ -19,6 +19,10 @@
 </template>
 
 <script>
+// data-scroll
+// data-scroll-repeat
+// data-scroll-position="top"
+// :data-scroll-speed="(-0.15 + index * 0.03) * 1.1"
 import MainBoxes from "@/components/layout/MainBoxes.vue";
 
 export default {
@@ -55,7 +59,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  //height: 100%;
 }
 
 .title-wrapper {
@@ -63,25 +67,28 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  transform: translate(0, 3vw);
+  //transform: translate(0, -10vw);
   color: #14364c;
 }
 
 .content-wrap {
   position: relative;
-  height: 100%;
+  //height: 100%;
+  width: 100%;
+  bottom: 0;
   //padding: 5%;
 }
 
 .back-fill {
-  position: absolute;
+  position: relative;
+  aspect-ratio: 1 / 1;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   background-color: #f7ede462;
   border-radius: 1em;
   flex: 1;
   z-index: -10;
-  top: 0;
+  bottom: 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
