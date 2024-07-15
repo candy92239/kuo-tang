@@ -1,0 +1,4 @@
+window.globalProvideSvgData(
+  "svg-5V2KhpYjYml",
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.1 27.98" id="svg-5V2KhpYjYml"><g pointer-events="visiblePainted" data-accepts="events"><defs><style>.d-6HPMQOZJ8t6 { pointer-events: none; fill: rgba(255, 255, 255, 1); stroke: rgba(18, 80, 107, 1); stroke-width: 2px }\r\n.d-6HPMQOZJ8t6, .e-5vTG9ol6r9w { pointer-events: none; stroke-miterlimit: 10 }\r\n.e-5vTG9ol6r9w { pointer-events: none; fill: none; stroke: rgba(165, 189, 190, 1); stroke-linecap: round; stroke-width: 7px }</style></defs><g id="a" /><g id="b"><g id="c"><g><line class="e-5vTG9ol6r9w" x1="3.5" y1="21.54" x2="48.6" y2="21.54" /><circle class="d-6HPMQOZJ8t6" cx="11.97" cy="21.54" r="5.43" /><line class="e-5vTG9ol6r9w" x1="3.5" y1="6.43" x2="48.6" y2="6.43" /><circle class="d-6HPMQOZJ8t6" cx="32.62" cy="6.43" r="5.43" /></g></g></g></g></svg>'
+);
