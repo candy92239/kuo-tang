@@ -75,7 +75,7 @@
 <script>
 import ButtonComp from "@/components/layout/ButtonComp.vue";
 import MainSection from "@/components/layout/MainSection.vue";
-import mainIcons from "@/datas/mainIcons.json";
+import mainIcons from "@/datas/mainContents.json";
 import anime from "animejs/lib/anime.es.js";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
@@ -115,7 +115,6 @@ export default {
     },
     jumpToSection(value) {
       const element = document.getElementById(value);
-      console.log(element);
       this.scroll.scrollTo(element);
     },
     initLocomotiveScroll() {
@@ -229,12 +228,11 @@ h1 {
   z-index: -1;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid #f7ede4;
+  //border: 5px solid #000000;
 }
 
 .main-sec-wrap {
-  aspect-ratio: 1 / 1;
-  //height: 120vh;
+  height: 120vh;
   width: 100vw;
   position: relative;
   background-color: #00000000;
@@ -321,13 +319,12 @@ p.t1 {
 
 .cat_wrapper {
   height: 100vh;
-  box-sizing: border-box;
   position: sticky;
   top: 0;
 }
 
 //responsive elements goes here:
-//TODO: sec1 orientation
+
 @media screen and (orientation: landscape),
   screen and (min-aspect-ratio: 1.5/1) {
   .cat_wrapper {
@@ -343,7 +340,6 @@ p.t1 {
 }
 @media screen and (orientation: portrait), screen and (max-aspect-ratio: 1/1) {
   .cat_wrapper {
-    height: auto;
     width: auto;
     padding: 3%;
   }

@@ -91,7 +91,7 @@ export default {
 }
 
 .text {
-  white-space: nowrap;
+  white-space: wrap;
   margin: 0;
   transition: all 0.3s ease;
 

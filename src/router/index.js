@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
 import Routes from "@/datas/routes.js";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = Routes;
 
 const router = createRouter({
-  history: createWebHashHistory("/kuo-tang/"),
+  history: createWebHistory("/kuo-tang/"),
   routes,
 });
 

@@ -9,7 +9,7 @@
           "width": 2,
           "name": "Researching work & Learning Internation Conference",
           "sub": "University of Toronto OISE",
-          "description": "test",
+          "description": "Visual identity/design for conference event.",
           "link": "",
           "height": 1
         },
@@ -17,23 +17,23 @@
           "width": 1,
           "name": "Staff Training Course",
           "sub": "Mount Sinai Hospital Interpreter & Translation Service",
-          "description": "test",
+          "description": "Logo, image, icon, and layout design for hospital internal training course.",
           "link": ""
         }
       ],
       [
         {
           "width": 1,
-          "name": "Digital Portfolio",
+          "name": "Personal Portfolio",
           "sub": "Personal Project",
-          "description": "test",
+          "description": "From color palette to UIs, this site and my eLearning demo showcase all my design skills.",
           "link": "",
           "height": 1
         },
         {
           "width": 2,
           "name": "RGB Postcard Design",
-          "description": "test",
+          "description": "Themed postcards from flower arrangement, photography, to final print’s material design.",
           "sub": "Academic Assignment",
           "link": ""
         }
@@ -41,23 +41,33 @@
       [
         {
           "width": 1,
+<<<<<<< HEAD:src/datas/mainContents.json
           "name": "Sculpture Interpretation",
+          "description": "Cardboard interpretation of an existing sculpture.",
+=======
+          "name": "Diagramming Myself",
           "description": "test",
+>>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
           "sub": "Academic Assignment",
           "link": "",
           "height": 1
         },
         {
           "width": 1,
+<<<<<<< HEAD:src/datas/mainContents.json
           "name": "Diagramming Myself",
+          "description": "Data visualization of personal data.",
+=======
+          "name": "Sculpture Interpretation",
           "description": "test",
+>>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
           "sub": "Academic Assignment",
           "link": ""
         },
         {
           "width": 1,
           "name": "Others",
-          "description": "test",
+          "description": "Event banners, prints, general layout designs.",
           "sub": "Personal/Various Clients",
           "link": ""
         }
@@ -73,22 +83,22 @@
         {
           "width": 1,
           "name": "Scientific Illustration",
-          "description": "test",
+          "description": "Labeled drawings and casual sketches",
           "sub": "Academic Assignment",
           "link": "",
           "height": 2
         },
         {
           "width": 1,
-          "name": "Children Book Illustration",
-          "description": "test",
+          "name": "Children's Book Illustration",
+          "description": "Preschool storybook and activity book",
           "sub": "Various Clients",
           "link": ""
         },
         {
           "width": 1,
           "name": "Digital Illustration",
-          "description": "test",
+          "description": "Illustrations for articles, poetry, and other doodles",
           "sub": "Personal/Various Clients",
           "link": ""
         }
@@ -97,9 +107,9 @@
         {
           "width": 3,
           "name": "Fan Arts",
-          "description": "test",
+          "description": "Fan arts of works from various media. All copyrights belong to the original publishers. <br><b>Link to my Pixiv site</b>",
           "sub": "Personal Works",
-          "link": "",
+          "link": "https://www.pixiv.net/users/3112153",
           "height": 1
         }
       ]
@@ -115,14 +125,14 @@
           "width": 2,
           "height": 2,
           "name": "eLearning",
-          "description": "test",
+          "description": "eLearning demo I created using Articulate Storyline. <br><b>Link to demo build (under construction).</b>",
           "sub": "Personal Works",
-          "link": ""
+          "link": "/devl"
         },
         {
           "width": 1,
-          "name": "Motion Graphic",
           "name": "Staff Training Course",
+          "description": "Interaction, quiz, and developement for hospital internal training course.",
           "sub": "Mount Sinai Hospital Interpreter & Translation Service",
           "link": ""
         }
@@ -132,9 +142,9 @@
           "width": 3,
           "height": 1,
           "name": "Front-end Developement",
-          "description": "test",
+          "description": "Code with Vue.js. <br><b>Link to my GitHub.</b>",
           "sub": "Personal Project",
-          "link": ""
+          "link": "https://github.com/candy92239/kuo-tang"
         }
       ]
     ]
@@ -156,17 +166,21 @@
       ],
       [
         {
-          "width": 1,
+          "width": 2,
           "height": 1,
-          "name": "GIFs",
+          "name": "Motion Graphic",
           "description": "test",
           "sub": "Personal Works",
           "link": ""
         },
         {
+<<<<<<< HEAD:src/datas/mainContents.json
           "width": 2,
 
-          "name": "Motion Graphic",
+=======
+          "width": 1,
+>>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
+          "name": "GIFs",
           "description": "test",
           "sub": "Personal Works",
           "link": ""
