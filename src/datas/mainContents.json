@@ -41,26 +41,16 @@
       [
         {
           "width": 1,
-<<<<<<< HEAD:src/datas/mainContents.json
           "name": "Sculpture Interpretation",
           "description": "Cardboard interpretation of an existing sculpture.",
-=======
-          "name": "Diagramming Myself",
-          "description": "test",
->>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
           "sub": "Academic Assignment",
           "link": "",
           "height": 1
         },
         {
           "width": 1,
-<<<<<<< HEAD:src/datas/mainContents.json
           "name": "Diagramming Myself",
           "description": "Data visualization of personal data.",
-=======
-          "name": "Sculpture Interpretation",
-          "description": "test",
->>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
           "sub": "Academic Assignment",
           "link": ""
         },
@@ -159,7 +149,7 @@
           "width": 3,
           "height": 2,
           "name": "Pedagogies to Classroom Engagement",
-          "description": "test",
+          "description": "Introductory video on classroom etiquette for adult education classrooms. From storyboard, character design, to animation.",
           "sub": "OISE, University of Toronto",
           "link": ""
         }
@@ -169,19 +159,15 @@
           "width": 2,
           "height": 1,
           "name": "Motion Graphic",
-          "description": "test",
+          "description": "Practice works for icons and logos.",
           "sub": "Personal Works",
           "link": ""
         },
         {
-<<<<<<< HEAD:src/datas/mainContents.json
           "width": 2,
 
-=======
-          "width": 1,
->>>>>>> parent of 1ac9e2a (cool title):src/datas/mainIcons.json
           "name": "GIFs",
-          "description": "test",
+          "description": "Small frame-by-frame animation. *Include fan art, all copyrights belong to the original publishers.",
           "sub": "Personal Works",
           "link": ""
         }

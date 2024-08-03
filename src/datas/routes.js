@@ -5,6 +5,12 @@ const routes = [
     name: "Home",
     component: Home,
     meta: { transition: "slide-left", showInMenu: true },
+    children: [
+      {
+        path: "design",
+        name: "MediaDesign",
+      },
+    ],
   },
   {
     path: "/about",

@@ -1,10 +1,11 @@
 <template>
+  <JumpToTop @click="jumpToSection('sec-1')" />
   <div
     :class="['scroll-wrapper', { 'smooth-scroll-active': !mobileTrue }]"
     data-scroll-container
     ref="scrollContainer"
   >
-    <div class="sec1 glass">
+    <div class="sec1 glass" id="sec-1">
       <div class="sec1-text">
         <h1 data-scroll-speed="4" data-scroll>
           Hi there :) <br />
@@ -45,6 +46,7 @@
       </div>
       <div class="float-text">Or scroll down to explore my workspace</div>
     </div>
+
     <div style="height: 15vh; background-color: #f7ede462"></div>
     <div
       class="spacer"
@@ -74,6 +76,7 @@
 
 <script>
 import ButtonComp from "@/components/layout/ButtonComp.vue";
+import JumpToTop from "@/components/layout/JumpToTop.vue";
 import MainSection from "@/components/layout/MainSection.vue";
 import mainIcons from "@/datas/mainContents.json";
 import anime from "animejs/lib/anime.es.js";
@@ -84,12 +87,7 @@ import "tippy.js/animations/shift-away.css";
 import "tippy.js/dist/tippy.css";
 
 export default {
-  components: { ButtonComp, MainSection },
-  watch: {
-    data(newVal) {
-      this.jumpToSection(newVal);
-    },
-  },
+  components: { ButtonComp, MainSection, JumpToTop },
   data() {
     return {
       datas: mainIcons,
@@ -97,14 +95,21 @@ export default {
       secViewing: false,
       spacerViewing: false,
       backdropWidths: ["31vw", "30vw", "43vw", "32vw"],
-      tippyInstances: [], // Define tippyInstances here
+      tippyInstances: [],
     };
   },
   props: { warningClosed: Boolean, mobileTrue: Boolean, data: String },
   emits: ["jumpTo", "secZoom", "blurred"],
+  watch: {
+    data(newValue) {
+      console.log(newValue);
+      if (newValue) {
+        this.jumpToSection(newValue);
+      }
+    },
+  },
   methods: {
     handleJumpToSection(sectionId) {
-      // Logic to handle the jump to the specified section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -228,14 +233,13 @@ h1 {
   z-index: -1;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  //border: 5px solid #000000;
 }
 
 .main-sec-wrap {
-  height: 120vh;
+  aspect-ratio: 1 / 0.8;
+  background-color: transparent;
   width: 100vw;
   position: relative;
-  background-color: #00000000;
 }
 
 .sec1-text > h1 {
@@ -314,7 +318,6 @@ p.t1 {
   font-size: 1.3em;
   -webkit-text-stroke: 1px #ffffff20;
   font-weight: 600;
-  //color: rgba(0, 0, 0, 0);
 }
 
 .cat_wrapper {

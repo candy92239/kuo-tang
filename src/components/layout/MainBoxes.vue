@@ -129,13 +129,15 @@ export default {
   flex-direction: row;
 }
 .individual-block {
+  // User selection properties
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  //flex-grow: var(--width);
+
+  // Flexbox and sizing properties
   width: calc(100% / 3 * var(--width) - 2%);
   margin: 1%;
   padding: 1%;
@@ -144,7 +146,8 @@ export default {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
   transform-origin: center;
   cursor: pointer;
 
@@ -158,6 +161,7 @@ export default {
     transform: translate(-50%, -50%);
     opacity: 0.3;
     filter: blur(2px);
+    transition: filter 0.3s ease, opacity 0.3s ease;
   }
 
   &.c-hovered {
@@ -172,11 +176,13 @@ export default {
 
     .block-name {
       font-size: 6.5vw;
-      background-blend-mode: color-dodge !important;
+      //background-blend-mode: color-dodge !important;
+      //transition: font-size 0.3s ease;
     }
 
     .block-sub {
       font-size: 0;
+      transition: font-size 0.3s ease;
     }
   }
 }
@@ -185,28 +191,36 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: bottom;
+  align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
   overflow: hidden;
   color: beige;
   line-height: 0.9;
+  position: relative;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.8em;
 }
 .block-name {
   display: table-caption;
   width: 100%;
-  font-size: 4vh;
-  text-align: left;
+  text-align: right;
   box-sizing: border-box;
-  font-weight: 600;
   overflow-wrap: anywhere;
+
+  font-size: 2vw;
+  font-weight: 700;
   text-transform: uppercase;
 }
 .block-sub {
+  font-size: 1.5vw;
+  transition: all 0.3s ease;
   display: table-caption;
   width: 100%;
-  font-size: 3vh;
-  text-align: left;
+  text-align: right;
   box-sizing: border-box;
   overflow-wrap: anywhere;
 }
@@ -230,4 +244,10 @@ export default {
 span {
   display: inline-block;
 }
+.individual-block > img {
+  overflow: hidden;
+  object-fit: cover;
+  flex-shrink: 1;
+}
+//responsiviness: row flex change, width to 100%, height set to smaller? Parent blue box disappear, leaving border
 </style>

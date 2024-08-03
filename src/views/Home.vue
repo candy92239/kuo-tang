@@ -10,6 +10,7 @@
       @wasClicked="toggle('warningClicked')"
     />
   </Transition>
+
   <div :class="{ 'background-wrapper': !warningClicked }">
     <div class="pointer-event-wrap">
       <div class="portfolio-wrapper">
@@ -28,6 +29,7 @@
           :mobileTrue="mobileTrue"
           :initialBlur="warningClicked"
           :data="sharedData"
+          :key="sharedDataKey"
         />
       </div>
     </div>
@@ -57,11 +59,15 @@ export default {
       mobileTrue: null,
       scrollZoom: null,
       sharedData: null,
+      sharedDataKey: 0,
     };
   },
   methods: {
     handleClicktoSec(data) {
       this.sharedData = data;
+      this.$nextTick(() => {
+        this.sharedData = "";
+      });
     },
     toggle(el) {
       this[el] = !this[el];

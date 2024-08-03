@@ -10,9 +10,9 @@ h1 {
 p {
   font-family: "Red Hat Display", sans-serif;
 }
-*:not(h1) {
-  font-family: "Red Hat Display", sans-serif;
-}
+// *:not(h) {
+//   font-family: "Red Hat Display", sans-serif;
+// }
 ::-webkit-scrollbar {
   display: none;
 }
