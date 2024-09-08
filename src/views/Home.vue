@@ -117,11 +117,6 @@ export default {
   will-change: transform;
 }
 
-.blurred {
-  //TODO: remove before deploy
-  //filter: blur(10px);
-}
-
 .portfolio-wrapper {
   height: 100vh;
   width: 100vw;

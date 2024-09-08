@@ -20,7 +20,7 @@
         :style="{ '--height': item[0].height, '--width': subItem.width }"
         @mouseenter="hoverIn($event, subItem.description)"
         @mouseleave="hoverOut($event)"
-        @click="handleClick(subItem.link)"
+        @click="handleClick(subItem.link, $event)"
       >
         <div class="text-wrap">
           <div class="block-name">{{ subItem.name }}</div>
@@ -36,11 +36,9 @@
         />
       </div>
     </div>
-    <!-- <div class="content-row">
-      this.category === 'animate' ? 'gif' : 'jpg'
-    </div> -->
   </div>
 </template>
+
 <script>
 import svgIcon from "@/assets/UI/linkTo.svg";
 import tippy, { followCursor } from "tippy.js";
@@ -48,11 +46,7 @@ import "tippy.js/dist/svg-arrow.css";
 import "tippy.js/dist/tippy.css";
 
 export default {
-  emits: [],
   name: "MainBoxes",
-  components: {
-    //InlineSvg
-  },
   props: {
     category: String,
     item: {
@@ -92,16 +86,17 @@ export default {
           plugins: [followCursor],
           allowHTML: true,
           arrow: false,
-          //delay: 0,
         });
       }
       this.popup.show();
     },
-    handleClick(link) {
+    handleClick(link, event) {
       if (this.popup) {
         this.popup.destroy();
         this.popup = null;
       }
+      this.$emit("expandThis", event.currentTarget);
+      console.log(event.currentTarget);
       if (link.startsWith("http")) {
         window.open(link, "_blank");
       } else {
@@ -109,9 +104,9 @@ export default {
       }
     },
   },
-  mounted() {},
 };
 </script>
+
 <style lang="scss">
 .content-box {
   display: flex;
@@ -129,15 +124,6 @@ export default {
   flex-direction: row;
 }
 .individual-block {
-  // User selection properties
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  // Flexbox and sizing properties
   width: calc(100% / 3 * var(--width) - 2%);
   margin: 1%;
   padding: 1%;
@@ -146,8 +132,7 @@ export default {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease,
-    background-color 0.3s ease;
+  transition: all 0.3s ease;
   transform-origin: center;
   cursor: pointer;
 
@@ -176,13 +161,10 @@ export default {
 
     .block-name {
       font-size: 6.5vw;
-      //background-blend-mode: color-dodge !important;
-      //transition: font-size 0.3s ease;
     }
 
     .block-sub {
       font-size: 0;
-      transition: font-size 0.3s ease;
     }
   }
 }
@@ -229,7 +211,6 @@ export default {
   position: absolute;
 }
 
-//tippybox styling
 .tippy-box[data-theme~="box_description"] {
   background-color: #f2e2d2f3;
   color: #1c2022;
@@ -249,5 +230,14 @@ span {
   object-fit: cover;
   flex-shrink: 1;
 }
-//responsiviness: row flex change, width to 100%, height set to smaller? Parent blue box disappear, leaving border
+
+@media (max-width: 768px) {
+  .block-name {
+    font-size: 8vw;
+  }
+
+  .block-sub {
+    font-size: 1.5vw;
+  }
+}
 </style>

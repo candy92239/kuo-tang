@@ -33,6 +33,29 @@ const routes = [
       import(/* webpackChunkName: "devl" */ "../views/DEVLdemo.vue"),
     meta: { showInMenu: false },
   },
+  {
+    path: "/oise_rwl",
+    name: "OISE RWL",
+    component: () =>
+      import(/* webpackChunkName: "animation" */ "../views/home/Sub_OISE.vue"),
+    meta: { showInMenu: false },
+  },
+  {
+    path: "/msh",
+    name: "MSH",
+    component: () =>
+      import(/* webpackChunkName: "animation" */ "../views/home/Sub_MSH.vue"),
+    meta: { showInMenu: false },
+  },
+  {
+    path: "/postcard",
+    name: "Postcard",
+    component: () =>
+      import(
+        /* webpackChunkName: "animation" */ "../views/home/Sub_postcard.vue"
+      ),
+    meta: { showInMenu: false },
+  },
 ];
 
 export default routes;

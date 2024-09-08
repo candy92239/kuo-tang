@@ -7,7 +7,11 @@
     </div>
     <div class="content-wrap">
       <!-- <div class="content-box"></div> -->
-      <MainBoxes :item="datas.block" :category="datas.source" />
+      <MainBoxes
+        :item="datas.block"
+        :category="datas.source"
+        @expandThis="expandThisParent"
+      />
       <div class="back-fill"></div>
     </div>
   </div>
@@ -42,7 +46,13 @@ export default {
       datas: this.item,
     };
   },
-  methods: {},
+  methods: {
+    expandThisParent(domObject) {
+      console.log("to parent!");
+      console.log(domObject);
+      this.$emit("expandThisParent", domObject);
+    },
+  },
   mounted() {},
   computed: {},
 };
