@@ -94,7 +94,7 @@ export default {
   margin-bottom: 30px;
 }
 .image-item {
-  margin: 10px;
+  margin: 1em;
 }
 img {
   width: 100%;

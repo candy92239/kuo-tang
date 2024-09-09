@@ -4,8 +4,8 @@
     v-if="elementVisible"
     @click="$emit('wasClicked')"
   >
-    Nothing much to see, eh? <b>Click me</b> to bring back the construction
-    page.
+    Hi again! This page is under construction. <b>Click me</b> to see the
+    information page.
   </div>
 </template>
 

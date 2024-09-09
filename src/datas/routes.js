@@ -15,45 +15,49 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import("../views/About.vue"),
     meta: { transition: "slide-left", showInMenu: true },
   },
   {
     path: "/contact",
     name: "Contact",
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/Contact.vue"),
+    component: () => import("../views/Contact.vue"),
     meta: { transition: "slide-left", showInMenu: true },
   },
   {
     path: "/devl",
     name: "eLearning Demo",
-    component: () =>
-      import(/* webpackChunkName: "devl" */ "../views/DEVLdemo.vue"),
+    component: () => import("../views/DEVLdemo.vue"),
     meta: { showInMenu: false },
   },
   {
     path: "/oise_rwl",
     name: "OISE RWL",
-    component: () =>
-      import(/* webpackChunkName: "animation" */ "../views/home/Sub_OISE.vue"),
+    component: () => import("../views/home/Sub_OISE.vue"),
     meta: { showInMenu: false },
   },
   {
     path: "/msh",
     name: "MSH",
-    component: () =>
-      import(/* webpackChunkName: "animation" */ "../views/home/Sub_MSH.vue"),
+    component: () => import("../views/home/Sub_MSH.vue"),
     meta: { showInMenu: false },
   },
   {
     path: "/postcard",
     name: "Postcard",
-    component: () =>
-      import(
-        /* webpackChunkName: "animation" */ "../views/home/Sub_postcard.vue"
-      ),
+    component: () => import("../views/home/Sub_postcard.vue"),
+    meta: { showInMenu: false },
+  },
+  {
+    path: "/book",
+    name: "Children Book",
+    component: () => import("../views/home/Sub_book.vue"),
+    meta: { showInMenu: false },
+  },
+  {
+    path: "/digital",
+    name: "Digital Illustration",
+    component: () => import("../views/home/Sub_digital.vue"),
     meta: { showInMenu: false },
   },
 ];

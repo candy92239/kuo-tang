@@ -83,14 +83,14 @@
           "name": "Children's Book Illustration",
           "description": "Preschool storybook and activity book",
           "sub": "Various Clients",
-          "link": ""
+          "link": "/book"
         },
         {
           "width": 1,
           "name": "Digital Illustration",
           "description": "Illustrations for articles, poetry, and other doodles",
           "sub": "Personal/Various Clients",
-          "link": ""
+          "link": "/digital"
         }
       ],
       [
@@ -124,7 +124,7 @@
           "name": "Staff Training Course",
           "description": "Interaction, quiz, and developement for hospital internal training course.",
           "sub": "Mount Sinai Hospital Interpreter & Translation Service",
-          "link": ""
+          "link": "/msh"
         }
       ],
       [

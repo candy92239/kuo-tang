@@ -26,8 +26,7 @@
   </div>
   <div class="progress" @click="$emit('wasClicked')">
     <p>
-      If you're curious on how I'm doing, <b>click this box</b> to peek on my
-      developement process.
+      <b>Click this box</b> to close this page.
       <br />
       <b>Warning:</b> Expect broken stuffs here and there.
     </p>
@@ -108,6 +107,7 @@ a {
   opacity: 0.85;
   filter: blur(5px);
   z-index: -1;
+  pointer-events: none;
   //will-change: transform;
   //backdrop-filter: blur(5px);
 }

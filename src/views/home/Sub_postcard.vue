@@ -33,10 +33,10 @@ export default {
   },
   data() {
     return {
-      directory: "postcard", // Define the directory once for all galleries
+      directory: "postcard",
       galleryData: {
         proofs: "01~03",
-        photo: "04~13",
+        photo: "04~13, 16~18",
         title_card: "14",
         all_card: "15",
       },
@@ -46,13 +46,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  color: #ffffff;
+  padding: 0.5em;
+}
 .subpage-wrap {
-  background-color: #798485;
+  background-color: #677479;
   overflow: auto;
   height: 100vh;
+  padding: 1em;
 }
 
-.photo::v-deep .image-gallery {
+.photo :deep(.image-gallery) {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -75,11 +80,25 @@ export default {
   }
 }
 
-.proofs::v-deep .image-gallery {
+.proofs :deep(.image-gallery) {
   flex-direction: row;
   justify-content: space-between;
   .image-item {
+    aspect-ratio: 1.618/1;
     flex-grow: 1;
+    padding: 1.3em;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 10px;
+    position: relative;
+  }
+
+  .image-item img,
+  .image-item svg {
+    width: calc(100% + 2.6em);
+    height: calc(100% + 2.6em);
+    object-fit: cover;
+    object-position: center;
   }
 }
 

@@ -4,6 +4,7 @@
       <ContructionPage @wasClicked="toggle('warningClicked')" />
     </div>
   </Transition>
+
   <Transition>
     <WarningHeader
       v-if="warningClicked"
@@ -15,9 +16,6 @@
     <div class="pointer-event-wrap">
       <div class="portfolio-wrapper">
         <MainVisual
-          :class="{
-            blurred: mainBlurred || !warningClicked,
-          }"
           :warningClosed="warningClicked"
           :scrollZoom="this.scrollZoom"
           @clickToSection="handleClicktoSec"
@@ -27,7 +25,7 @@
           @secZoom="secZoom"
           :warningClosed="warningClicked"
           :mobileTrue="mobileTrue"
-          :initialBlur="warningClicked"
+          :initialBlur="false"
           :data="sharedData"
           :key="sharedDataKey"
         />
@@ -37,12 +35,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import ContructionPage from "@/components/ContructionPage.vue";
 import WarningHeader from "@/components/layout/WarningHeader.vue";
 import MainVisual from "@/components/MainVisual.vue";
 import Portfolio from "@/components/Portfolio.vue";
-//import Atropos from "atropos";
 
 export default {
   name: "Home",
@@ -55,12 +51,27 @@ export default {
   data() {
     return {
       warningClicked: false,
-      mainBlurred: true,
+      mainBlurred: false,
       mobileTrue: null,
       scrollZoom: null,
       sharedData: null,
       sharedDataKey: 0,
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.warningClicked = true;
+    }, 0);
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      this.mobileTrue = true;
+    } else {
+      this.mobileTrue = false;
+    }
   },
   methods: {
     handleClicktoSec(data) {
@@ -79,23 +90,12 @@ export default {
       }, 50);
     },
     secZoom(value) {
-      console.log("parent received! " + value);
       this.scrollZoom = value;
     },
   },
-  mounted() {
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      this.mobileTrue = true;
-    } else {
-      this.mobileTrue = false;
-    }
-  },
 };
 </script>
+
 <style scoped lang="scss">
 .construction-wrapper {
   width: 100vw;
@@ -107,13 +107,10 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
+
 .background-wrapper {
-  filter: blur(5px);
   position: relative;
   z-index: 0;
-  //add this css for blurring to enforce GPU!!
-  // transform: translate3d(0, 0, 0);
-  // -ms-transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
@@ -122,7 +119,6 @@ export default {
   width: 100vw;
   position: relative;
   z-index: 100;
-  //overflow: visible;
 }
 
 .v-enter-active,

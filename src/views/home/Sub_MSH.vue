@@ -60,10 +60,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  color: #ffffff;
+  padding: 0.5em;
+}
 .subpage-wrap {
-  background-color: #798485;
+  background-color: #677479;
   overflow: auto;
   height: 100vh;
+  padding: 1em;
 }
 
 .logos ::v-deep .image-gallery {
@@ -75,18 +80,21 @@ export default {
   }
 }
 
-.screenshots::v-deep .image-gallery {
+.screenshots :deep(.image-gallery) {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 1em;
+
   .image-item {
     flex: 1 1 30%;
     max-width: 30%;
     box-sizing: border-box;
+    margin: 0.5em;
   }
 }
 
-.icons::v-deep .image-gallery {
+.icons :deep(.image-gallery) {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
