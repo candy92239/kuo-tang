@@ -10,12 +10,40 @@ h1 {
 p {
   font-family: "Red Hat Display", sans-serif;
 }
-// *:not(h) {
-//   font-family: "Red Hat Display", sans-serif;
-// }
-::-webkit-scrollbar {
-  display: none;
+
+/* Hide scrollbars for all elements globally, but keep scroll functionality */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
+::-webkit-scrollbar {
+  width: 0; /* Chrome, Safari, and Opera */
+  height: 0; /* For horizontal scrollbar */
+  display: none; /* Extra assurance for Webkit browsers */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #88888800;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #55555500;
+}
+
+
 .main {
   width: 100vw;
   //height: 100vh;
