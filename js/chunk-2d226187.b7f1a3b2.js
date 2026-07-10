@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d226187"],{e6cc:function(n,p,c){n.exports=c.p+"img/Tang_K_3_scan_3.4613b916.jpg"}}]);
+//# sourceMappingURL=chunk-2d226187.b7f1a3b2.js.map

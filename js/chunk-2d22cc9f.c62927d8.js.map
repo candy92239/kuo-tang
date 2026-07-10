@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/assets/subpages/children_book/06.jpg"],"names":["module","exports"],"mappings":"mGAAAA,EAAOC,QAAU,IAA0B","file":"js/chunk-2d22cc9f.c62927d8.js","sourcesContent":["module.exports = __webpack_public_path__ + \"img/06.db5b02d2.jpg\";"],"sourceRoot":""}
