@@ -6,19 +6,12 @@
     "block": [
       [
         {
-          "width": 2,
+          "width": 3,
           "name": "Researching work & Learning Internation Conference",
           "sub": "University of Toronto OISE",
           "description": "Visual identity/design for conference event.",
-          "link": "/oise_rwl",
+          "link": "https://candytang3.wixsite.com/candytang/rwl",
           "height": 1
-        },
-        {
-          "width": 1,
-          "name": "Staff Training Course",
-          "sub": "Mount Sinai Hospital Interpreter & Translation Service",
-          "description": "Logo, image, icon, and layout design for hospital internal training course.",
-          "link": "/msh"
         }
       ],
       [
@@ -35,7 +28,7 @@
           "name": "RGB Postcard Design",
           "description": "Themed postcards from flower arrangement, photography, to final print’s material design.",
           "sub": "Academic Assignment",
-          "link": "/postcard"
+          "link": "https://candytang3.wixsite.com/candytang/postcard"
         }
       ],
       [
@@ -44,7 +37,7 @@
           "name": "Sculpture Interpretation",
           "description": "Cardboard interpretation of an existing sculpture.",
           "sub": "Academic Assignment",
-          "link": "",
+          "link": "https://candytang3.wixsite.com/candytang/msh-1",
           "height": 1
         },
         {
@@ -52,7 +45,7 @@
           "name": "Diagramming Myself",
           "description": "Data visualization of personal data.",
           "sub": "Academic Assignment",
-          "link": ""
+          "link": "https://candytang3.wixsite.com/candytang/dms"
         },
         {
           "width": 1,
@@ -124,7 +117,7 @@
           "name": "Staff Training Course",
           "description": "Interaction, quiz, and developement for hospital internal training course.",
           "sub": "Mount Sinai Hospital Interpreter & Translation Service",
-          "link": "/msh"
+          "link": "https://candytang3.wixsite.com/candytang/msh"
         }
       ],
       [
@@ -151,7 +144,7 @@
           "name": "Pedagogies to Classroom Engagement",
           "description": "Introductory video on classroom etiquette for adult education classrooms. From storyboard, character design, to animation.",
           "sub": "OISE, University of Toronto",
-          "link": ""
+          "link": "https://candytang3.wixsite.com/candytang/msh-2"
         }
       ],
       [
@@ -169,7 +162,7 @@
           "name": "GIFs",
           "description": "Small frame-by-frame animation. *Include fan art, all copyrights belong to the original publishers.",
           "sub": "Personal Works",
-          "link": ""
+          "link": "https://candytang3.wixsite.com/candytang/short-animations"
         }
       ]
     ]

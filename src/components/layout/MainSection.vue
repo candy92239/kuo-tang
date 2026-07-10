@@ -74,7 +74,7 @@ export default {
   justify-content: center;
   //transform: translate(0, -10vw);
   color: #14364c;
-  font-family: "Aaux Next", aaux-next, Arial, Helvetica, sans-serif;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
 }
 
 .content-wrap {

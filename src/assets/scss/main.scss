@@ -1,14 +1,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
+}
+
 h1 {
-  font-family: "Aaux Next", aaux-next, Arial, Helvetica, sans-serif;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
   //font-weight: lighter;
   //font-size: 8rem;
   color: #14364c;
 }
 p {
-  font-family: "Red Hat Display", sans-serif;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
 }
 
 /* Hide scrollbars for all elements globally, but keep scroll functionality */

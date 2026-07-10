@@ -215,7 +215,7 @@ export default {
   background-color: #f2e2d2f3;
   color: #1c2022;
   border: 3px solid #ffffff;
-  font-family: Avenir;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
   font-size: 1.2em;
   padding: 0.5em;
 }

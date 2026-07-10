@@ -148,7 +148,7 @@ export default {
 .tippy-box[data-theme~="normal"] {
   background-color: #353d41;
   color: #ffffff;
-  font-family: Avenir;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
   > .tippy-svg-arrow {
     fill: #353d41;
   }
@@ -156,7 +156,7 @@ export default {
 .tippy-box[data-theme~="interactive"] {
   background-color: #94c9ce;
   color: #030404;
-  font-family: Avenir;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
   font-weight: bold;
   > .tippy-svg-arrow {
     fill: #94c9ce;

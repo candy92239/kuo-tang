@@ -21,12 +21,14 @@
         <div
           v-for="(width, index) in backdropWidths"
           :key="index"
-          class="backdrop"
+          class="backdrop-scroll"
           :style="{ top: `calc(50vh - ${(2 - index) * 6}vw)`, width: width }"
           data-scroll
           data-scroll-speed="4"
           :data-scroll-delay="(index + 1) * 0.05"
-        ></div>
+        >
+          <div class="backdrop"></div>
+        </div>
       </div>
       <div class="sec1-selections">
         <h1>I’m looking for:</h1>
@@ -101,6 +103,11 @@ export default {
   props: { warningClosed: Boolean, mobileTrue: Boolean, data: String },
   emits: ["jumpTo", "secZoom", "blurred"],
   watch: {
+    mobileTrue(value) {
+      if (value === false && !this.scroll) {
+        this.initLocomotiveScroll();
+      }
+    },
     data(newValue) {
       console.log(newValue);
       if (newValue) {
@@ -120,7 +127,12 @@ export default {
     },
     jumpToSection(value) {
       const element = document.getElementById(value);
-      this.scroll.scrollTo(element);
+      if (!element) return;
+      if (this.scroll) {
+        this.scroll.scrollTo(element);
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     },
     initLocomotiveScroll() {
       this.scroll = new LocomotiveScroll({
@@ -152,6 +164,11 @@ export default {
           }
         }
       });
+
+      this.$nextTick(() => {
+        window.requestAnimationFrame(() => this.scroll?.update());
+        document.fonts?.ready.then(() => this.scroll?.update());
+      });
     },
     animeBackdrop() {
       anime({
@@ -172,7 +189,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.mobileTrue) {
+    if (this.mobileTrue === false) {
       this.initLocomotiveScroll();
     }
     this.animeBackdrop();
@@ -190,6 +207,15 @@ export default {
       animation: "shift-away",
     });
   },
+  unmounted() {
+    if (this.scroll) {
+      this.scroll.destroy();
+      this.scroll = null;
+    }
+    this.tippyInstances.forEach((instance) => instance.destroy());
+    this.tippyInstances = [];
+    anime.remove(".backdrop");
+  },
 };
 </script>
 
@@ -199,6 +225,8 @@ export default {
   perspective: 1px;
   display: block;
   width: 0;
+  transform: translateZ(0);
+  will-change: transform;
   &.smooth-scroll-active {
     position: fixed;
   }
@@ -207,12 +235,16 @@ export default {
   height: 110vh;
   width: 0;
 }
-.backdrop {
+.backdrop-scroll {
   position: absolute;
   left: 3vw;
   top: 43vh;
   height: 6vw;
   z-index: -1;
+}
+.backdrop {
+  width: 100%;
+  height: 100%;
   background-color: #8bcedd;
   transform-origin: top left;
 }
@@ -290,7 +322,7 @@ p.t1 {
 .tippy-box[data-theme~="glossary"] {
   background-color: #b3d8dc;
   color: #14364c;
-  font-family: Avenir;
+  font-family: "Red Hat Display", Arial, Helvetica, sans-serif;
   font-size: 1em;
   border: 1px solid white;
   padding: 0.5em;

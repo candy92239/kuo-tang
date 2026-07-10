@@ -2,7 +2,13 @@
   <div :class="galleryClass">
     <div class="image-gallery">
       <div v-for="(image, index) in images" :key="index" class="image-item">
-        <img v-if="!image.isSvg" :src="image.src" :alt="`Image ${index + 1}`" />
+        <img
+          v-if="!image.isSvg"
+          :src="image.src"
+          :alt="`Image ${index + 1}`"
+          loading="lazy"
+          decoding="async"
+        />
         <inline-svg v-else :src="image.src" />
       </div>
     </div>
@@ -33,6 +39,7 @@ export default {
   },
   setup(props) {
     const images = ref([]);
+    let loadId = 0;
 
     const parseGalleryString = (str) => {
       const numbers = [];
@@ -67,6 +74,7 @@ export default {
     };
 
     const loadImages = async () => {
+      const currentLoadId = ++loadId;
       const numberList = parseGalleryString(props.galleryData);
       const imagePaths = await Promise.all(
         numberList.map(async (num) => {
@@ -74,11 +82,13 @@ export default {
           return await tryImportImage(paddedNum, props.directory);
         })
       );
-      images.value = imagePaths.filter(Boolean);
+      if (currentLoadId === loadId) {
+        images.value = imagePaths.filter(Boolean);
+      }
     };
 
     onMounted(loadImages);
-    watch(() => props.galleryData, loadImages);
+    watch(() => [props.galleryData, props.directory], loadImages);
 
     return {
       images,
@@ -95,6 +105,8 @@ export default {
 }
 .image-item {
   margin: 1em;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 img {
   width: 100%;

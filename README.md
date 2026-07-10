@@ -1,20 +1,19 @@
-# portfolio
+# Portfolio
 
-### Compiles and hot-reloads for development
+## Development
 
-```
+```bash
 export NODE_OPTIONS=--openssl-legacy-provider
 npm run serve
-
-Hi me: DO NOT, I repeat, DO NOT try to psuh using VSC source contorl. It'll ruin you. Use bash.
 ```
 
-### Compiles and minifies for production
+Use the command line for Git operations instead of the VS Code Source Control panel.
 
-```
+## Production deployment
+
+```bash
 export NODE_OPTIONS=--openssl-legacy-provider
 npm run deploy
-
-To me: you'll need to enter psw for this, if not, something's wrong
-When pushing, ditch gitHooks in package.json if it takes forever to lint
 ```
+
+The deployment process may prompt for authentication. If Git hooks make the process unusually slow, review the lint configuration before retrying.

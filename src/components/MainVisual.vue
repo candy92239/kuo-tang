@@ -3,7 +3,7 @@
     <div class="main-visual-wrapper">
       <div
         class="visual-wrapper"
-        :class="{ zoomed: VCClicked }"
+        :class="{ zoomed: VCClicked, zooming: zoomAnimating }"
         :style="cssProps"
       >
         <div
@@ -49,6 +49,10 @@ export default {
       cartClick: 0,
       chairClick: 0,
       mousePos: { x: 0, y: 0 },
+      mouseMoveFrame: null,
+      pendingMousePos: null,
+      zoomAnimating: false,
+      zoomAnimationTimer: null,
     };
   },
   watch: {
@@ -67,16 +71,24 @@ export default {
   },
   methods: {
     handleMouseMove(e) {
-      this.mousePos = {
+      this.pendingMousePos = {
         x: (e.clientX / window.innerWidth) * 2 - 1,
         y: 1 - (e.clientY / window.innerHeight) * 2,
       };
+
+      if (this.mouseMoveFrame !== null) return;
+
+      this.mouseMoveFrame = window.requestAnimationFrame(() => {
+        this.mousePos = this.pendingMousePos;
+        this.mouseMoveFrame = null;
+      });
     },
     toggle(el) {
       this[el] = !this[el];
     },
     zoomToObj() {
       window.removeEventListener("mousemove", this.handleMouseMove);
+      this.markZoomAnimating();
       this.VCClicked = true;
       this.currentOrigin = { x: this.currentZoom[0], y: this.currentZoom[1] };
       if (!this.zoomOrigin) {
@@ -93,6 +105,7 @@ export default {
       }
     },
     resetZoom() {
+      this.markZoomAnimating();
       this.VCClicked = false;
       this.zoomOrigin = undefined;
       this.previousZoomOrigin = {};
@@ -146,6 +159,13 @@ export default {
       element.style.translate = positions[clickCount % positions.length];
       return clickCount + 1;
     },
+    markZoomAnimating() {
+      clearTimeout(this.zoomAnimationTimer);
+      this.zoomAnimating = true;
+      this.zoomAnimationTimer = setTimeout(() => {
+        this.zoomAnimating = false;
+      }, 1000);
+    },
     enableMouseTracking() {
       window.addEventListener("mousemove", this.handleMouseMove);
     },
@@ -156,6 +176,14 @@ export default {
   mounted() {
     if (this.warningClosed) {
       this.enableMouseTracking();
+    }
+  },
+  unmounted() {
+    this.disableMouseTracking();
+    clearTimeout(this.timeoutId);
+    clearTimeout(this.zoomAnimationTimer);
+    if (this.mouseMoveFrame !== null) {
+      window.cancelAnimationFrame(this.mouseMoveFrame);
     }
   },
   computed: {
@@ -185,7 +213,13 @@ export default {
 .visual-wrapper {
   position: relative;
   display: flex;
-  transition: 1s;
+  transition-property: transform, transform-origin;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease, ease;
+
+  &.zooming {
+    pointer-events: none;
+  }
 }
 
 @media screen and (orientation: landscape),
